@@ -143,5 +143,5 @@ The Clarifier prompt (`clarifier-prompt.md`) is unchanged — it doesn't know ab
 1. **Filter, not replacement** — PO agent filters questions, doesn't replace the Clarifier. Clarifier still drives the conversation.
 2. **Approach B (in-the-loop)** — PO agent evaluates each question as it comes, preserving conversational flow and adaptive follow-ups. Chosen over batch (Approach A) or pre-processor (Approach C).
 3. **Dual confidence model** — self-assessment + mandatory escalation rules. Self-assessment alone is unreliable; rules alone are too rigid.
-4. **Low-confidence only at Checkpoint 1** — high-confidence auto-accepted, only low-confidence and escalated questions shown. Reduces human review burden.
+4. **Full transparency at Checkpoint 1** — all PO agent decisions (auto-answered + escalated) are shown at Checkpoint 1. High-confidence answers are pre-accepted defaults the human can override. This preserves trust and auditability.
 5. **Additional context support** — PO agent can receive product guidelines, past specs, etc. beyond the standard one-pager + Figma + codebase.
