@@ -1,6 +1,6 @@
 # Feature Crew
 
-Multi-phase feature development with independent evaluator agents at every phase. No rushing to execution.
+Multi-phase feature development with independent evaluators at every gate. Think deep, ship confident.
 
 ![Feature Crew Workflow](docs/workflow.svg?v=2)
 
