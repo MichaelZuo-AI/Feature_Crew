@@ -51,16 +51,56 @@ Before asking questions, explore the codebase to understand:
 
 This prevents asking questions the codebase already answers.
 
-### Step 4: Clarification Loop
+### Step 4: Clarification Loop with PO Agent
 
 Dispatch a Clarifier sub-agent using the template at:
 `skills/feature-deep-dev/clarifier-prompt.md`
 
-The Clarifier:
-1. Analyzes the one-pager + Figma
-2. Identifies ambiguities
-3. Asks the user questions ONE AT A TIME
-4. After all questions resolved, generates the spec
+The Clarifier analyzes the one-pager + Figma, identifies ambiguities, and generates questions ONE AT A TIME.
+
+**For each question, before showing it to the human:**
+
+1. Dispatch a PO Agent sub-agent using the template at:
+   `skills/feature-deep-dev/po-agent-prompt.md`
+
+   Provide:
+   - The question from the Clarifier
+   - One-pager text
+   - Figma screenshots (if provided)
+   - Codebase context (from Step 3 exploration)
+   - Additional context (if user provided product guidelines, past specs, etc.)
+
+2. Read PO Agent's response:
+
+   **If ANSWER:**
+   - Feed the answer back to the Clarifier as if the human answered
+   - Log to `poAgentLog` in state.json:
+     ```json
+     {
+       "questionNumber": N,
+       "question": "{the question}",
+       "decision": "ANSWER",
+       "confidence": "High",
+       "answer": "{PO agent's answer}",
+       "reasoning": "{PO agent's reasoning}"
+     }
+     ```
+
+   **If ESCALATE:**
+   - Show the question to the human, including the escalation reason
+   - After human answers, feed the answer to the Clarifier
+   - Log to `poAgentLog` in state.json:
+     ```json
+     {
+       "questionNumber": N,
+       "question": "{the question}",
+       "decision": "ESCALATE",
+       "escalationReason": "{why}",
+       "humanAnswer": "{human's answer}"
+     }
+     ```
+
+3. Clarifier continues with the next question until all resolved.
 
 Save the spec to:
 ```
@@ -69,9 +109,23 @@ docs/superpowers/feature-deep-dev/{feature-name}/spec.md
 
 ### Step 5: Checkpoint 1
 
-Present the spec to the user:
+Present the spec AND PO agent decision summary to the user:
 
-> "Spec generated and saved to `docs/superpowers/feature-deep-dev/{feature-name}/spec.md`. Please review it. When you approve, I'll proceed to implementation (Phase 2)."
+> "Spec generated and saved to `docs/superpowers/feature-deep-dev/{feature-name}/spec.md`."
+
+Then show the PO Agent decision log:
+
+```markdown
+## PO Agent Decisions (Auto-Answered)
+{For each ANSWER entry in poAgentLog:}
+- Q{N}: "{question}" → "{answer}" ({confidence} confidence)
+
+## Escalated to Human
+{For each ESCALATE entry in poAgentLog:}
+- Q{N}: "{question}" → Escalated: {escalationReason}
+```
+
+> "Please review the spec and the PO agent's auto-answered decisions above. You can override any decision. When you approve, I'll proceed to implementation (Phase 2)."
 
 Update state:
 ```json
