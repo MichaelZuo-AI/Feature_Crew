@@ -1,0 +1,151 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="780" height="720" viewBox="0 0 780 720">
+  <rect width="780" height="720" rx="16" ry="16" fill="#EDECE8"/>
+  <rect x="20" y="55" width="740" height="645" rx="12" ry="12" fill="#F5F4F0"/>
+
+  <defs>
+    <marker id="arr" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="none" stroke="#999" stroke-width="1.5"/>
+    </marker>
+    <marker id="arr-green" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="none" stroke="#6BAF7B" stroke-width="1.5"/>
+    </marker>
+    <marker id="arr-orange" markerWidth="10" markerHeight="8" refX="8" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8" fill="none" stroke="#C75B3A" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <text x="390" y="38" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#1A1A1A">Feature Deep Dev — Workflow</text>
+
+  <!-- ==================== INPUT ==================== -->
+  <rect x="265" y="75" width="250" height="50" rx="8" ry="8" fill="#F8D7D0" stroke="#C75B3A" stroke-width="1.5"/>
+  <text x="390" y="97" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1A1A1A">One-Pager + Figma Screenshots</text>
+  <text x="390" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8C8777">user provides feature input</text>
+
+  <!-- Arrow down -->
+  <line x1="390" y1="125" x2="390" y2="150" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+
+  <!-- ==================== PHASE 1 ==================== -->
+  <rect x="50" y="155" width="680" height="120" rx="10" ry="10" fill="none" stroke="#6BAF7B" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="70" y="175" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#6BAF7B">PHASE 1: CLARIFY</text>
+
+  <!-- Clarifier -->
+  <rect x="80" y="190" width="150" height="55" rx="8" ry="8" fill="#F5F4F0" stroke="#999" stroke-width="1.5"/>
+  <text x="155" y="213" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">Clarifier Agent</text>
+  <text x="155" y="233" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8C8777">asks questions</text>
+
+  <!-- Arrow to PO -->
+  <line x1="230" y1="217" x2="278" y2="217" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+
+  <!-- PO Agent -->
+  <rect x="285" y="190" width="150" height="55" rx="8" ry="8" fill="#D4EDDA" stroke="#6BAF7B" stroke-width="1.5"/>
+  <text x="360" y="213" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">PO Agent</text>
+  <text x="360" y="233" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B6651">auto-answer or escalate</text>
+
+  <!-- Arrow to Human -->
+  <line x1="435" y1="217" x2="483" y2="217" stroke="#C75B3A" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-orange)"/>
+  <text x="459" y="209" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#C75B3A">escalate</text>
+
+  <!-- Human -->
+  <rect x="490" y="190" width="130" height="55" rx="8" ry="8" fill="#F8D7D0" stroke="#C75B3A" stroke-width="1.5"/>
+  <text x="555" y="213" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">Human</text>
+  <text x="555" y="233" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8C8777">answers ambiguities</text>
+
+  <!-- Output: Spec -->
+  <rect x="640" y="197" width="70" height="40" rx="6" ry="6" fill="#D4EDDA" stroke="#6BAF7B" stroke-width="1"/>
+  <text x="675" y="221" text-anchor="middle" font-family="'SF Mono', monospace" font-size="11" font-weight="600" fill="#1A1A1A">spec.md</text>
+
+  <!-- Arrow down to checkpoint -->
+  <line x1="390" y1="275" x2="390" y2="300" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+
+  <!-- ==================== CHECKPOINT 1 ==================== -->
+  <rect x="295" y="305" width="190" height="35" rx="8" ry="8" fill="#F8D7D0" stroke="#C75B3A" stroke-width="1.5"/>
+  <text x="390" y="327" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#C75B3A">CHECKPOINT 1 — Human Approves</text>
+
+  <!-- Arrow down -->
+  <line x1="390" y1="340" x2="390" y2="365" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+
+  <!-- ==================== PHASE 2 ==================== -->
+  <rect x="50" y="370" width="680" height="120" rx="10" ry="10" fill="none" stroke="#6BAF7B" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="70" y="390" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#6BAF7B">PHASE 2: IMPLEMENT</text>
+
+  <!-- Coder -->
+  <rect x="80" y="400" width="150" height="55" rx="8" ry="8" fill="#F5F4F0" stroke="#999" stroke-width="1.5"/>
+  <text x="155" y="423" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">Implementer</text>
+  <text x="155" y="443" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8C8777">plan → code</text>
+
+  <!-- Arrow to Evaluator -->
+  <line x1="230" y1="427" x2="298" y2="427" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+  <text x="264" y="419" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#8C8777">code</text>
+
+  <!-- Evaluator -->
+  <rect x="305" y="400" width="170" height="55" rx="8" ry="8" fill="#D4EDDA" stroke="#6BAF7B" stroke-width="1.5"/>
+  <text x="390" y="423" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">Evaluator Agent</text>
+  <text x="390" y="443" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B6651">adaptive scoring rubric</text>
+
+  <!-- Score gate -->
+  <rect x="510" y="407" width="70" height="40" rx="6" ry="6" fill="#F5F4F0" stroke="#999" stroke-width="1.5"/>
+  <text x="545" y="432" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="700" fill="#1A1A1A">≥90%?</text>
+
+  <!-- Arrow to gate -->
+  <line x1="475" y1="427" x2="503" y2="427" stroke="#6BAF7B" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-green)"/>
+
+  <!-- Pass arrow -->
+  <line x1="580" y1="427" x2="630" y2="427" stroke="#6BAF7B" stroke-width="1.5" marker-end="url(#arr-green)"/>
+  <text x="605" y="419" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#6BAF7B">YES</text>
+
+  <!-- Pass indicator -->
+  <rect x="637" y="412" width="60" height="30" rx="6" ry="6" fill="#D4EDDA" stroke="#6BAF7B" stroke-width="1"/>
+  <text x="667" y="432" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#6BAF7B">PASS</text>
+
+  <!-- Fail loop arrow (goes down then left back to Implementer) -->
+  <path d="M545,447 L545,465 L155,465 L155,455" fill="none" stroke="#C75B3A" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-orange)"/>
+  <text x="350" y="478" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" font-weight="600" fill="#C75B3A">NO — feedback loop (max 3 rounds)</text>
+
+  <!-- Arrow down to checkpoint 2 -->
+  <line x1="390" y1="490" x2="390" y2="518" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+
+  <!-- ==================== CHECKPOINT 2 ==================== -->
+  <rect x="285" y="523" width="210" height="35" rx="8" ry="8" fill="#F8D7D0" stroke="#C75B3A" stroke-width="1.5"/>
+  <text x="390" y="545" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="600" fill="#C75B3A">CHECKPOINT 2 — Human Code Review</text>
+
+  <!-- Arrow down -->
+  <line x1="390" y1="558" x2="390" y2="580" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+
+  <!-- ==================== PHASE 3 ==================== -->
+  <rect x="50" y="585" width="680" height="90" rx="10" ry="10" fill="none" stroke="#6BAF7B" stroke-width="1.5" stroke-dasharray="8,4"/>
+  <text x="70" y="605" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#6BAF7B">PHASE 3: QA</text>
+
+  <!-- QA Agent -->
+  <rect x="80" y="615" width="150" height="45" rx="8" ry="8" fill="#F5F4F0" stroke="#999" stroke-width="1.5"/>
+  <text x="155" y="635" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">QA Agent</text>
+  <text x="155" y="651" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8C8777">test + report bugs</text>
+
+  <!-- Arrow to Bug Fixer -->
+  <line x1="230" y1="637" x2="298" y2="637" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>
+  <text x="264" y="629" text-anchor="middle" font-family="system-ui, sans-serif" font-size="9" fill="#8C8777">bugs</text>
+
+  <!-- Bug Fixer -->
+  <rect x="305" y="615" width="150" height="45" rx="8" ry="8" fill="#D4EDDA" stroke="#6BAF7B" stroke-width="1.5"/>
+  <text x="380" y="635" text-anchor="middle" font-family="system-ui, sans-serif" font-size="13" font-weight="600" fill="#1A1A1A">Bug Fixer Agent</text>
+  <text x="380" y="651" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#6B6651">TDD fix + commit</text>
+
+  <!-- Loop arrow -->
+  <path d="M380,660 L380,670 L155,670 L155,660" fill="none" stroke="#C75B3A" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-orange)"/>
+
+  <!-- Arrow to pass -->
+  <line x1="455" y1="637" x2="503" y2="637" stroke="#6BAF7B" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr-green)"/>
+
+  <!-- All clear -->
+  <rect x="510" y="620" width="90" height="35" rx="6" ry="6" fill="#D4EDDA" stroke="#6BAF7B" stroke-width="1"/>
+  <text x="555" y="642" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-weight="600" fill="#6BAF7B">ALL CLEAR</text>
+
+  <!-- Arrow to Production -->
+  <line x1="600" y1="637" x2="638" y2="637" stroke="#6BAF7B" stroke-width="1.5" marker-end="url(#arr-green)"/>
+
+  <!-- Production -->
+  <rect x="645" y="618" width="70" height="38" rx="8" ry="8" fill="#6BAF7B" stroke="#6BAF7B" stroke-width="1.5"/>
+  <text x="680" y="641" text-anchor="middle" font-family="system-ui, sans-serif" font-size="12" font-weight="700" fill="#FFFFFF">SHIP</text>
+
+  <!-- Footer note -->
+  <text x="390" y="710" text-anchor="middle" font-family="system-ui, sans-serif" font-size="11" font-style="italic" fill="#8C8777">Every phase has an independent evaluator agent — no rushing to execution</text>
+</svg>

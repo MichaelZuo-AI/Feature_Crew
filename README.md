@@ -4,21 +4,7 @@ A Claude Code skill family that orchestrates multi-phase feature development wit
 
 ## How It Works
 
-```
-Input: One-Pager + Figma Screenshots
-         ↓
-Phase 1: Clarify     → PO Agent auto-answers, human handles ambiguities → Structured Spec
-         ↓
-   Checkpoint 1      → Human approves spec
-         ↓
-Phase 2: Implement   → Plan → Code → Evaluator scores (≥90% to pass) → Loop if needed
-         ↓
-   Checkpoint 2      → Human code review
-         ↓
-Phase 3: QA          → Holistic testing → Bug fix loop → All clean
-         ↓
-   Production        → Merge / PR / Ship
-```
+![Feature Deep Dev Workflow](docs/workflow.svg)
 
 ## Installation
 
