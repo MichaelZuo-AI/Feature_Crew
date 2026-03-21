@@ -20,12 +20,36 @@ Phase 3: QA          → Holistic testing → Bug fix loop → All clean
    Production        → Merge / PR / Ship
 ```
 
+## Installation
+
+**Prerequisites:** [Claude Code](https://docs.anthropic.com/en/docs/claude-code) + [Superpowers plugin](https://github.com/anthropics/claude-code-superpowers) installed.
+
+**One-liner** (installs into current project):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/MichaelZuo-AI/Feature_Deep_Dev/main/install.sh | bash
+```
+
+**Or specify a target project:**
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/MichaelZuo-AI/Feature_Deep_Dev/main/install.sh | bash -s /path/to/your/project
+```
+
+**Or manual:**
+
+```bash
+git clone https://github.com/MichaelZuo-AI/Feature_Deep_Dev.git
+cp -r Feature_Deep_Dev/.claude/skills/feature-deep-dev* /path/to/your/project/.claude/skills/
+```
+
 ## Quick Start
 
-1. Open Claude Code in any project
-2. Invoke `/feature-deep-dev`
-3. Provide a feature name, one-pager, and optional Figma screenshots
-4. The workflow guides you through each phase with human checkpoints
+1. Install the skills into your project (see above)
+2. Open Claude Code in your project
+3. Invoke `/feature-deep-dev`
+4. Provide a feature name, one-pager, and optional Figma screenshots
+5. The workflow guides you through each phase with human checkpoints
 
 ## Skills
 
