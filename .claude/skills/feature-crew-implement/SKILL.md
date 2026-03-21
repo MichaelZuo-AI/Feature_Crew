@@ -1,16 +1,16 @@
 ---
-name: feature-deep-dev-implement
+name: feature-crew-implement
 description: Use when a feature spec has been approved and is ready for implementation with evaluation scoring gates
 ---
 
-# Feature Deep Dev — Phase 2: Implement
+# Feature Crew — Phase 2: Implement
 
 Implement a feature from an approved spec, then evaluate it with an independent scoring agent. Loops until quality ≥90%.
 
 ## Inputs
 
-- Approved spec at `docs/superpowers/feature-deep-dev/{feature-name}/spec.md`
-- State file at `docs/superpowers/feature-deep-dev/{feature-name}/state.json`
+- Approved spec at `docs/superpowers/feature-crew/{feature-name}/spec.md`
+- State file at `docs/superpowers/feature-crew/{feature-name}/state.json`
 
 ## Process
 
@@ -26,7 +26,7 @@ Update state with worktree path and branch.
 
 Invoke `superpowers:writing-plans` with the approved spec as input. Save the plan to:
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/plan.md
+docs/superpowers/feature-crew/{feature-name}/plan.md
 ```
 
 ### Step 3: Execute Plan
@@ -38,7 +38,7 @@ Invoke `superpowers:subagent-driven-development` to execute the plan task by tas
 ### Step 4: Evaluation Gate
 
 After all tasks complete, dispatch the **Evaluator agent** using the template at:
-`skills/feature-deep-dev/evaluator-prompt.md`
+`skills/feature-crew/evaluator-prompt.md`
 
 Provide the evaluator with:
 1. The spec (`spec.md`)
@@ -47,7 +47,7 @@ Provide the evaluator with:
 
 Save the evaluation report to:
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/eval-round-{N}.md
+docs/superpowers/feature-crew/{feature-name}/eval-round-{N}.md
 ```
 
 ### Step 5: Score Check
@@ -67,7 +67,7 @@ Read the evaluator's status:
 
 ### Step 6: Hand Off
 
-On Checkpoint 2 approval, update state to `QA` and invoke `feature-deep-dev-qa`.
+On Checkpoint 2 approval, update state to `QA` and invoke `feature-crew-qa`.
 
 ## Standalone Usage
 

@@ -1,6 +1,6 @@
 #!/bin/bash
-# Feature Deep Dev — Install Script
-# Usage: curl -fsSL https://raw.githubusercontent.com/MichaelZuo-AI/Feature_Deep_Dev/main/install.sh | bash
+# Feature Crew — Install Script
+# Usage: curl -fsSL https://raw.githubusercontent.com/MichaelZuo-AI/Feature_Crew/main/install.sh | bash
 # Or:    ./install.sh /path/to/your/project
 
 set -e
@@ -41,23 +41,23 @@ TMPDIR=$(mktemp -d)
 trap "rm -rf $TMPDIR" EXIT
 
 echo ""
-echo "Installing Feature Deep Dev skills..."
+echo "Installing Feature Crew skills..."
 
 # Clone the repo
-git clone --quiet --depth 1 https://github.com/MichaelZuo-AI/Feature_Deep_Dev.git "$TMPDIR/repo"
+git clone --quiet --depth 1 https://github.com/MichaelZuo-AI/Feature_Crew.git "$TMPDIR/repo"
 
 # Copy skills to target project
 mkdir -p "$TARGET/.claude/skills"
-cp -r "$TMPDIR/repo/.claude/skills/feature-deep-dev" "$TARGET/.claude/skills/"
-cp -r "$TMPDIR/repo/.claude/skills/feature-deep-dev-clarify" "$TARGET/.claude/skills/"
-cp -r "$TMPDIR/repo/.claude/skills/feature-deep-dev-implement" "$TARGET/.claude/skills/"
-cp -r "$TMPDIR/repo/.claude/skills/feature-deep-dev-qa" "$TARGET/.claude/skills/"
-cp -r "$TMPDIR/repo/.claude/skills/feature-deep-dev-evaluate" "$TARGET/.claude/skills/"
+cp -r "$TMPDIR/repo/.claude/skills/feature-crew" "$TARGET/.claude/skills/"
+cp -r "$TMPDIR/repo/.claude/skills/feature-crew-clarify" "$TARGET/.claude/skills/"
+cp -r "$TMPDIR/repo/.claude/skills/feature-crew-implement" "$TARGET/.claude/skills/"
+cp -r "$TMPDIR/repo/.claude/skills/feature-crew-qa" "$TARGET/.claude/skills/"
+cp -r "$TMPDIR/repo/.claude/skills/feature-crew-evaluate" "$TARGET/.claude/skills/"
 
 echo ""
 echo "Done! Installed to $TARGET/.claude/skills/"
 echo ""
 echo "Skills installed:"
-ls -1 "$TARGET/.claude/skills/" | grep feature-deep-dev
+ls -1 "$TARGET/.claude/skills/" | grep feature-crew
 echo ""
-echo "Usage: Open Claude Code in your project and run /feature-deep-dev"
+echo "Usage: Open Claude Code in your project and run /feature-crew"

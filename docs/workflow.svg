@@ -14,7 +14,7 @@
     </marker>
   </defs>
 
-  <text x="390" y="38" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#1A1A1A">Feature Deep Dev — Workflow</text>
+  <text x="390" y="38" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700" fill="#1A1A1A">Feature Crew — Workflow</text>
 
   <!-- ==================== INPUT ==================== -->
   <rect x="265" y="75" width="250" height="50" rx="8" ry="8" fill="#F8D7D0" stroke="#C75B3A" stroke-width="1.5"/>

@@ -1,9 +1,9 @@
 ---
-name: feature-deep-dev
+name: feature-crew
 description: Use when starting a new feature from a one-pager or Figma spec that should go through structured phases of clarification, implementation with evaluation, and QA before shipping
 ---
 
-# Feature Deep Dev
+# Feature Crew
 
 Multi-phase feature development with independent evaluator agents at every phase. No rushing to execution.
 
@@ -11,11 +11,11 @@ Multi-phase feature development with independent evaluator agents at every phase
 
 | Phase | Skill | What Happens |
 |-------|-------|--------------|
-| Phase 1 | `feature-deep-dev-clarify` | One-pager + Figma → structured spec via question loop |
+| Phase 1 | `feature-crew-clarify` | One-pager + Figma → structured spec via question loop |
 | Checkpoint 1 | Human | Approve spec before implementation |
-| Phase 2 | `feature-deep-dev-implement` | Plan → code → evaluator scoring gate (≥90%) |
+| Phase 2 | `feature-crew-implement` | Plan → code → evaluator scoring gate (≥90%) |
 | Checkpoint 2 | Human | Code review before QA |
-| Phase 3 | `feature-deep-dev-qa` | Holistic QA → bug fix loop → ship |
+| Phase 3 | `feature-crew-qa` | Holistic QA → bug fix loop → ship |
 
 ## Starting a New Feature
 
@@ -28,33 +28,33 @@ The user provides:
 
 ### Kickoff
 
-1. Create state directory: `docs/superpowers/feature-deep-dev/{feature-name}/`
+1. Create state directory: `docs/superpowers/feature-crew/{feature-name}/`
 2. Initialize `state.json` with phase `INIT`
-3. Invoke `feature-deep-dev-clarify` to start Phase 1
+3. Invoke `feature-crew-clarify` to start Phase 1
 
 ## Resuming a Feature
 
 If invoked with `resume {feature-name}`:
-1. Read `docs/superpowers/feature-deep-dev/{feature-name}/state.json`
+1. Read `docs/superpowers/feature-crew/{feature-name}/state.json`
 2. Route to the current phase's skill:
-   - `CLARIFYING` → `feature-deep-dev-clarify`
+   - `CLARIFYING` → `feature-crew-clarify`
    - `CHECKPOINT_1` → present spec for approval
-   - `IMPLEMENTING` → `feature-deep-dev-implement`
+   - `IMPLEMENTING` → `feature-crew-implement`
    - `CHECKPOINT_2` → present eval report for code review
-   - `QA` → `feature-deep-dev-qa`
+   - `QA` → `feature-crew-qa`
    - `BLOCKED_IMPL` / `BLOCKED_QA` → present issue for human guidance
    - `PRODUCTION` → already shipped, nothing to do
 
 ## Listing Features
 
 If invoked with `list`:
-1. Scan `docs/superpowers/feature-deep-dev/*/state.json`
+1. Scan `docs/superpowers/feature-crew/*/state.json`
 2. Display table: feature name, current phase, worktree branch
 
 ## State Directory
 
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/
+docs/superpowers/feature-crew/{feature-name}/
 ├── state.json
 ├── spec.md
 ├── plan.md
@@ -81,7 +81,7 @@ Each feature gets its own:
 - State directory
 - Independent agent pipelines
 
-Start multiple: invoke `/feature-deep-dev` for each feature. They run independently. Resume any with `/feature-deep-dev resume {name}`.
+Start multiple: invoke `/feature-crew` for each feature. They run independently. Resume any with `/feature-crew resume {name}`.
 
 ## Red Flags — Never Do These
 

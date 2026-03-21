@@ -1,9 +1,9 @@
 ---
-name: feature-deep-dev-evaluate
+name: feature-crew-evaluate
 description: Use when you need to independently evaluate implemented code against a spec with adaptive scoring across multiple quality dimensions
 ---
 
-# Feature Deep Dev — Evaluate
+# Feature Crew — Evaluate
 
 Independent, adversarial evaluation of implemented code against a spec. Produces a scored report with an adaptive rubric based on feature type.
 
@@ -11,7 +11,7 @@ Independent, adversarial evaluation of implemented code against a spec. Produces
 
 - After implementation is complete and you want a quality gate
 - To score code against a spec without running the full pipeline
-- Called automatically by `feature-deep-dev-implement` (Phase 2)
+- Called automatically by `feature-crew-implement` (Phase 2)
 
 ## Inputs
 
@@ -28,7 +28,7 @@ Provide:
    - Any weight overrides from evaluator criteria hints
 
 2. Dispatch a fresh evaluator sub-agent using:
-   `skills/feature-deep-dev/evaluator-prompt.md`
+   `skills/feature-crew/evaluator-prompt.md`
 
    Pass the sub-agent:
    - Full spec text (do NOT make it read a file)
@@ -42,7 +42,7 @@ Provide:
 ## Standalone Usage
 
 ```
-/feature-deep-dev-evaluate --spec path/to/spec.md --diff main...HEAD
+/feature-crew-evaluate --spec path/to/spec.md --diff main...HEAD
 ```
 
 Can be used on any codebase, not just features built through the pipeline.

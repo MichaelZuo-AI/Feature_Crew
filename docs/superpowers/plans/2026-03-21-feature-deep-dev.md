@@ -1,14 +1,14 @@
-# Feature Deep Dev Implementation Plan
+# Feature Crew Implementation Plan
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a skill family (`feature-deep-dev`) that orchestrates multi-phase feature development with independent evaluator agents at each phase.
+**Goal:** Build a skill family (`feature-crew`) that orchestrates multi-phase feature development with independent evaluator agents at each phase.
 
-**Architecture:** 5 skill files in `.claude/skills/feature-deep-dev/`, each as a SKILL.md-style markdown file. The orchestrator skill manages state via a JSON file on disk and delegates to phase skills. Phase skills wrap existing Superpowers skills and add evaluation gates.
+**Architecture:** 5 skill files in `.claude/skills/feature-crew/`, each as a SKILL.md-style markdown file. The orchestrator skill manages state via a JSON file on disk and delegates to phase skills. Phase skills wrap existing Superpowers skills and add evaluation gates.
 
 **Tech Stack:** Claude Code skills (markdown), JSON state files, git worktrees
 
-**Spec:** `docs/superpowers/specs/2026-03-21-feature-deep-dev-design.md`
+**Spec:** `docs/superpowers/specs/2026-03-21-feature-crew-design.md`
 
 ---
 
@@ -17,14 +17,14 @@
 The evaluator is the foundation — Phase 2 and Phase 3 both depend on it. Build this first.
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev/evaluator-prompt.md`
+- Create: `.claude/skills/feature-crew/evaluator-prompt.md`
 
 - [ ] **Step 1: Write the evaluator prompt template**
 
-Create `.claude/skills/feature-deep-dev/evaluator-prompt.md` with:
+Create `.claude/skills/feature-crew/evaluator-prompt.md` with:
 
 ```markdown
-# Feature Deep Dev — Evaluator Agent
+# Feature Crew — Evaluator Agent
 
 You are an independent evaluator. Your job is to assess implementation quality against a spec. You are adversarial — your goal is to find problems, not to rubber-stamp.
 
@@ -103,14 +103,14 @@ PASS (≥90%) | FAIL ({score}%, issues above must be fixed)
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev/evaluator-prompt.md | head -5`
+Run: `cat .claude/skills/feature-crew/evaluator-prompt.md | head -5`
 Expected: Shows the title and first few lines
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev/evaluator-prompt.md
-git commit -m "feat: add feature-deep-dev evaluator prompt template"
+git add .claude/skills/feature-crew/evaluator-prompt.md
+git commit -m "feat: add feature-crew evaluator prompt template"
 ```
 
 ---
@@ -120,14 +120,14 @@ git commit -m "feat: add feature-deep-dev evaluator prompt template"
 Phase 3's QA agent needs its own prompt — distinct from the evaluator.
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev/qa-agent-prompt.md`
+- Create: `.claude/skills/feature-crew/qa-agent-prompt.md`
 
 - [ ] **Step 1: Write the QA agent prompt template**
 
-Create `.claude/skills/feature-deep-dev/qa-agent-prompt.md` with:
+Create `.claude/skills/feature-crew/qa-agent-prompt.md` with:
 
 ```markdown
-# Feature Deep Dev — QA Agent
+# Feature Crew — QA Agent
 
 You are a dedicated QA tester. Your job is holistic testing — not just "does the new feature work?" but "does the whole system still work with the new feature?"
 
@@ -204,14 +204,14 @@ ALL_CLEAR | BUGS_FOUND ({count} bugs to fix)
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev/qa-agent-prompt.md | head -5`
+Run: `cat .claude/skills/feature-crew/qa-agent-prompt.md | head -5`
 Expected: Shows the title and first few lines
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev/qa-agent-prompt.md
-git commit -m "feat: add feature-deep-dev QA agent prompt template"
+git add .claude/skills/feature-crew/qa-agent-prompt.md
+git commit -m "feat: add feature-crew QA agent prompt template"
 ```
 
 ---
@@ -221,14 +221,14 @@ git commit -m "feat: add feature-deep-dev QA agent prompt template"
 Phase 3's bug fixer receives bug reports and fixes them.
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev/bug-fixer-prompt.md`
+- Create: `.claude/skills/feature-crew/bug-fixer-prompt.md`
 
 - [ ] **Step 1: Write the bug fixer prompt template**
 
-Create `.claude/skills/feature-deep-dev/bug-fixer-prompt.md` with:
+Create `.claude/skills/feature-crew/bug-fixer-prompt.md` with:
 
 ```markdown
-# Feature Deep Dev — Bug Fixer Agent
+# Feature Crew — Bug Fixer Agent
 
 You are a bug fixer. You receive a specific bug report and fix it. One bug per dispatch.
 
@@ -282,14 +282,14 @@ You will receive:
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev/bug-fixer-prompt.md | head -5`
+Run: `cat .claude/skills/feature-crew/bug-fixer-prompt.md | head -5`
 Expected: Shows the title and first few lines
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev/bug-fixer-prompt.md
-git commit -m "feat: add feature-deep-dev bug fixer prompt template"
+git add .claude/skills/feature-crew/bug-fixer-prompt.md
+git commit -m "feat: add feature-crew bug fixer prompt template"
 ```
 
 ---
@@ -299,14 +299,14 @@ git commit -m "feat: add feature-deep-dev bug fixer prompt template"
 Phase 1's clarifier agent that analyzes specs and asks questions.
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev/clarifier-prompt.md`
+- Create: `.claude/skills/feature-crew/clarifier-prompt.md`
 
 - [ ] **Step 1: Write the clarifier prompt template**
 
-Create `.claude/skills/feature-deep-dev/clarifier-prompt.md` with:
+Create `.claude/skills/feature-crew/clarifier-prompt.md` with:
 
 ```markdown
-# Feature Deep Dev — Clarifier Agent
+# Feature Crew — Clarifier Agent
 
 You are a requirements clarifier. You analyze a feature spec (one-pager + optional Figma screenshots) and identify ambiguities, missing details, and edge cases that must be resolved before implementation.
 
@@ -395,34 +395,34 @@ After all questions are resolved, produce:
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev/clarifier-prompt.md | head -5`
+Run: `cat .claude/skills/feature-crew/clarifier-prompt.md | head -5`
 Expected: Shows the title and first few lines
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev/clarifier-prompt.md
-git commit -m "feat: add feature-deep-dev clarifier prompt template"
+git add .claude/skills/feature-crew/clarifier-prompt.md
+git commit -m "feat: add feature-crew clarifier prompt template"
 ```
 
 ---
 
-### Task 5: Create the Phase 1 skill — `feature-deep-dev-clarify`
+### Task 5: Create the Phase 1 skill — `feature-crew-clarify`
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev-clarify/SKILL.md`
+- Create: `.claude/skills/feature-crew-clarify/SKILL.md`
 
 - [ ] **Step 1: Write the Phase 1 skill**
 
-Create `.claude/skills/feature-deep-dev-clarify/SKILL.md` with:
+Create `.claude/skills/feature-crew-clarify/SKILL.md` with:
 
 ```markdown
 ---
-name: feature-deep-dev-clarify
+name: feature-crew-clarify
 description: Use when starting a new feature that has a one-pager or Figma spec and needs requirements clarification before implementation
 ---
 
-# Feature Deep Dev — Phase 1: Clarify
+# Feature Crew — Phase 1: Clarify
 
 Transform a one-pager + Figma into a structured, implementation-ready spec through a question loop with the user.
 
@@ -440,7 +440,7 @@ The user provides:
 Create the feature state directory and file:
 
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/state.json
+docs/superpowers/feature-crew/{feature-name}/state.json
 ```
 
 ```json
@@ -473,7 +473,7 @@ This prevents asking questions the codebase already answers.
 ### Step 4: Clarification Loop
 
 Dispatch a Clarifier sub-agent using the template at:
-`skills/feature-deep-dev/clarifier-prompt.md`
+`skills/feature-crew/clarifier-prompt.md`
 
 The Clarifier:
 1. Analyzes the one-pager + Figma
@@ -483,14 +483,14 @@ The Clarifier:
 
 Save the spec to:
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/spec.md
+docs/superpowers/feature-crew/{feature-name}/spec.md
 ```
 
 ### Step 5: Checkpoint 1
 
 Present the spec to the user:
 
-> "Spec generated and saved to `docs/superpowers/feature-deep-dev/{feature-name}/spec.md`. Please review it. When you approve, I'll proceed to implementation (Phase 2)."
+> "Spec generated and saved to `docs/superpowers/feature-crew/{feature-name}/spec.md`. Please review it. When you approve, I'll proceed to implementation (Phase 2)."
 
 Update state:
 ```json
@@ -501,50 +501,50 @@ Wait for user approval before proceeding.
 
 ### Step 6: Hand Off
 
-On approval, update state to `IMPLEMENTING` and invoke `feature-deep-dev-implement`.
+On approval, update state to `IMPLEMENTING` and invoke `feature-crew-implement`.
 
 ## Standalone Usage
 
-This skill can be invoked independently via `/feature-deep-dev-clarify` for any project. It produces a spec without requiring the full pipeline.
+This skill can be invoked independently via `/feature-crew-clarify` for any project. It produces a spec without requiring the full pipeline.
 ```
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev-clarify/SKILL.md | head -3`
+Run: `cat .claude/skills/feature-crew-clarify/SKILL.md | head -3`
 Expected: Shows YAML frontmatter start
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev-clarify/SKILL.md
-git commit -m "feat: add feature-deep-dev-clarify skill (Phase 1)"
+git add .claude/skills/feature-crew-clarify/SKILL.md
+git commit -m "feat: add feature-crew-clarify skill (Phase 1)"
 ```
 
 ---
 
-### Task 6: Create the Phase 2 skill — `feature-deep-dev-implement`
+### Task 6: Create the Phase 2 skill — `feature-crew-implement`
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev-implement/SKILL.md`
+- Create: `.claude/skills/feature-crew-implement/SKILL.md`
 
 - [ ] **Step 1: Write the Phase 2 skill**
 
-Create `.claude/skills/feature-deep-dev-implement/SKILL.md` with:
+Create `.claude/skills/feature-crew-implement/SKILL.md` with:
 
 ```markdown
 ---
-name: feature-deep-dev-implement
+name: feature-crew-implement
 description: Use when a feature spec has been approved and is ready for implementation with evaluation scoring gates
 ---
 
-# Feature Deep Dev — Phase 2: Implement
+# Feature Crew — Phase 2: Implement
 
 Implement a feature from an approved spec, then evaluate it with an independent scoring agent. Loops until quality ≥90%.
 
 ## Inputs
 
-- Approved spec at `docs/superpowers/feature-deep-dev/{feature-name}/spec.md`
-- State file at `docs/superpowers/feature-deep-dev/{feature-name}/state.json`
+- Approved spec at `docs/superpowers/feature-crew/{feature-name}/spec.md`
+- State file at `docs/superpowers/feature-crew/{feature-name}/state.json`
 
 ## Process
 
@@ -560,7 +560,7 @@ Update state with worktree path and branch.
 
 Invoke `superpowers:writing-plans` with the approved spec as input. Save the plan to:
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/plan.md
+docs/superpowers/feature-crew/{feature-name}/plan.md
 ```
 
 ### Step 3: Execute Plan
@@ -572,7 +572,7 @@ Invoke `superpowers:subagent-driven-development` to execute the plan task by tas
 ### Step 4: Evaluation Gate
 
 After all tasks complete, dispatch the **Evaluator agent** using the template at:
-`skills/feature-deep-dev/evaluator-prompt.md`
+`skills/feature-crew/evaluator-prompt.md`
 
 Provide the evaluator with:
 1. The spec (`spec.md`)
@@ -581,7 +581,7 @@ Provide the evaluator with:
 
 Save the evaluation report to:
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/eval-round-{N}.md
+docs/superpowers/feature-crew/{feature-name}/eval-round-{N}.md
 ```
 
 ### Step 5: Score Check
@@ -601,7 +601,7 @@ Read the evaluator's status:
 
 ### Step 6: Hand Off
 
-On Checkpoint 2 approval, update state to `QA` and invoke `feature-deep-dev-qa`.
+On Checkpoint 2 approval, update state to `QA` and invoke `feature-crew-qa`.
 
 ## Standalone Usage
 
@@ -610,49 +610,49 @@ Can be invoked independently if you already have a spec file. Expects the spec a
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev-implement/SKILL.md | head -3`
+Run: `cat .claude/skills/feature-crew-implement/SKILL.md | head -3`
 Expected: Shows YAML frontmatter start
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev-implement/SKILL.md
-git commit -m "feat: add feature-deep-dev-implement skill (Phase 2)"
+git add .claude/skills/feature-crew-implement/SKILL.md
+git commit -m "feat: add feature-crew-implement skill (Phase 2)"
 ```
 
 ---
 
-### Task 7: Create the Phase 3 skill — `feature-deep-dev-qa`
+### Task 7: Create the Phase 3 skill — `feature-crew-qa`
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev-qa/SKILL.md`
+- Create: `.claude/skills/feature-crew-qa/SKILL.md`
 
 - [ ] **Step 1: Write the Phase 3 skill**
 
-Create `.claude/skills/feature-deep-dev-qa/SKILL.md` with:
+Create `.claude/skills/feature-crew-qa/SKILL.md` with:
 
 ```markdown
 ---
-name: feature-deep-dev-qa
+name: feature-crew-qa
 description: Use when implementation has passed code review and needs holistic QA testing with automated bug fix loops
 ---
 
-# Feature Deep Dev — Phase 3: QA
+# Feature Crew — Phase 3: QA
 
 Holistic quality assurance — run tests, find bugs, fix them, verify fixes. Loops until all clean.
 
 ## Inputs
 
 - Approved implementation in worktree
-- Spec at `docs/superpowers/feature-deep-dev/{feature-name}/spec.md`
-- State file at `docs/superpowers/feature-deep-dev/{feature-name}/state.json`
+- Spec at `docs/superpowers/feature-crew/{feature-name}/spec.md`
+- State file at `docs/superpowers/feature-crew/{feature-name}/state.json`
 
 ## Process
 
 ### Step 1: Dispatch QA Agent
 
 Dispatch a QA sub-agent using the template at:
-`skills/feature-deep-dev/qa-agent-prompt.md`
+`skills/feature-crew/qa-agent-prompt.md`
 
 Provide:
 1. The spec (for acceptance criteria)
@@ -661,7 +661,7 @@ Provide:
 
 Save QA report to:
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/qa-report-{N}.md
+docs/superpowers/feature-crew/{feature-name}/qa-report-{N}.md
 ```
 
 ### Step 2: Check Results
@@ -673,7 +673,7 @@ Read QA agent's status:
 
 **If BUGS_FOUND:**
 - For each bug, dispatch a **Bug Fixer sub-agent** using:
-  `skills/feature-deep-dev/bug-fixer-prompt.md`
+  `skills/feature-crew/bug-fixer-prompt.md`
 - One bug per sub-agent dispatch (fresh context each time)
 - Bug Fixer writes test, fixes bug, commits
 
@@ -703,34 +703,34 @@ Can be invoked independently on any branch to run QA. Useful for running QA on c
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev-qa/SKILL.md | head -3`
+Run: `cat .claude/skills/feature-crew-qa/SKILL.md | head -3`
 Expected: Shows YAML frontmatter start
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev-qa/SKILL.md
-git commit -m "feat: add feature-deep-dev-qa skill (Phase 3)"
+git add .claude/skills/feature-crew-qa/SKILL.md
+git commit -m "feat: add feature-crew-qa skill (Phase 3)"
 ```
 
 ---
 
-### Task 8: Create the orchestrator skill — `feature-deep-dev`
+### Task 8: Create the orchestrator skill — `feature-crew`
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev/SKILL.md`
+- Create: `.claude/skills/feature-crew/SKILL.md`
 
 - [ ] **Step 1: Write the orchestrator skill**
 
-Create `.claude/skills/feature-deep-dev/SKILL.md` with:
+Create `.claude/skills/feature-crew/SKILL.md` with:
 
 ```markdown
 ---
-name: feature-deep-dev
+name: feature-crew
 description: Use when starting a new feature from a one-pager or Figma spec that should go through structured phases of clarification, implementation with evaluation, and QA before shipping
 ---
 
-# Feature Deep Dev
+# Feature Crew
 
 Multi-phase feature development with independent evaluator agents at every phase. No rushing to execution.
 
@@ -738,11 +738,11 @@ Multi-phase feature development with independent evaluator agents at every phase
 
 | Phase | Skill | What Happens |
 |-------|-------|--------------|
-| Phase 1 | `feature-deep-dev-clarify` | One-pager + Figma → structured spec via question loop |
+| Phase 1 | `feature-crew-clarify` | One-pager + Figma → structured spec via question loop |
 | Checkpoint 1 | Human | Approve spec before implementation |
-| Phase 2 | `feature-deep-dev-implement` | Plan → code → evaluator scoring gate (≥90%) |
+| Phase 2 | `feature-crew-implement` | Plan → code → evaluator scoring gate (≥90%) |
 | Checkpoint 2 | Human | Code review before QA |
-| Phase 3 | `feature-deep-dev-qa` | Holistic QA → bug fix loop → ship |
+| Phase 3 | `feature-crew-qa` | Holistic QA → bug fix loop → ship |
 
 ## Starting a New Feature
 
@@ -755,33 +755,33 @@ The user provides:
 
 ### Kickoff
 
-1. Create state directory: `docs/superpowers/feature-deep-dev/{feature-name}/`
+1. Create state directory: `docs/superpowers/feature-crew/{feature-name}/`
 2. Initialize `state.json` with phase `INIT`
-3. Invoke `feature-deep-dev-clarify` to start Phase 1
+3. Invoke `feature-crew-clarify` to start Phase 1
 
 ## Resuming a Feature
 
 If invoked with `resume {feature-name}`:
-1. Read `docs/superpowers/feature-deep-dev/{feature-name}/state.json`
+1. Read `docs/superpowers/feature-crew/{feature-name}/state.json`
 2. Route to the current phase's skill:
-   - `CLARIFYING` → `feature-deep-dev-clarify`
+   - `CLARIFYING` → `feature-crew-clarify`
    - `CHECKPOINT_1` → present spec for approval
-   - `IMPLEMENTING` → `feature-deep-dev-implement`
+   - `IMPLEMENTING` → `feature-crew-implement`
    - `CHECKPOINT_2` → present eval report for code review
-   - `QA` → `feature-deep-dev-qa`
+   - `QA` → `feature-crew-qa`
    - `BLOCKED_IMPL` / `BLOCKED_QA` → present issue for human guidance
    - `PRODUCTION` → already shipped, nothing to do
 
 ## Listing Features
 
 If invoked with `list`:
-1. Scan `docs/superpowers/feature-deep-dev/*/state.json`
+1. Scan `docs/superpowers/feature-crew/*/state.json`
 2. Display table: feature name, current phase, worktree branch
 
 ## State Directory
 
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/
+docs/superpowers/feature-crew/{feature-name}/
 ├── state.json
 ├── spec.md
 ├── plan.md
@@ -808,7 +808,7 @@ Each feature gets its own:
 - State directory
 - Independent agent pipelines
 
-Start multiple: invoke `/feature-deep-dev` for each feature. They run independently. Resume any with `/feature-deep-dev resume {name}`.
+Start multiple: invoke `/feature-crew` for each feature. They run independently. Resume any with `/feature-crew resume {name}`.
 
 ## Red Flags — Never Do These
 
@@ -821,36 +821,36 @@ Start multiple: invoke `/feature-deep-dev` for each feature. They run independen
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev/SKILL.md | head -3`
+Run: `cat .claude/skills/feature-crew/SKILL.md | head -3`
 Expected: Shows YAML frontmatter start
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev/SKILL.md
-git commit -m "feat: add feature-deep-dev orchestrator skill"
+git add .claude/skills/feature-crew/SKILL.md
+git commit -m "feat: add feature-crew orchestrator skill"
 ```
 
 ---
 
-### Task 9: Create the evaluator skill — `feature-deep-dev-evaluate`
+### Task 9: Create the evaluator skill — `feature-crew-evaluate`
 
 This is the skill wrapper that makes the evaluator invocable independently.
 
 **Files:**
-- Create: `.claude/skills/feature-deep-dev-evaluate/SKILL.md`
+- Create: `.claude/skills/feature-crew-evaluate/SKILL.md`
 
 - [ ] **Step 1: Write the evaluator skill**
 
-Create `.claude/skills/feature-deep-dev-evaluate/SKILL.md` with:
+Create `.claude/skills/feature-crew-evaluate/SKILL.md` with:
 
 ```markdown
 ---
-name: feature-deep-dev-evaluate
+name: feature-crew-evaluate
 description: Use when you need to independently evaluate implemented code against a spec with adaptive scoring across multiple quality dimensions
 ---
 
-# Feature Deep Dev — Evaluate
+# Feature Crew — Evaluate
 
 Independent, adversarial evaluation of implemented code against a spec. Produces a scored report with an adaptive rubric based on feature type.
 
@@ -858,7 +858,7 @@ Independent, adversarial evaluation of implemented code against a spec. Produces
 
 - After implementation is complete and you want a quality gate
 - To score code against a spec without running the full pipeline
-- Called automatically by `feature-deep-dev-implement` (Phase 2)
+- Called automatically by `feature-crew-implement` (Phase 2)
 
 ## Inputs
 
@@ -875,7 +875,7 @@ Provide:
    - Any weight overrides from evaluator criteria hints
 
 2. Dispatch a fresh evaluator sub-agent using:
-   `skills/feature-deep-dev/evaluator-prompt.md`
+   `skills/feature-crew/evaluator-prompt.md`
 
    Pass the sub-agent:
    - Full spec text (do NOT make it read a file)
@@ -889,7 +889,7 @@ Provide:
 ## Standalone Usage
 
 ```
-/feature-deep-dev-evaluate --spec path/to/spec.md --diff main...HEAD
+/feature-crew-evaluate --spec path/to/spec.md --diff main...HEAD
 ```
 
 Can be used on any codebase, not just features built through the pipeline.
@@ -897,14 +897,14 @@ Can be used on any codebase, not just features built through the pipeline.
 
 - [ ] **Step 2: Verify file was created**
 
-Run: `cat .claude/skills/feature-deep-dev-evaluate/SKILL.md | head -3`
+Run: `cat .claude/skills/feature-crew-evaluate/SKILL.md | head -3`
 Expected: Shows YAML frontmatter start
 
 - [ ] **Step 3: Commit**
 
 ```bash
-git add .claude/skills/feature-deep-dev-evaluate/SKILL.md
-git commit -m "feat: add feature-deep-dev-evaluate skill"
+git add .claude/skills/feature-crew-evaluate/SKILL.md
+git commit -m "feat: add feature-crew-evaluate skill"
 ```
 
 ---
@@ -920,15 +920,15 @@ Run: `find .claude/skills -name "SKILL.md" -o -name "*.md" | sort`
 
 Expected output:
 ```
-.claude/skills/feature-deep-dev/SKILL.md
-.claude/skills/feature-deep-dev/bug-fixer-prompt.md
-.claude/skills/feature-deep-dev/clarifier-prompt.md
-.claude/skills/feature-deep-dev/evaluator-prompt.md
-.claude/skills/feature-deep-dev/qa-agent-prompt.md
-.claude/skills/feature-deep-dev-clarify/SKILL.md
-.claude/skills/feature-deep-dev-evaluate/SKILL.md
-.claude/skills/feature-deep-dev-implement/SKILL.md
-.claude/skills/feature-deep-dev-qa/SKILL.md
+.claude/skills/feature-crew/SKILL.md
+.claude/skills/feature-crew/bug-fixer-prompt.md
+.claude/skills/feature-crew/clarifier-prompt.md
+.claude/skills/feature-crew/evaluator-prompt.md
+.claude/skills/feature-crew/qa-agent-prompt.md
+.claude/skills/feature-crew-clarify/SKILL.md
+.claude/skills/feature-crew-evaluate/SKILL.md
+.claude/skills/feature-crew-implement/SKILL.md
+.claude/skills/feature-crew-qa/SKILL.md
 ```
 
 - [ ] **Step 2: Verify all SKILL.md files have valid frontmatter**
@@ -949,4 +949,4 @@ git push origin main
 
 - [ ] **Step 5: Test skill discovery**
 
-Start a new Claude Code conversation in the Deepdive project and verify that `/feature-deep-dev` appears in the skill list. Test invocation with a simple feature to verify the orchestrator loads correctly.
+Start a new Claude Code conversation in the Deepdive project and verify that `/feature-crew` appears in the skill list. Test invocation with a simple feature to verify the orchestrator loads correctly.

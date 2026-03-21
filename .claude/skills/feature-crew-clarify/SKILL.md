@@ -1,9 +1,9 @@
 ---
-name: feature-deep-dev-clarify
+name: feature-crew-clarify
 description: Use when starting a new feature that has a one-pager or Figma spec and needs requirements clarification before implementation
 ---
 
-# Feature Deep Dev — Phase 1: Clarify
+# Feature Crew — Phase 1: Clarify
 
 Transform a one-pager + Figma into a structured, implementation-ready spec through a question loop with the user.
 
@@ -21,7 +21,7 @@ The user provides:
 Create the feature state directory and file:
 
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/state.json
+docs/superpowers/feature-crew/{feature-name}/state.json
 ```
 
 ```json
@@ -54,14 +54,14 @@ This prevents asking questions the codebase already answers.
 ### Step 4: Clarification Loop with PO Agent
 
 Dispatch a Clarifier sub-agent using the template at:
-`skills/feature-deep-dev/clarifier-prompt.md`
+`skills/feature-crew/clarifier-prompt.md`
 
 The Clarifier analyzes the one-pager + Figma, identifies ambiguities, and generates questions ONE AT A TIME.
 
 **For each question, before showing it to the human:**
 
 1. Dispatch a PO Agent sub-agent using the template at:
-   `skills/feature-deep-dev/po-agent-prompt.md`
+   `skills/feature-crew/po-agent-prompt.md`
 
    Provide:
    - The question from the Clarifier
@@ -104,14 +104,14 @@ The Clarifier analyzes the one-pager + Figma, identifies ambiguities, and genera
 
 Save the spec to:
 ```
-docs/superpowers/feature-deep-dev/{feature-name}/spec.md
+docs/superpowers/feature-crew/{feature-name}/spec.md
 ```
 
 ### Step 5: Checkpoint 1
 
 Present the spec AND PO agent decision summary to the user:
 
-> "Spec generated and saved to `docs/superpowers/feature-deep-dev/{feature-name}/spec.md`."
+> "Spec generated and saved to `docs/superpowers/feature-crew/{feature-name}/spec.md`."
 
 Then show the PO Agent decision log:
 
@@ -136,8 +136,8 @@ Wait for user approval before proceeding.
 
 ### Step 6: Hand Off
 
-On approval, update state to `IMPLEMENTING` and invoke `feature-deep-dev-implement`.
+On approval, update state to `IMPLEMENTING` and invoke `feature-crew-implement`.
 
 ## Standalone Usage
 
-This skill can be invoked independently via `/feature-deep-dev-clarify` for any project. It produces a spec without requiring the full pipeline.
+This skill can be invoked independently via `/feature-crew-clarify` for any project. It produces a spec without requiring the full pipeline.

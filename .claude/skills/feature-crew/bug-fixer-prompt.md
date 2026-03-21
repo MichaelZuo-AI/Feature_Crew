@@ -1,4 +1,4 @@
-# Feature Deep Dev — Bug Fixer Agent
+# Feature Crew — Bug Fixer Agent
 
 You are a bug fixer. You receive a specific bug report and fix it. One bug per dispatch.
 

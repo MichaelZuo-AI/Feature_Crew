@@ -1,19 +1,19 @@
-# PO Agent for Feature Deep Dev — Design Spec
+# PO Agent for Feature Crew — Design Spec
 
 **Date:** 2026-03-21
 **Status:** Draft
 **Author:** Michael Zuo + Claude
-**Parent:** `docs/superpowers/specs/2026-03-21-feature-deep-dev-design.md`
+**Parent:** `docs/superpowers/specs/2026-03-21-feature-crew-design.md`
 
 ## Overview
 
-Add a PO (Product Owner) agent to Phase 1 of the `feature-deep-dev` workflow. The PO agent acts as a **filter** between the Clarifier and the human — it auto-answers clarifier questions when it can, and only escalates to the human when it can't.
+Add a PO (Product Owner) agent to Phase 1 of the `feature-crew` workflow. The PO agent acts as a **filter** between the Clarifier and the human — it auto-answers clarifier questions when it can, and only escalates to the human when it can't.
 
 This reduces the number of questions the human needs to answer per feature while preserving full visibility at Checkpoint 1.
 
 ## Architecture
 
-The PO agent is a sub-agent dispatched by `feature-deep-dev-clarify`. It's invisible to the Clarifier — the Clarifier asks questions the same way it always did, and gets answers back. The routing skill decides whether the PO agent or the human provides the answer.
+The PO agent is a sub-agent dispatched by `feature-crew-clarify`. It's invisible to the Clarifier — the Clarifier asks questions the same way it always did, and gets answers back. The routing skill decides whether the PO agent or the human provides the answer.
 
 ```
 Clarifier asks question → PO Agent evaluates → ANSWER? → Clarifier continues
@@ -22,7 +22,7 @@ Clarifier asks question → PO Agent evaluates → ANSWER? → Clarifier continu
 
 ## PO Agent Prompt Template
 
-**New file:** `.claude/skills/feature-deep-dev/po-agent-prompt.md`
+**New file:** `.claude/skills/feature-crew/po-agent-prompt.md`
 
 ### Inputs
 
@@ -64,7 +64,7 @@ Always escalate regardless of confidence:
 
 ## Modified Phase 1 Flow
 
-### Changes to `feature-deep-dev-clarify` Step 4
+### Changes to `feature-crew-clarify` Step 4
 
 Current:
 ```
@@ -133,10 +133,10 @@ No new phase states needed — the PO agent operates entirely within the existin
 
 | Action | File | What |
 |--------|------|------|
-| Create | `.claude/skills/feature-deep-dev/po-agent-prompt.md` | PO agent prompt template |
-| Modify | `.claude/skills/feature-deep-dev-clarify/SKILL.md` | Update Step 4 to route questions through PO agent, add Checkpoint 1 summary |
+| Create | `.claude/skills/feature-crew/po-agent-prompt.md` | PO agent prompt template |
+| Modify | `.claude/skills/feature-crew-clarify/SKILL.md` | Update Step 4 to route questions through PO agent, add Checkpoint 1 summary |
 
-The Clarifier prompt (`clarifier-prompt.md`) is unchanged — it doesn't know about the PO agent. The orchestrator (`feature-deep-dev/SKILL.md`) is unchanged — Phase 1 works the same from its perspective.
+The Clarifier prompt (`clarifier-prompt.md`) is unchanged — it doesn't know about the PO agent. The orchestrator (`feature-crew/SKILL.md`) is unchanged — Phase 1 works the same from its perspective.
 
 ## Design Decisions
 

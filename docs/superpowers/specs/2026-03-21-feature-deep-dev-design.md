@@ -1,4 +1,4 @@
-# Feature Deep Dev — Design Spec
+# Feature Crew — Design Spec
 
 **Date:** 2026-03-21
 **Status:** Draft
@@ -6,7 +6,7 @@
 
 ## Overview
 
-`feature-deep-dev` is a Claude Code skill family that orchestrates a multi-phase feature development workflow. Its core principle: **every phase has an independent sub-agent that does deep-dive evaluation before the workflow can proceed**. No rushing to execution.
+`feature-crew` is a Claude Code skill family that orchestrates a multi-phase feature development workflow. Its core principle: **every phase has an independent sub-agent that does deep-dive evaluation before the workflow can proceed**. No rushing to execution.
 
 The system layers on top of existing Superpowers skills (brainstorming, writing-plans, subagent-driven-development, using-git-worktrees, finishing-a-development-branch), wrapping each phase with evaluation gates and adding a dedicated QA/bug-fix phase that doesn't exist today.
 
@@ -14,11 +14,11 @@ The system layers on top of existing Superpowers skills (brainstorming, writing-
 
 | Skill | Role |
 |-------|------|
-| `feature-deep-dev` | Orchestrator — lifecycle, state management, worktrees, human checkpoints |
-| `feature-deep-dev-clarify` | Phase 1 — question loop with user → structured spec |
-| `feature-deep-dev-implement` | Phase 2 — plan → code → evaluator scoring gate (≥90%) |
-| `feature-deep-dev-qa` | Phase 3 — holistic QA → bug fix loop |
-| `feature-deep-dev-evaluate` | Shared evaluator agent — adaptive rubric, scoring, reports |
+| `feature-crew` | Orchestrator — lifecycle, state management, worktrees, human checkpoints |
+| `feature-crew-clarify` | Phase 1 — question loop with user → structured spec |
+| `feature-crew-implement` | Phase 2 — plan → code → evaluator scoring gate (≥90%) |
+| `feature-crew-qa` | Phase 3 — holistic QA → bug fix loop |
+| `feature-crew-evaluate` | Shared evaluator agent — adaptive rubric, scoring, reports |
 
 ## Input
 
@@ -30,7 +30,7 @@ User provides:
 
 Each feature creates a state directory:
 ```
-docs/superpowers/feature-deep-dev/<feature-name>/
+docs/superpowers/feature-crew/<feature-name>/
 ├── state.json          # lifecycle state, current phase, worktree path
 ├── spec.md             # output of Phase 1
 ├── plan.md             # generated implementation plan
@@ -75,7 +75,7 @@ INIT → CLARIFYING → CHECKPOINT_1 → IMPLEMENTING → CHECKPOINT_2 → QA �
                                    after 3 eval rounds)      after 3 QA rounds)
 ```
 
-The state file is session-independent — if Claude Code is closed mid-feature, re-invoking `/feature-deep-dev` reads the state file and resumes from the current phase.
+The state file is session-independent — if Claude Code is closed mid-feature, re-invoking `/feature-crew` reads the state file and resumes from the current phase.
 
 ### Cleanup
 
@@ -83,7 +83,7 @@ After a feature ships (reaches `PRODUCTION`), the state directory is preserved f
 
 ---
 
-## Phase 1: Clarify (`feature-deep-dev-clarify`)
+## Phase 1: Clarify (`feature-crew-clarify`)
 
 **Input:** Figma link + One-Pager text
 **Output:** Structured spec (`spec.md`)
@@ -121,7 +121,7 @@ Add an AI PM agent that answers clarifying questions first based on the provided
 
 ---
 
-## Phase 2: Implement (`feature-deep-dev-implement`)
+## Phase 2: Implement (`feature-crew-implement`)
 
 **Input:** Approved spec from Phase 1
 **Output:** Implemented code + evaluation report
@@ -134,7 +134,7 @@ Add an AI PM agent that answers clarifying questions first based on the provided
    - Fresh Implementer sub-agent (writes code)
    - Two-stage review (spec compliance + code quality) — existing behavior
 
-3. **Evaluation Gate** — After all tasks complete, dispatches the **Evaluator agent** (`feature-deep-dev-evaluate`):
+3. **Evaluation Gate** — After all tasks complete, dispatches the **Evaluator agent** (`feature-crew-evaluate`):
    - Reads original spec + evaluator criteria hints
    - Adapts rubric based on feature type
    - Produces scored evaluation report (`eval-round-N.md`)
@@ -153,7 +153,7 @@ The Evaluator agent is **completely independent** from the Implementer — fresh
 
 ---
 
-## Phase 3: QA (`feature-deep-dev-qa`)
+## Phase 3: QA (`feature-crew-qa`)
 
 **Input:** Implemented code that passed Checkpoint 2
 **Output:** Bug-free code ready for production
@@ -189,7 +189,7 @@ Phase 2's evaluator checks **"did you build it right?"** against the spec. Phase
 
 ---
 
-## Shared Evaluator (`feature-deep-dev-evaluate`)
+## Shared Evaluator (`feature-crew-evaluate`)
 
 **Purpose:** Reusable evaluation engine used by Phase 2's scoring gate.
 
@@ -248,18 +248,18 @@ The evaluator reads the spec's evaluator criteria hints and feature type, then s
 
 ### How It Works
 
-1. **Each invocation** of `/feature-deep-dev` creates:
+1. **Each invocation** of `/feature-crew` creates:
    - Its own git worktree (via `using-git-worktrees`)
    - Its own state directory
    - Independent agent pipelines — no shared state between features
 
 2. **Invocation:**
    ```
-   /feature-deep-dev "User Profile Page"
-   /feature-deep-dev "Search API"
+   /feature-crew "User Profile Page"
+   /feature-crew "Search API"
    ```
 
-3. **Checkpoints are per-feature** — Feature A can be in Phase 3 while Feature B is in Phase 1. Each pauses independently at its checkpoints. To resume a specific feature: `/feature-deep-dev resume <feature-name>`.
+3. **Checkpoints are per-feature** — Feature A can be in Phase 3 while Feature B is in Phase 1. Each pauses independently at its checkpoints. To resume a specific feature: `/feature-crew resume <feature-name>`.
 
 4. **Merge coordination** — `finishing-a-development-branch` handles each feature independently. Merge conflicts between feature branches are flagged for human resolution.
 
@@ -288,7 +288,7 @@ The current design supports this by keeping all state on disk (`state.json`) rat
 | `using-git-worktrees` | Orchestrator | Creates isolated worktree per feature |
 | `finishing-a-development-branch` | Phase 3 exit | Merge/PR/ship workflow |
 
-These skills are **called, not replaced**. If they improve upstream, `feature-deep-dev` benefits automatically.
+These skills are **called, not replaced**. If they improve upstream, `feature-crew` benefits automatically.
 
 ---
 
