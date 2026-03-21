@@ -22,7 +22,15 @@ Phase 3: QA          → Holistic testing → Bug fix loop → All clean
 
 ## Installation
 
-**Prerequisites:** [Claude Code](https://docs.anthropic.com/en/docs/claude-code) + [Superpowers plugin](https://github.com/anthropics/claude-code-superpowers) installed.
+**Prerequisites:**
+
+1. [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — install with `npm install -g @anthropic-ai/claude-code`
+2. [Superpowers plugin](https://github.com/anthropics/claude-code-superpowers) — open Claude Code and run:
+   ```
+   /install-plugin https://github.com/anthropics/claude-code-superpowers
+   ```
+
+The install script checks for both and guides you if anything is missing.
 
 **One-liner** (installs into current project):
 
