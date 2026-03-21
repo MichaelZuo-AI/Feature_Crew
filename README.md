@@ -33,7 +33,10 @@ cp -r Feature_Deep_Dev/.claude/skills/feature-deep-dev* /path/to/your/project/.c
 
 ## Quick Start
 
-1. Install the skills into your project (see above)
+1. Install:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/MichaelZuo-AI/Feature_Deep_Dev/main/install.sh | bash
+   ```
 2. Open Claude Code in your project
 3. Invoke `/feature-deep-dev`
 4. Provide a feature name, one-pager, and optional Figma screenshots
