@@ -1,6 +1,6 @@
 # Feature Crew
 
-Multi-phase feature development with independent evaluators at every gate. Think deep, ship confident.
+A crew of AI agents that take your feature from spec to production — clarifying requirements, writing code, evaluating quality, and fixing bugs at every step.
 
 ![Feature Crew Workflow](docs/workflow.svg?v=2)
 
