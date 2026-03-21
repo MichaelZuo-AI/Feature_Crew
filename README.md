@@ -4,7 +4,7 @@ A Claude Code skill family that orchestrates multi-phase feature development wit
 
 ## How It Works
 
-![Feature Deep Dev Workflow](docs/workflow.svg)
+![Feature Deep Dev Workflow](docs/workflow.svg?v=2)
 
 ## Installation
 
