@@ -23,37 +23,24 @@ if ! command -v claude &> /dev/null; then
   exit 1
 fi
 
-# Check for Superpowers plugin
-SUPERPOWERS_INSTALLED=false
-if [ -d "$HOME/.claude/plugins/cache/claude-plugins-official/superpowers" ]; then
-  SUPERPOWERS_INSTALLED=true
-fi
+echo "Claude Code found."
 
-if [ "$SUPERPOWERS_INSTALLED" = false ]; then
-  echo "Superpowers plugin not found."
+# Check for Superpowers plugin
+if [ -d "$HOME/.claude/plugins/cache/claude-plugins-official/superpowers" ]; then
+  echo "Superpowers plugin found."
+else
+  echo "Superpowers plugin not found. Installing..."
   echo ""
-  echo "Feature Deep Dev depends on Superpowers for:"
-  echo "  - brainstorming (Phase 1 conversational style)"
-  echo "  - writing-plans (Phase 2 plan generation)"
-  echo "  - subagent-driven-development (Phase 2 task execution)"
-  echo "  - using-git-worktrees (isolated workspaces)"
-  echo "  - finishing-a-development-branch (merge/PR workflow)"
+  claude plugin install superpowers
   echo ""
-  echo "Install Superpowers first — open Claude Code and run:"
-  echo '  /install-plugin https://github.com/anthropics/claude-code-superpowers'
-  echo ""
-  read -p "Continue installing Feature Deep Dev anyway? (y/N) " -n 1 -r
-  echo ""
-  if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo "Aborted. Install Superpowers first, then re-run this script."
-    exit 1
-  fi
+  echo "Superpowers installed."
 fi
 
 # Create a temporary directory for cloning
 TMPDIR=$(mktemp -d)
 trap "rm -rf $TMPDIR" EXIT
 
+echo ""
 echo "Installing Feature Deep Dev skills..."
 
 # Clone the repo
@@ -73,10 +60,4 @@ echo ""
 echo "Skills installed:"
 ls -1 "$TARGET/.claude/skills/" | grep feature-deep-dev
 echo ""
-if [ "$SUPERPOWERS_INSTALLED" = true ]; then
-  echo "Usage: Open Claude Code in your project and run /feature-deep-dev"
-else
-  echo "Next steps:"
-  echo "  1. Open Claude Code and run: /install-plugin https://github.com/anthropics/claude-code-superpowers"
-  echo "  2. Then run: /feature-deep-dev"
-fi
+echo "Usage: Open Claude Code in your project and run /feature-deep-dev"
