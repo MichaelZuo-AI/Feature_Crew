@@ -69,9 +69,17 @@ docs/superpowers/feature-deep-dev/<feature-name>/
 
 ```
 INIT → CLARIFYING → CHECKPOINT_1 → IMPLEMENTING → CHECKPOINT_2 → QA → PRODUCTION
+                                         ↓                        ↓
+                                    BLOCKED_IMPL              BLOCKED_QA
+                                  (escalate to human        (escalate to human
+                                   after 3 eval rounds)      after 3 QA rounds)
 ```
 
 The state file is session-independent — if Claude Code is closed mid-feature, re-invoking `/feature-deep-dev` reads the state file and resumes from the current phase.
+
+### Cleanup
+
+After a feature ships (reaches `PRODUCTION`), the state directory is preserved for reference. The user can delete it manually. Future versions may auto-archive to a `completed/` subdirectory.
 
 ---
 
@@ -82,7 +90,7 @@ The state file is session-independent — if Claude Code is closed mid-feature, 
 
 ### Process
 
-1. **Parse & Analyze** — A Clarifier sub-agent reads the one-pager and Figma link, identifies:
+1. **Parse & Analyze** — A Clarifier sub-agent reads the one-pager and analyzes the Figma link (the user pastes screenshots from Figma into the chat since Claude Code cannot render Figma directly). It identifies:
    - Core user stories / acceptance criteria
    - Technical ambiguities (e.g., "what happens on error?", "what's the empty state?")
    - Edge cases not covered in the spec
@@ -251,7 +259,7 @@ The evaluator reads the spec's evaluator criteria hints and feature type, then s
    /feature-deep-dev "Search API"
    ```
 
-3. **Checkpoints are per-feature** — Feature A can be in Phase 3 while Feature B is in Phase 1. Each pauses independently at its checkpoints.
+3. **Checkpoints are per-feature** — Feature A can be in Phase 3 while Feature B is in Phase 1. Each pauses independently at its checkpoints. To resume a specific feature: `/feature-deep-dev resume <feature-name>`.
 
 4. **Merge coordination** — `finishing-a-development-branch` handles each feature independently. Merge conflicts between feature branches are flagged for human resolution.
 
