@@ -1,0 +1,41 @@
+{
+  "featureName": "smart-search-bar",
+  "input": {
+    "onePager": "AI-Powered Smart Search Bar — natural language search with suggestions, filter chips, instant results preview",
+    "figmaSpec": "feature_requirments/figma-design-spec.html"
+  },
+  "worktree": null,
+  "phase": "PRODUCTION",
+  "phaseHistory": [
+    { "phase": "INIT", "timestamp": "2026-03-21T00:00:00Z" },
+    { "phase": "CLARIFYING", "timestamp": "2026-03-21T00:00:00Z" },
+    { "phase": "CHECKPOINT_1", "timestamp": "2026-03-21T00:01:00Z" },
+    { "phase": "IMPLEMENTING", "timestamp": "2026-03-21T00:02:00Z" }
+  ],
+  "evalRounds": 0,
+  "qaRounds": 0,
+  "poAgentLog": [
+    { "questionNumber": 1, "question": "Backend/AI service approach?", "decision": "ANSWER", "confidence": "High", "answer": "Mock Next.js API routes with seeded data", "reasoning": "Greenfield demo project with fully specified API contracts" },
+    { "questionNumber": 2, "question": "Product data source?", "decision": "ANSWER", "confidence": "High", "answer": "Seeded JSON fixture data", "reasoning": "No database/search engine in tech stack; demo project" },
+    { "questionNumber": 3, "question": "Recent searches persistence?", "decision": "ANSWER", "confidence": "High", "answer": "localStorage simple (no auth)", "reasoning": "No auth system mentioned; 'persisted per user' satisfied by localStorage" },
+    { "questionNumber": 4, "question": "No results / error behavior?", "decision": "ESCALATE", "escalationReason": "UX/business logic not specified in any input", "humanAnswer": "C) Show trending/popular products as fallback" },
+    { "questionNumber": 5, "question": "Voice input implementation?", "decision": "ESCALATE", "escalationReason": "Scope decision — huge implementation variance between options", "humanAnswer": "D) Non-functional placeholder for v1" },
+    { "questionNumber": 6, "question": "Multi-language scope for frontend?", "decision": "ANSWER", "confidence": "High", "answer": "Backend handles multilingual queries; UI is English-only", "reasoning": "Multi-language listed under AI Query Understanding, not UI. Figma shows English-only" },
+    { "questionNumber": 7, "question": "Trending searches refresh mechanism?", "decision": "ANSWER", "confidence": "High", "answer": "ISR with 15-min revalidation", "reasoning": "Next.js App Router + 15-min update maps to ISR with revalidate: 900" },
+    { "questionNumber": 8, "question": "Input text update on chip removal?", "decision": "ANSWER", "confidence": "High", "answer": "Input stays as-is; only API filters change", "reasoning": "Component tree shows SearchInput and FilterChips as separate siblings" },
+    { "questionNumber": 9, "question": "Results inside or outside dropdown?", "decision": "ANSWER", "confidence": "High", "answer": "Both — product suggestions in dropdown + separate ResultsPreview grid", "reasoning": "Component tree has SuggestionsDropdown and ResultsPreview as separate siblings" },
+    { "questionNumber": 10, "question": "/ shortcut when other input focused?", "decision": "ANSWER", "confidence": "High", "answer": "Only activate when no input/textarea focused", "reasoning": "WCAG 2.1 AA SC 2.1.4 requires this" },
+    { "questionNumber": 11, "question": "Product badge triggers and content?", "decision": "ANSWER", "confidence": "Low", "answer": "Data-driven status labels from product data", "reasoning": "Figma includes badge component; API has structured product data" },
+    { "questionNumber": 12, "question": "View all results action?", "decision": "ANSWER", "confidence": "High", "answer": "Navigate to /search?q=... page", "reasoning": "SSR for search page implies dedicated route; preview is top 4 only" },
+    { "questionNumber": 13, "question": "Loading states approach?", "decision": "ANSWER", "confidence": "High", "answer": "Skeleton shimmer for both suggestions and results", "reasoning": "SearchSkeleton in component tree; skeleton shimmer in animations spec" },
+    { "questionNumber": 14, "question": "SSR scope?", "decision": "ANSWER", "confidence": "High", "answer": "Client-side search bar + SSR for /search results page", "reasoning": "Search bar is interactive (client); 'SSR for search page load' = /search route" },
+    { "questionNumber": 15, "question": "Keyboard navigation order?", "decision": "ANSWER", "confidence": "High", "answer": "WAI-ARIA combobox pattern: arrows for listbox, Tab exits to chips/results", "reasoning": "Figma explicitly defines arrow/Tab/Enter/Escape behavior + ARIA roles" },
+    { "questionNumber": 16, "question": "Debounce strategy for dual endpoints?", "decision": "ANSWER", "confidence": "High", "answer": "Single 300ms debounce triggers both in parallel", "reasoning": "One-pager and Figma both specify single 300ms value" },
+    { "questionNumber": 17, "question": "Search state persistence on navigation?", "decision": "ESCALATE", "escalationReason": "UX/architecture decision not addressed in any input", "humanAnswer": "C) Both URL params + Zustand (URL is source of truth)" },
+    { "questionNumber": 18, "question": "Rate limiting requirements?", "decision": "ESCALATE", "escalationReason": "Security/infrastructure decision not mentioned in inputs", "humanAnswer": "A) Per-session rate limit (60 req/min) with graceful degradation" },
+    { "questionNumber": 19, "question": "Spell correction behavior?", "decision": "ANSWER", "confidence": "High", "answer": "Auto-correct + 'search instead for' link", "reasoning": "API returns spellCorrection alongside results = corrected query executed" },
+    { "questionNumber": 20, "question": "Camera icon placeholder behavior?", "decision": "ANSWER", "confidence": "High", "answer": "Visible but disabled/grayed", "reasoning": "One-pager says 'camera icon placeholder only' = present but non-functional" },
+    { "questionNumber": 21, "question": "Max chips and overflow?", "decision": "ANSWER", "confidence": "High", "answer": "No max; wrap desktop, horizontal scroll mobile", "reasoning": "Figma specifies horizontal scroll with fade edge on mobile; no max mentioned" },
+    { "questionNumber": 22, "question": "Thumbnail aspect ratio and fallback?", "decision": "ANSWER", "confidence": "Low", "answer": "Fixed height, auto width, object-fit cover", "reasoning": "Figma gives fixed pixel heights; grid determines width. Missing image fallback not specified" }
+  ]
+}
