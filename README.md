@@ -6,31 +6,6 @@ A Claude Code skill family that orchestrates multi-phase feature development wit
 
 ![Feature Deep Dev Workflow](docs/workflow.svg?v=2)
 
-## Installation
-
-**Prerequisites:** [Claude Code](https://docs.anthropic.com/en/docs/claude-code) — install with `npm install -g @anthropic-ai/claude-code`
-
-The install script automatically installs the [Superpowers plugin](https://github.com/anthropics/claude-code-superpowers) if missing.
-
-**One-liner** (installs into current project):
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/MichaelZuo-AI/Feature_Deep_Dev/main/install.sh | bash
-```
-
-**Or specify a target project:**
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/MichaelZuo-AI/Feature_Deep_Dev/main/install.sh | bash -s /path/to/your/project
-```
-
-**Or manual:**
-
-```bash
-git clone https://github.com/MichaelZuo-AI/Feature_Deep_Dev.git
-cp -r Feature_Deep_Dev/.claude/skills/feature-deep-dev* /path/to/your/project/.claude/skills/
-```
-
 ## Quick Start
 
 1. Install:
