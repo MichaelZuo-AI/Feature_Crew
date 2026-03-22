@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Checkout | The Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e0e3e6",
+              "on-surface-variant": "#424656",
+              "on-primary-fixed": "#001849",
+              "on-primary-fixed-variant": "#003fa4",
+              "surface-container-high": "#e6e8eb",
+              "on-surface": "#191c1e",
+              "surface-dim": "#d8dadd",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "secondary-fixed": "#ffdcc4",
+              "on-tertiary-container": "#fff6f4",
+              "tertiary": "#a33200",
+              "primary": "#0050cb",
+              "on-tertiary-fixed-variant": "#832600",
+              "on-secondary-fixed": "#2f1500",
+              "outline-variant": "#c2c6d8",
+              "on-tertiary-fixed": "#390c00",
+              "primary-container": "#0066ff",
+              "secondary": "#914c00",
+              "surface-container-low": "#f2f4f7",
+              "inverse-primary": "#b3c5ff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#f8f7ff",
+              "surface-tint": "#0054d6",
+              "inverse-on-surface": "#eff1f4",
+              "secondary-container": "#ff8a00",
+              "surface-container": "#eceef1",
+              "background": "#f7f9fc",
+              "on-secondary-fixed-variant": "#6f3900",
+              "on-error-container": "#93000a",
+              "surface": "#f7f9fc",
+              "surface-bright": "#f7f9fc",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb77f",
+              "tertiary-container": "#cc4204",
+              "outline": "#727687",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#613100",
+              "inverse-surface": "#2d3133",
+              "primary-fixed": "#dae1ff",
+              "tertiary-fixed": "#ffdbd0",
+              "tertiary-fixed-dim": "#ffb59d",
+              "error": "#ba1a1a",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e0e3e6",
+              "on-secondary": "#ffffff",
+              "primary-fixed-dim": "#b3c5ff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Plus Jakarta Sans', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .bg-primary-gradient {
+        background: linear-gradient(135deg, #0050cb 0%, #0066ff 100%);
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200/15 shadow-sm shadow-blue-900/5 h-16">
+<div class="flex justify-between items-center px-4 h-full w-full max-w-md mx-auto">
+<button class="p-2 text-slate-500 hover:bg-slate-100 transition-colors active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-plus-jakarta-sans font-bold text-lg tracking-tight text-blue-700">Checkout</h1>
+<div class="w-10"></div> <!-- Spacer for centering -->
+</div>
+</header>
+<main class="pt-20 px-4 max-w-md mx-auto space-y-6">
+<!-- Shipping Address Section -->
+<section class="bg-surface-container-lowest p-4 rounded-xl shadow-sm border border-outline-variant/15">
+<div class="flex justify-between items-start mb-3">
+<h2 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider">Shipping Address</h2>
+<button class="text-primary text-xs font-bold hover:underline">Edit</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-2">
+<span class="text-on-surface font-bold">Kim Min-jun</span>
+<span class="bg-secondary/10 text-secondary text-[10px] px-2 py-0.5 rounded-full font-bold">Default</span>
+</div>
+<p class="text-on-surface-variant text-sm leading-relaxed">
+                    82, Sejong-daero, Jung-gu, Seoul<br/>
+                    Unit 402, Green Apartments
+                </p>
+<p class="text-outline text-sm">010-1234-5678</p>
+</div>
+</section>
+<!-- Order Items Summary (Collapsed) -->
+<section class="bg-surface-container-low p-4 rounded-xl flex justify-between items-center group cursor-pointer active:scale-[0.98] transition-transform">
+<div class="flex items-center gap-3">
+<div class="w-12 h-12 bg-surface-container-highest rounded-lg overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Minimalist white designer wristwatch" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtdWdYAMjPzThT9-YZyJ2F4DMBsP7MnpCkroAtyby78Yu4e88GWi2YPT4_sYrv3YpqxlP9yz4SVWg36APHT9l-2Ragu7WGNjA6dCmr_s7af_zl-ZQU0uoDYF2J8cYuKp4GDPtInpDzyEwNnAVUecuqjd5tSD7a0SiNqdm3vo2MttcC1lN_7BJ4WYYOqWUXFrhi5TNABisnuqDtRGMpsxGQlUQrIZPZ8OivSIORBOFzp1ced6UVa7fpfUidpR7h7zIp_rv2FzPl1ee9"/>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Order Summary</p>
+<p class="text-xs text-on-surface-variant">Minimalist Watch + 2 others</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-outline">expand_more</span>
+</section>
+<!-- Points / Coupons Section -->
+<section class="space-y-3">
+<h2 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Points &amp; Benefits</h2>
+<div class="bg-surface-container-lowest p-4 rounded-xl space-y-4 border border-outline-variant/15">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-sm font-semibold">Coupang Cash</span>
+</div>
+<span class="text-xs font-bold text-outline">Balance: 5,420₩</span>
+</div>
+<div class="flex gap-2">
+<input class="flex-1 bg-surface-container-low border-none rounded-lg text-right px-4 font-bold text-on-surface focus:ring-1 focus:ring-primary/20" placeholder="0" type="text"/>
+<button class="bg-surface-container-high text-on-surface text-xs font-bold px-4 py-2 rounded-lg hover:bg-surface-container-highest transition-colors">Apply All</button>
+</div>
+</div>
+</section>
+<!-- Payment Method Section -->
+<section class="space-y-3">
+<h2 class="text-sm font-bold text-on-surface-variant uppercase tracking-wider ml-1">Payment Method</h2>
+<div class="grid grid-cols-2 gap-3">
+<!-- Coupang Pay (Selected) -->
+<button class="relative flex flex-col items-center justify-center p-4 bg-surface-container-lowest border-2 border-primary rounded-xl transition-all shadow-sm">
+<span class="absolute top-2 right-2 material-symbols-outlined text-primary text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+<div class="w-10 h-10 mb-2 flex items-center justify-center bg-primary/5 rounded-full">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+</div>
+<span class="text-[11px] font-bold text-on-surface">Coupang Pay</span>
+</button>
+<!-- Naver Pay -->
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-lowest border border-outline-variant/15 rounded-xl transition-all hover:bg-surface-container-low">
+<div class="w-10 h-10 mb-2 flex items-center justify-center bg-green-50 rounded-full">
+<span class="material-symbols-outlined text-green-600">payments</span>
+</div>
+<span class="text-[11px] font-bold text-on-surface">Naver Pay</span>
+</button>
+<!-- Kakao Pay -->
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-lowest border border-outline-variant/15 rounded-xl transition-all hover:bg-surface-container-low">
+<div class="w-10 h-10 mb-2 flex items-center justify-center bg-yellow-50 rounded-full">
+<span class="material-symbols-outlined text-yellow-600">chat</span>
+</div>
+<span class="text-[11px] font-bold text-on-surface">Kakao Pay</span>
+</button>
+<!-- Credit/Debit Card -->
+<button class="flex flex-col items-center justify-center p-4 bg-surface-container-lowest border border-outline-variant/15 rounded-xl transition-all hover:bg-surface-container-low">
+<div class="w-10 h-10 mb-2 flex items-center justify-center bg-blue-50 rounded-full">
+<span class="material-symbols-outlined text-blue-600">credit_card</span>
+</div>
+<span class="text-[11px] font-bold text-on-surface">Credit/Debit</span>
+</button>
+</div>
+</section>
+<!-- Final Payment Summary -->
+<section class="bg-surface-container-lowest p-6 rounded-2xl border border-outline-variant/15 space-y-4">
+<div class="space-y-2">
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Total Price</span>
+<span class="text-on-surface font-semibold">158,000₩</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-on-surface-variant">Shipping Fee</span>
+<span class="text-on-surface font-semibold">0₩</span>
+</div>
+<div class="flex justify-between text-sm">
+<span class="text-secondary font-semibold">Discount</span>
+<span class="text-secondary font-semibold">-12,000₩</span>
+</div>
+</div>
+<div class="pt-4 border-t border-outline-variant/10 flex justify-between items-end">
+<span class="text-lg font-bold text-on-surface">Total Amount</span>
+<div class="text-right">
+<span class="block text-[10px] text-secondary font-bold uppercase tracking-widest">Rocket Delivery Free</span>
+<span class="text-2xl font-black text-primary tracking-tight">146,000₩</span>
+</div>
+</div>
+</section>
+<!-- Terms Agreement -->
+<div class="px-2 space-y-2">
+<label class="flex items-center gap-3 cursor-pointer">
+<input class="rounded text-primary focus:ring-primary/20 border-outline-variant w-5 h-5" type="checkbox"/>
+<span class="text-xs text-on-surface-variant leading-tight">I agree to all order information and payment terms.</span>
+</label>
+</div>
+</main>
+<!-- Fixed Bottom Action Button -->
+<div class="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-xl p-4 pb-8 max-w-md mx-auto shadow-[0_-8px_32px_rgba(0,80,203,0.12)] z-50">
+<button class="w-full bg-primary-gradient text-on-primary py-4 rounded-xl font-bold text-lg shadow-lg active:scale-[0.96] transition-all duration-200">
+            Pay 146,000₩
+        </button>
+</div>
+</body></html>
