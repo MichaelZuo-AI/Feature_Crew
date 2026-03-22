@@ -1,4 +1,4 @@
-# Spec: E-Commerce v0.2 — Category Navigation, Reviews System, Membership
+# Spec: E-Commerce v0.3 — Category Navigation, Reviews System, Membership
 
 ## Overview
 

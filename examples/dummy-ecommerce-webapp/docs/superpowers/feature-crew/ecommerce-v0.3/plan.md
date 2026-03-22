@@ -1,4 +1,4 @@
-# Implementation Plan: E-Commerce v0.2
+# Implementation Plan: E-Commerce v0.3
 
 ## Task 1: Data Layer — Types, Categories, Reviews Mock Data
 **Files:** `src/types/index.ts`, `src/data/categories.ts`, `src/data/reviews.ts`, `src/data/mock-data.ts`
