@@ -24,6 +24,7 @@
 | `src/data/brands-data.ts` | Brands mock data |
 | `src/data/addresses-data.ts` | Addresses mock data |
 | `src/data/wishlist-data.ts` | Wishlist mock data |
+| `src/data/recently-viewed-data.ts` | Recently viewed mock data |
 | `src/app/wishlist/page.tsx` | Wishlist page |
 | `src/app/recently-viewed/page.tsx` | Recently viewed page |
 | `src/app/order/[id]/page.tsx` | Order detail page |
@@ -375,7 +376,7 @@ Create page with:
 - TopAppBar with "Compare Products" title, back arrow
 - Read product IDs from URL search params (`?ids=p001,p002`)
 - Sticky product header row: product image, name, price, "×" remove button, "+" add slot
-- Comparison table with category headers (General, Reviews, Delivery)
+- Comparison table with category headers (General, Specifications, Reviews, Delivery)
 - Rows: Rating, Price, Brand, Rocket Delivery, Discount %, Review Count
 - Winner highlighting: primary blue pill on best value per row
 - Sticky bottom bar: "Add to Cart" per column
