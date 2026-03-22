@@ -191,7 +191,7 @@ export default function WishlistPage() {
         ) : (
           /* Product Grid */
           <div className="grid grid-cols-2 gap-3 px-3 pb-6">
-            {filtered.map(({ item, product, isOutOfStock, isPriceDrop, dropPct, isOnSale }) => {
+            {filtered.map(({ item, product, isOutOfStock, isPriceDrop, dropPct }) => {
               const isRemoving = removingIds.has(product.id);
               const isSelected = selected.has(product.id);
 

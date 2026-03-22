@@ -6,7 +6,6 @@ import Image from 'next/image';
 import { useUser } from '@/context/UserContext';
 import { useToastContext } from '@/context/ToastContext';
 import TopAppBar from '@/components/layout/TopAppBar';
-import { products } from '@/data/products';
 import { formatPrice } from '@/lib/format';
 
 const RETURN_REASONS = [
@@ -139,7 +138,7 @@ export default function ReturnsPage({ params }: PageProps) {
         <div className="text-center">
           <p className="text-lg font-bold text-on-surface">Return request submitted</p>
           <p className="text-sm text-on-surface-variant mt-1">
-            We'll process your return within 1–3 business days.
+            We&apos;ll process your return within 1–3 business days.
           </p>
         </div>
         <button
