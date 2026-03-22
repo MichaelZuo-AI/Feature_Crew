@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e0e3e6",
+              "on-surface-variant": "#424656",
+              "on-primary-fixed": "#001849",
+              "on-primary-fixed-variant": "#003fa4",
+              "surface-container-high": "#e6e8eb",
+              "on-surface": "#191c1e",
+              "surface-dim": "#d8dadd",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "secondary-fixed": "#ffdcc4",
+              "on-tertiary-container": "#fff6f4",
+              "tertiary": "#a33200",
+              "primary": "#0050cb",
+              "on-tertiary-fixed-variant": "#832600",
+              "on-secondary-fixed": "#2f1500",
+              "outline-variant": "#c2c6d8",
+              "on-tertiary-fixed": "#390c00",
+              "primary-container": "#0066ff",
+              "secondary": "#914c00",
+              "surface-container-low": "#f2f4f7",
+              "inverse-primary": "#b3c5ff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#f8f7ff",
+              "surface-tint": "#0054d6",
+              "inverse-on-surface": "#eff1f4",
+              "secondary-container": "#ff8a00",
+              "surface-container": "#eceef1",
+              "background": "#f7f9fc",
+              "on-secondary-fixed-variant": "#6f3900",
+              "on-error-container": "#93000a",
+              "surface": "#f7f9fc",
+              "surface-bright": "#f7f9fc",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb77f",
+              "tertiary-container": "#cc4204",
+              "outline": "#727687",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#613100",
+              "inverse-surface": "#2d3133",
+              "primary-fixed": "#dae1ff",
+              "tertiary-fixed": "#ffdbd0",
+              "tertiary-fixed-dim": "#ffb59d",
+              "error": "#ba1a1a",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e0e3e6",
+              "on-secondary": "#ffffff",
+              "primary-fixed-dim": "#b3c5ff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .liquid-gradient { background: linear-gradient(135deg, #0050cb 0%, #0066ff 100%); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200/15 shadow-sm shadow-blue-900/5">
+<div class="flex justify-between items-center px-4 h-16 w-full max-w-md mx-auto">
+<div class="flex items-center gap-3 flex-1">
+<button class="p-2 text-blue-700 dark:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined">arrow_back</span>
+</button>
+<div class="flex-1 bg-surface-container-low rounded-xl px-4 py-2 flex items-center gap-2 group">
+<span class="material-symbols-outlined text-outline text-sm">search</span>
+<span class="text-on-surface font-medium text-sm truncate">Search results for "Mask"</span>
+</div>
+</div>
+<div class="flex items-center gap-1 ml-2">
+<button class="p-2 text-blue-700 dark:text-blue-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined">shopping_cart</span>
+</button>
+</div>
+</div>
+</header>
+<main class="pt-16 pb-24 max-w-md mx-auto min-h-screen">
+<!-- Filter Bar -->
+<section class="sticky top-16 z-40 bg-surface/95 backdrop-blur-sm px-4 py-3 flex gap-2 overflow-x-auto hide-scrollbar">
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-secondary text-white rounded-full text-xs font-bold whitespace-nowrap shadow-sm shadow-secondary/20">
+<span class="material-symbols-outlined text-[14px]" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+                Rocket Delivery
+            </button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/15 text-on-surface-variant rounded-full text-xs font-semibold whitespace-nowrap">
+                Price Range
+                <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/15 text-on-surface-variant rounded-full text-xs font-semibold whitespace-nowrap">
+                Brand
+                <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+<button class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/15 text-on-surface-variant rounded-full text-xs font-semibold whitespace-nowrap">
+                Rating
+                <span class="material-symbols-outlined text-[14px]">expand_more</span>
+</button>
+</section>
+<!-- Search Info -->
+<div class="px-4 py-2 flex justify-between items-center">
+<span class="text-on-surface-variant text-[11px] font-medium uppercase tracking-wider">1,284 Products</span>
+<button class="flex items-center gap-1 text-on-surface text-[11px] font-bold">
+                Most Popular
+                <span class="material-symbols-outlined text-[14px]">swap_vert</span>
+</button>
+</div>
+<!-- Product Grid (2 Columns) -->
+<section class="px-4 grid grid-cols-2 gap-x-3 gap-y-6">
+<!-- Card 1 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low mb-3">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Premium black KF94 protective face mask" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxLU4TCSitfo3NrbEjQ9bU1GEsD5_wJaCpKMJrrIm0F6MvYZshCHlCCbSv8eVAA66w_WqW4R4RIUt71IgJmAShJpyphujgTGzxwCsm71kv_vhoKtRlkyYskPga6cSLp_M3bvph3swdoO4iu__w8c7PutYBgWH-Psb_uSQTNLy28SnWMovY6CRBCnlbPOe5rEdQBgu0ozpdmMwggXMrAWaYUkRiyhp3S6A1ThLC7a6jZxAxvqBJHQa55yPPTjTr7dW0tUZ9iIRK53i_"/>
+<button class="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-md rounded-full text-white">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-secondary rounded-full text-[9px] font-bold text-white uppercase tracking-tighter">Rocket</span>
+<span class="text-[10px] font-medium text-on-surface-variant">CleanCare Pro</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface leading-tight line-clamp-2">KF94 Black Protection Mask High Breathability (50pcs)</h3>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-lg font-extrabold text-primary">24,900<span class="text-xs ml-0.5">₩</span></span>
+<span class="text-xs text-outline line-through">32,000</span>
+<span class="text-xs font-bold text-secondary-container">22%</span>
+</div>
+<div class="flex items-center gap-1 pt-0.5">
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface">4.8</span>
+<span class="text-[10px] text-outline">(2.4k)</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low mb-3">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="White surgical style medical face masks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZDivCdWtLFq5m5j6Dr_NE_eARMPgHueWWCu5dlggZ8US16PAs378x3iylid7W0tYWjyO7IW1-5sCUtXX5koGt95rNY7r0thDZdWN2a_z_cLQDET7M5rguM9fnaRKsjnRnik8XGOeHnQ25P9X4Gz0weJopAsCUIOm36pOK4kLU_fs8e7iR4w5QK8qnWM1127MDDxrXu5gcT7_tmpJou3sKlSFiC8CWCh2VLr6fOBZm5HKrDFDDxPK2IV-_9JjIH5XIbY9vNM6IzAFL"/>
+<button class="absolute top-2 right-2 p-1.5 bg-white/20 backdrop-blur-md rounded-full text-white">
+<span class="material-symbols-outlined text-[18px]">favorite</span>
+</button>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-secondary rounded-full text-[9px] font-bold text-white uppercase tracking-tighter">Rocket</span>
+<span class="text-[10px] font-medium text-on-surface-variant">DailySoft</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface leading-tight line-clamp-2">Premium Cotton Daily Mask Skin-Friendly Texture (White)</h3>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-lg font-extrabold text-primary">12,500<span class="text-xs ml-0.5">₩</span></span>
+<span class="text-xs text-outline line-through">15,000</span>
+<span class="text-xs font-bold text-secondary-container">16%</span>
+</div>
+<div class="flex items-center gap-1 pt-0.5">
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface">4.9</span>
+<span class="text-[10px] text-outline">(892)</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low mb-3">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Clinical grade blue medical masks pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBb5HBBdkO9xYPvlRK5A7edgXeVAdy2lwwkZ7eQRmAhl-xvxwTnbh3Wi9fXz5JQZNLam-rIdfFY-FR5OUpuv0OZS89O9Uy60rsfKsatpsCbyCDepNa6AJzgb0UoKj_M8FwcvY4lkXXB9bD155mLemAd9IPkfnZNfPjxURM_ljgiAuikGwY3h1LMI6Ixgwj5WLZbbJbjmboYkiD0_qQK2MA6G-ARyiS1SK77OS1rqC5tFJ78dyKE52ZLUViDe5OkjDv6JC-fEJS2FNfz"/>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1">
+<span class="text-[10px] font-medium text-on-surface-variant">MediGuard</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface leading-tight line-clamp-2">Disposable Medical Mask 3-Layer Filter (100pcs) Bulk Pack</h3>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-lg font-extrabold text-primary">8,900<span class="text-xs ml-0.5">₩</span></span>
+</div>
+<div class="flex items-center gap-1 pt-0.5">
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface">4.5</span>
+<span class="text-[10px] text-outline">(15k)</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low mb-3">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Stylish reusable fabric mask in gray" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdutauQCCtS75vJQ-EIrvv25oGiSpAGgWcOnrfJY3Pyx_8YBDI3BCdPzTkEmb0YfKNE4ZfFFEn6rNnv9FECoe320JT1eWARXkZ-TZCTk25WKD-g36dLZhF5Ow-zuhSqSEXbpHbntHaBPsNoN0I7KfdhIpZhHfJNh0DWWquarD0_ziW-jUVhODKovfYm_Jf8YSOcJjvxmKBskbeYglzDWBWiolFu55X8BTOFP6vwlkkFFMs39vRDKB0N5eovhsYu7fH4I4XU-4ptOje"/>
+<span class="absolute bottom-2 left-2 px-1.5 py-0.5 bg-primary-container text-white text-[9px] font-black rounded-sm">BEST</span>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-secondary rounded-full text-[9px] font-bold text-white uppercase tracking-tighter">Rocket</span>
+<span class="text-[10px] font-medium text-on-surface-variant">AeroFit</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface leading-tight line-clamp-2">Sport Mesh Reusable Mask Active Breath Filter</h3>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-lg font-extrabold text-primary">18,000<span class="text-xs ml-0.5">₩</span></span>
+<span class="text-xs text-outline line-through">21,000</span>
+<span class="text-xs font-bold text-secondary-container">14%</span>
+</div>
+<div class="flex items-center gap-1 pt-0.5">
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface">4.7</span>
+<span class="text-[10px] text-outline">(1.1k)</span>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low mb-3">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Clay beauty face mask application" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcD4sSBfVaPewDyvNKzR9XiYhQ3hdLlmTvOHm4-pXXS0CfYOJqvKQDnZFpvGUW-vAQSOs-aitELNtvtZwdgei5qhl_GR3Oy-bAk6CUGTUEUWR4ozM5lxDtrM11rxWB-5KTEEMsTpmAgahhmSFpii_CJ3I5PJ3o3bJfVMLMYOyLyKkYqVYunvKN2PrpEqg57OMh0vwk3d6Z9kzMTOXCTTDthCvjqhakqC4RDNKFQ2tssAXzu1wksHshT3l_AjoU3UkX1loVnwZzvlv_"/>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1">
+<span class="px-1.5 py-0.5 bg-secondary rounded-full text-[9px] font-bold text-white uppercase tracking-tighter">Rocket</span>
+<span class="text-[10px] font-medium text-on-surface-variant">SeoulSkin</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface leading-tight line-clamp-2">Volcanic Clay Pore Purifying Mask 100ml Special Edition</h3>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-lg font-extrabold text-primary">16,200<span class="text-xs ml-0.5">₩</span></span>
+<span class="text-xs text-outline line-through">19,000</span>
+<span class="text-xs font-bold text-secondary-container">15%</span>
+</div>
+<div class="flex items-center gap-1 pt-0.5">
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface">4.8</span>
+<span class="text-[10px] text-outline">(3.7k)</span>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="group">
+<div class="relative aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low mb-3">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" data-alt="Colorful kids face masks set" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAI5NREVJbIWk5dpfYucUQwq5kKZOV-ufyi_JL9uJWLOLIpv289IFiF6OrRL8CWAC4HiFd1gOxQ03CK47GEmpm7RZkm2xcv4jM96CI94hgyzDrwHMArGgRK-c1IGmEkY_A6kGXcitqrf_WHZu02RvyCuvOw5BKsvp7jEfh3yjxNdXkpFk7CyZ8dkVfSEHDgc9hYGuAhFwi10CJCmaYd5Nm588ubFUGBx7-Q5Wfb256xPEt1LbvSjSnPx8gsWsQaeURnpaBUsAPft5km"/>
+</div>
+<div class="space-y-1">
+<div class="flex items-center gap-1">
+<span class="text-[10px] font-medium text-on-surface-variant">KidsCare</span>
+</div>
+<h3 class="text-sm font-semibold text-on-surface leading-tight line-clamp-2">Small Size Breathable Mask for Kids (Mixed 10 Colors)</h3>
+<div class="flex items-baseline gap-1.5 mt-1">
+<span class="text-lg font-extrabold text-primary">9,900<span class="text-xs ml-0.5">₩</span></span>
+</div>
+<div class="flex items-center gap-1 pt-0.5">
+<div class="flex text-secondary-container">
+<span class="material-symbols-outlined text-[12px]" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<span class="text-[10px] font-bold text-on-surface">4.6</span>
+<span class="text-[10px] text-outline">(512)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Loader / End of Results -->
+<div class="py-12 flex flex-col items-center justify-center gap-3">
+<div class="w-6 h-6 border-2 border-primary/20 border-t-primary rounded-full animate-spin"></div>
+<p class="text-[10px] font-bold text-outline uppercase tracking-widest">Loading more results</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 flex justify-around items-center h-20 pb-safe px-2 max-w-md mx-auto bg-white/85 dark:bg-slate-900/85 backdrop-blur-md rounded-t-2xl border-t border-slate-100 dark:border-slate-800 shadow-[0_-4px_12px_rgba(0,80,203,0.08)] z-50">
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">home</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">grid_view</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold">Category</span>
+</a>
+<a class="flex flex-col items-center justify-center text-blue-700 dark:text-blue-400 scale-110 transition-transform active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 1;">search</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">shopping_bag</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 dark:text-slate-500 hover:text-blue-600 dark:hover:text-blue-300 active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined text-[24px]">person</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold">My Page</span>
+</a>
+</nav>
+</body></html>

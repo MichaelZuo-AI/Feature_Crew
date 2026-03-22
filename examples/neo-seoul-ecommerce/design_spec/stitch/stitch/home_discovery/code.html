@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Curator | Premium E-Commerce</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e0e3e6",
+              "on-surface-variant": "#424656",
+              "on-primary-fixed": "#001849",
+              "on-primary-fixed-variant": "#003fa4",
+              "surface-container-high": "#e6e8eb",
+              "on-surface": "#191c1e",
+              "surface-dim": "#d8dadd",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "secondary-fixed": "#ffdcc4",
+              "on-tertiary-container": "#fff6f4",
+              "tertiary": "#a33200",
+              "primary": "#0050cb",
+              "on-tertiary-fixed-variant": "#832600",
+              "on-secondary-fixed": "#2f1500",
+              "outline-variant": "#c2c6d8",
+              "on-tertiary-fixed": "#390c00",
+              "primary-container": "#0066ff",
+              "secondary": "#914c00",
+              "surface-container-low": "#f2f4f7",
+              "inverse-primary": "#b3c5ff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#f8f7ff",
+              "surface-tint": "#0054d6",
+              "inverse-on-surface": "#eff1f4",
+              "secondary-container": "#ff8a00",
+              "surface-container": "#eceef1",
+              "background": "#f7f9fc",
+              "on-secondary-fixed-variant": "#6f3900",
+              "on-error-container": "#93000a",
+              "surface": "#f7f9fc",
+              "surface-bright": "#f7f9fc",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb77f",
+              "tertiary-container": "#cc4204",
+              "outline": "#727687",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#613100",
+              "inverse-surface": "#2d3133",
+              "primary-fixed": "#dae1ff",
+              "tertiary-fixed": "#ffdbd0",
+              "tertiary-fixed-dim": "#ffb59d",
+              "error": "#ba1a1a",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e0e3e6",
+              "on-secondary": "#ffffff",
+              "primary-fixed-dim": "#b3c5ff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface antialiased">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-slate-200/15 shadow-sm shadow-blue-900/5 max-w-md mx-auto left-0 right-0 h-16 flex items-center px-4 justify-between">
+<div class="flex items-center gap-3 flex-1">
+<span class="material-symbols-outlined text-blue-700" data-icon="menu">menu</span>
+<div class="flex-1 relative group">
+<input class="w-full h-10 bg-surface-container-low rounded-lg px-10 text-sm focus:outline-none focus:ring-1 focus:ring-primary/20 border-none" placeholder="Search the collection" type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-sm" data-icon="search">search</span>
+</div>
+</div>
+<div class="flex items-center ml-4 gap-4">
+<span class="material-symbols-outlined text-blue-700 active:scale-95 duration-200" data-icon="shopping_cart">shopping_cart</span>
+</div>
+</header>
+<main class="pt-16 pb-24 max-w-md mx-auto min-h-screen bg-surface">
+<!-- Category Tabs -->
+<nav class="bg-surface-container-lowest sticky top-16 z-40">
+<div class="flex overflow-x-auto no-scrollbar px-4 py-3 gap-6 items-center">
+<a class="flex-shrink-0 text-primary font-bold border-b-2 border-primary pb-1 text-sm" href="#">Home</a>
+<a class="flex-shrink-0 text-on-surface-variant font-semibold text-sm hover:text-primary transition-colors" href="#">Rocket Fresh</a>
+<a class="flex-shrink-0 text-on-surface-variant font-semibold text-sm hover:text-primary transition-colors" href="#">Best</a>
+<a class="flex-shrink-0 text-secondary font-bold text-sm hover:text-primary transition-colors" href="#">Gold Box</a>
+<a class="flex-shrink-0 text-on-surface-variant font-semibold text-sm hover:text-primary transition-colors" href="#">Rocket Delivery</a>
+</div>
+</nav>
+<!-- Hero Banner -->
+<section class="px-4 mt-4">
+<div class="relative h-48 rounded-xl overflow-hidden shadow-lg shadow-blue-900/10">
+<img class="w-full h-full object-cover" data-alt="Vibrant tech gadgets editorial lifestyle flatlay" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkzPjveqj9MD-nvba5ATgqQdFVU4k9JUkK7-oXXlh8xLLBca6lfDE_U1VH-3ebpr_TAv_DSqe1CjvKElwt3TvzDN0EMEMrIg9-vcWQFfSWJVxIZFZwBgeKOiNkYrzFkK4E_viou1OsaPAeQ4bGlw1irmmNYGF0Wv44FvUUCVKoDD3B9GpwNwU0sKFkVgqiFdPWRFS1MR62v4w8fm3_npbQ5vbhjxwBmZUdnKULLdhX0_MSYgeppqjaenBWuwgPJSrYWP98NjQGomqu"/>
+<div class="absolute inset-0 bg-gradient-to-r from-blue-900/60 to-transparent flex flex-col justify-center px-6">
+<span class="bg-secondary-container text-on-secondary-container text-[10px] font-bold px-2 py-0.5 rounded-full w-max mb-2 uppercase tracking-wider">Flash Sale</span>
+<h2 class="text-white text-2xl font-extrabold leading-tight tracking-tight">Tech Refresh<br/>Under $99</h2>
+<p class="text-white/80 text-xs mt-1">Limited quantities available</p>
+</div>
+</div>
+</section>
+<!-- Gold Box Section (High Density) -->
+<section class="mt-8 px-4">
+<div class="flex items-end justify-between mb-4">
+<div>
+<h3 class="text-xl font-extrabold text-on-surface tracking-tighter flex items-center gap-2">
+<span class="text-secondary">Gold Box</span>
+<span class="material-symbols-outlined text-secondary text-xl" data-icon="bolt" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</h3>
+<div class="flex items-center gap-2 mt-1">
+<span class="text-[10px] font-bold text-outline-variant uppercase">Ends In</span>
+<div class="flex gap-1">
+<span class="bg-secondary text-white text-[10px] font-black px-1 rounded-sm">08</span>
+<span class="text-secondary font-bold">:</span>
+<span class="bg-secondary text-white text-[10px] font-black px-1 rounded-sm">42</span>
+<span class="text-secondary font-bold">:</span>
+<span class="bg-secondary text-white text-[10px] font-black px-1 rounded-sm">19</span>
+</div>
+</div>
+</div>
+<button class="text-primary text-xs font-bold flex items-center">View All <span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span></button>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<!-- Product Card 1 -->
+<div class="bg-surface-container-lowest p-3 rounded-lg flex flex-col group">
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container-low mb-3 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="Modern tablet with stylus on white desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtUlwIxQuRT8ZmaMbdiJkiqe7sD6ULHT-TKckC5voNsyW_aFU2OXbxB9u6uSY7Wr6V7db3OC5lc33Q4rI2NUWjvU7CrufW8LIDwDGHr-2TeU9q_Mh5ue8hVaEj-z3xRxVzu5vs62BZx-iQUm88JwAKDqvaRHI1quVacSaOBChfQDnHpEJQ-5b5KQKKY7E1wAr9J2TA8KEME_w52tcftDAZ1YacILrg8jEHsZoYqJqWRr2EtogN1rZTj894Su9hvDnctzNfq7mMUPzc"/>
+<div class="absolute top-2 left-2 bg-error text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">45%</div>
+</div>
+<h4 class="text-xs font-semibold text-on-surface line-clamp-2 min-h-[32px]">Ultra-Slim Pro Tablet 11" 256GB Platinum Silver Edition</h4>
+<div class="mt-2">
+<span class="text-outline text-[10px] line-through">$899.00</span>
+<div class="flex items-baseline gap-1">
+<span class="text-primary text-lg font-black tracking-tighter">$494.45</span>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-1">
+<span class="bg-secondary text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">Gold Box</span>
+<span class="text-outline text-[10px]">Free Shipping</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-surface-container-lowest p-3 rounded-lg flex flex-col group">
+<div class="aspect-square rounded-md overflow-hidden bg-surface-container-low mb-3 relative">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="High-end noise cancelling headphones" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_NHHSyuQJKleX0HI3H9sGMd1WFYartwryCxUyotQVSa7k1qhjkFMWVLZKI7PrjmVmmhAH2EbJyt86zWA6qXyMRRVyH4kt-8elkim17FIjmGd1R4AjHSNvYR-h1di-1ZwUKwSHazLCweeyIiO_RnotGhqhsL69qXjcz_sLhcD3esllPPZrUrM_romUcn17UbX811ONJnu1fO7cPupblGzgG8VSxBAwgnjyinOHjr-yziPaRg78y6ClbUPfKRRNBDn8faspymfXROqg"/>
+<div class="absolute top-2 left-2 bg-error text-white text-[10px] font-bold px-1.5 py-0.5 rounded-sm">30%</div>
+</div>
+<h4 class="text-xs font-semibold text-on-surface line-clamp-2 min-h-[32px]">Noise-Cancelling Over-Ear Wireless Headphones</h4>
+<div class="mt-2">
+<span class="text-outline text-[10px] line-through">$299.00</span>
+<div class="flex items-baseline gap-1">
+<span class="text-primary text-lg font-black tracking-tighter">$209.30</span>
+</div>
+</div>
+<div class="mt-2 flex items-center gap-1">
+<span class="bg-secondary text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">Gold Box</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Rocket Delivery Banner Section -->
+<section class="mt-8">
+<div class="px-4 mb-4 flex items-center justify-between">
+<h3 class="text-lg font-extrabold tracking-tight">Rocket Delivery</h3>
+<span class="bg-primary-container/10 text-primary text-[10px] font-bold px-3 py-1 rounded-full">Arrives Tomorrow</span>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-4 px-4">
+<!-- Rocket Item 1 -->
+<div class="flex-shrink-0 w-32">
+<div class="aspect-square bg-white rounded-lg p-2 mb-2 relative">
+<img class="w-full h-full object-contain" data-alt="Bottled mineral water pack" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD7DlfMELttd4rItc-uuxFvyszXigjZgXtyoC6Y-M33_qzP-GU5E3ArDYTzfwY4qmez3IcMB3zE4GEoIUgdFEga3tD5El7LVpcCMTnHil3MQ0mjcl_GIM1aSWmY7R_aWXGpn2mE5YHCqWIMcSby3D4Ltor5d3DcsnTE-THS6H-SYlFpNdix009JwnhLYQn27yWdpjI7-GGfPEWRF2UrGT8FqgUXrZG82Cdoe3WBeB4Jd4Ez3Mr3VLi8TxAnzSdwbQOuKB4e9UbkZNZ"/>
+<div class="absolute bottom-1 right-1">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="rocket_launch" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+</div>
+<p class="text-[11px] font-medium line-clamp-2">Premium Alpine Mineral Water (20 Pack)</p>
+<p class="text-sm font-bold mt-1 text-on-surface">$12.40</p>
+</div>
+<!-- Rocket Item 2 -->
+<div class="flex-shrink-0 w-32">
+<div class="aspect-square bg-white rounded-lg p-2 mb-2 relative">
+<img class="w-full h-full object-contain" data-alt="Bag of premium white rice" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACY4G-2PLYTDwxqjy309rqzdllTNYG-zV4iBg0FVK2ks0LDsKVOcQlJ5A147s-VUilS02oNW6G8xUEoXEluaCbIS4PSipr4aEZsXHk_OYSu1YkrW-JlBu08dWV6DoZsLM4Pc9y42OIguUDHUCYb21IxRfBcumXGdmE3X7DqT4vPDcVEzr127XuKesqK4YI5cNFVFKifF3QovEpeRcj7aOpN83W3wOqFzwjAC4YS5CMKJXNUnp2BrqHRLXrF8yHxzRF-TEkbPkluUb6"/>
+<div class="absolute bottom-1 right-1">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="rocket_launch" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+</div>
+<p class="text-[11px] font-medium line-clamp-2">Organic Short Grain Rice 10kg</p>
+<p class="text-sm font-bold mt-1 text-on-surface">$34.90</p>
+</div>
+<!-- Rocket Item 3 -->
+<div class="flex-shrink-0 w-32">
+<div class="aspect-square bg-white rounded-lg p-2 mb-2 relative">
+<img class="w-full h-full object-contain" data-alt="Natural skin care cream jar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHX7l8QaoEn0KC7qy-mrbKiQN71BWLVm4xw_XJ2r3oRiPJNWOh0ZyduWgsHJ4Nnze2Zf5QtJmdrOkouf0dvKNM1TBhuOzgSv0_3rtt3nqVesAK3f63ii2XT1uXKuZgb2AhEcIp6ThJExXiv1oFQzbeOo7vRRt0hFwyH62_xcc1k_TKEB8n11ynuOJRQ6JDe6C-WIJMHjFTkNT_CJFSJ9dNlffa95y1kA3HGlf0_c7_L9BAjb8M4VMRsVR1B-a_OUNRVhdCV5TwnqoC"/>
+<div class="absolute bottom-1 right-1">
+<span class="material-symbols-outlined text-primary text-lg" data-icon="rocket_launch" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+</div>
+<p class="text-[11px] font-medium line-clamp-2">Deep Hydration Face Cream 50ml</p>
+<p class="text-sm font-bold mt-1 text-on-surface">$22.00</p>
+</div>
+</div>
+</section>
+<!-- Recommended Section (Horizontal Scroll) -->
+<section class="mt-8 bg-surface-container-low py-8">
+<div class="px-4 mb-6">
+<span class="text-primary font-bold text-[10px] uppercase tracking-widest mb-1 block">Curated for You</span>
+<h3 class="text-2xl font-black text-on-surface leading-tight tracking-tighter italic">The Weekly Edit.</h3>
+</div>
+<div class="flex overflow-x-auto no-scrollbar gap-5 px-4">
+<!-- Large Editorial Card 1 -->
+<div class="flex-shrink-0 w-72 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-xl shadow-blue-900/5 group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Minimalist luxury watch on grey fabric" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBsEOaoMBTEAf5JxqHDVYYwXJlVeizz_jvge2HHR-QpLMIXr-6FGBGoON8pk8p5Gsn2kw4pyFUzlh78iTnNGXxEP6eHWm5WSfxEHWqW9iKInueaDEhx4mGbjyvtLbLK-cxIqobh_GNpKP7D-_cDnaRdP0H7YMChlD2So3FkG8BkSsAGQhTReTJO6C_Mjg_KK_mwllVK3OdZEzC-l_3tx-RqfVrFmkisBwRY6bWUajzypjcQnKauDjsoBU8wzNgxgqXB9Et3wr9ifUlQ"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold px-3 py-1 rounded-full shadow-sm">NEW SEASON</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-lg font-extrabold text-on-surface leading-snug">The Minimalist Collective: Timepieces</h4>
+<p class="text-xs text-on-surface-variant mt-2 mb-4 leading-relaxed">Discover timeless aesthetics from world-renowned craftspeople.</p>
+<div class="flex items-center justify-between">
+<span class="text-primary font-bold text-sm">Explore Collection</span>
+<span class="material-symbols-outlined text-primary" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+<!-- Large Editorial Card 2 -->
+<div class="flex-shrink-0 w-72 bg-surface-container-lowest rounded-2xl overflow-hidden shadow-xl shadow-blue-900/5 group">
+<div class="h-48 relative overflow-hidden">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" data-alt="Stylish sneakers floating in clean space" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8IoPgvOiISufVU8UcwsKfoxWAexYXB_vPSX-L2lGD_8V0ihkeB5sA16oP0Ki5jdQ6UZ4d_E4rv3TvQ1PIEDo49Lj1HFzVMxsiZV8JqWQN3VYMPdWjAIsZYVoggB3JFo8fjx3gJRSWB_g0HtdyEbrsT6Ot4ayEqgP-99jQ4fu2cCWrF9l1tzD4itYoM9n0NJtU03aiVuIVYD4Pu9ocbdZVYZ__IFx_BIXi04hqn8UkZsEeRrsLzA1l4i0zzV4XAc61b5XjGMsh34vo"/>
+<div class="absolute top-4 left-4">
+<span class="bg-white/90 backdrop-blur-sm text-primary text-[10px] font-bold px-3 py-1 rounded-full shadow-sm">BEST SELLER</span>
+</div>
+</div>
+<div class="p-5">
+<h4 class="text-lg font-extrabold text-on-surface leading-snug">Performance Footwear &amp; Apparel</h4>
+<p class="text-xs text-on-surface-variant mt-2 mb-4 leading-relaxed">Engineering meet style in this month's top athletic picks.</p>
+<div class="flex items-center justify-between">
+<span class="text-primary font-bold text-sm">Shop Now</span>
+<span class="material-symbols-outlined text-primary" data-icon="arrow_forward">arrow_forward</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Floating Quick Buy (Optional task-focused button suppression applies to subpages, but FAB on home is okay as per instructions if it aligns) -->
+<!-- Suppression Check: FAB on Home is allowed. -->
+<button class="fixed bottom-24 right-6 w-14 h-14 bg-gradient-to-br from-primary to-primary-container text-white rounded-full shadow-[0_4px_12px_rgba(0,80,203,0.3)] flex items-center justify-center z-50 active:scale-90 transition-transform">
+<span class="material-symbols-outlined" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+</button>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 right-0 h-20 pb-safe px-2 max-w-md mx-auto bg-white/85 backdrop-blur-md rounded-t-2xl border-t border-slate-100 shadow-[0_-4px_12px_rgba(0,80,203,0.08)] flex justify-around items-center z-50">
+<a class="flex flex-col items-center justify-center text-blue-700 scale-110 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="home" style="font-variation-settings: 'FILL' 1;">home</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold mt-1">Home</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold mt-1">Category</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold mt-1">Search</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="shopping_bag">shopping_bag</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold mt-1">Cart</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 hover:text-blue-600 transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-plus-jakarta-sans text-[10px] font-semibold mt-1">My Page</span>
+</a>
+</nav>
+</body></html>

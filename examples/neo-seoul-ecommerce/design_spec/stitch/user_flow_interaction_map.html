@@ -1,0 +1,55 @@
+# User Flow & Interaction Map: Neo Seoul E-Commerce
+
+This document outlines the interactive relationships between the screens in the Neo Seoul e-commerce application. It serves as a technical blueprint for developers and AI agents (like Gemini CLI or Claude Code) to implement the app's logic.
+
+## 1. Core User Journey: Discovery to Purchase
+
+### Flow 1: Search & Discovery
+*   **Starting Screen:** `{{DATA:SCREEN:SCREEN_5}}` (Home/Discovery)
+*   **Trigger:** User taps the Search Bar at the top.
+*   **Action:** Transition to `{{DATA:SCREEN:SCREEN_2}}` (Search Results) with the keyboard active or showing recent searches.
+*   **Trigger:** User taps a product card in the "Gold Box" or "Rocket Delivery" sections on Home.
+*   **Action:** Navigate to `{{DATA:SCREEN:SCREEN_7}}` (Product Detail Page).
+
+### Flow 2: Product Selection & Cart
+*   **Starting Screen:** `{{DATA:SCREEN:SCREEN_2}}` (Search Results)
+*   **Trigger:** User taps a product in the search grid.
+*   **Action:** Navigate to `{{DATA:SCREEN:SCREEN_7}}` (Product Detail Page).
+*   **Starting Screen:** `{{DATA:SCREEN:SCREEN_7}}` (Product Detail Page)
+*   **Trigger:** User taps "Add to Cart".
+*   **Action:** Show a confirmation toast/modal and update the Cart icon count in the TopAppBar.
+*   **Trigger:** User taps "Buy Now".
+*   **Action:** Navigate directly to `{{DATA:SCREEN:SCREEN_6}}` (Checkout/Payment).
+*   **Trigger:** User taps the Shopping Cart icon in the TopAppBar or BottomNavBar.
+*   **Action:** Navigate to `{{DATA:SCREEN:SCREEN_8}}` (Shopping Cart).
+
+### Flow 3: Checkout & Order Completion
+*   **Starting Screen:** `{{DATA:SCREEN:SCREEN_8}}` (Shopping Cart)
+*   **Trigger:** User taps "Proceed to Checkout".
+*   **Action:** Navigate to `{{DATA:SCREEN:SCREEN_6}}` (Checkout/Payment).
+*   **Starting Screen:** `{{DATA:SCREEN:SCREEN_6}}` (Checkout/Payment)
+*   **Trigger:** User selects a payment method and taps "Pay [Amount]".
+*   **Action:** Process payment (mocked) and navigate to an Order Success screen (to be designed) or back to `{{DATA:SCREEN:SCREEN_4}}` (My Page) to show the new order in 'Preparing'.
+
+## 2. Post-Purchase & Management
+
+### Flow 4: Order Tracking
+*   **Starting Screen:** Any Screen (via BottomNavBar)
+*   **Trigger:** User taps "My Page" icon in the BottomNavBar.
+*   **Action:** Navigate to `{{DATA:SCREEN:SCREEN_4}}` (My Page / Order Tracking).
+*   **Starting Screen:** `{{DATA:SCREEN:SCREEN_4}}` (My Page)
+*   **Trigger:** User taps "Track Order" on a specific order card.
+*   **Action:** Open a detailed tracking view (or expand the current card).
+
+## 3. Global Navigation (BottomNavBar)
+The `BottomNavBar` (from `{{DATA:COMPONENTS:COMPONENTS_3}}`) is persistent across all screens and allows instant switching between:
+*   **Home:** `{{DATA:SCREEN:SCREEN_5}}`
+*   **Category:** (Category Listing Screen)
+*   **Search:** `{{DATA:SCREEN:SCREEN_2}}`
+*   **Cart:** `{{DATA:SCREEN:SCREEN_8}}`
+*   **My Page:** `{{DATA:SCREEN:SCREEN_4}}`
+
+## 4. Technical Notes for Implementation
+*   **State Management:** Cart items and order status should be managed in a global state (e.g., Redux, Context API).
+*   **Responsive Design:** These designs are optimized for MOBILE but use Tailwind CSS classes that can be adapted for larger viewports.
+*   **API Integration:** Product data on `{{DATA:SCREEN:SCREEN_2}}` and `{{DATA:SCREEN:SCREEN_7}}` should be fetched from a product catalog API. Order data on `{{DATA:SCREEN:SCREEN_4}}` should reflect the user's purchase history.

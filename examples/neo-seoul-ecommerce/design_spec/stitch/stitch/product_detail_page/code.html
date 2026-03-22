@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-highest": "#e0e3e6",
+              "on-surface-variant": "#424656",
+              "on-primary-fixed": "#001849",
+              "on-primary-fixed-variant": "#003fa4",
+              "surface-container-high": "#e6e8eb",
+              "on-surface": "#191c1e",
+              "surface-dim": "#d8dadd",
+              "on-tertiary": "#ffffff",
+              "on-background": "#191c1e",
+              "secondary-fixed": "#ffdcc4",
+              "on-tertiary-container": "#fff6f4",
+              "tertiary": "#a33200",
+              "primary": "#0050cb",
+              "on-tertiary-fixed-variant": "#832600",
+              "on-secondary-fixed": "#2f1500",
+              "outline-variant": "#c2c6d8",
+              "on-tertiary-fixed": "#390c00",
+              "primary-container": "#0066ff",
+              "secondary": "#914c00",
+              "surface-container-low": "#f2f4f7",
+              "inverse-primary": "#b3c5ff",
+              "surface-container-lowest": "#ffffff",
+              "on-primary-container": "#f8f7ff",
+              "surface-tint": "#0054d6",
+              "inverse-on-surface": "#eff1f4",
+              "secondary-container": "#ff8a00",
+              "surface-container": "#eceef1",
+              "background": "#f7f9fc",
+              "on-secondary-fixed-variant": "#6f3900",
+              "on-error-container": "#93000a",
+              "surface": "#f7f9fc",
+              "surface-bright": "#f7f9fc",
+              "on-error": "#ffffff",
+              "secondary-fixed-dim": "#ffb77f",
+              "tertiary-container": "#cc4204",
+              "outline": "#727687",
+              "error-container": "#ffdad6",
+              "on-secondary-container": "#613100",
+              "inverse-surface": "#2d3133",
+              "primary-fixed": "#dae1ff",
+              "tertiary-fixed": "#ffdbd0",
+              "tertiary-fixed-dim": "#ffb59d",
+              "error": "#ba1a1a",
+              "on-primary": "#ffffff",
+              "surface-variant": "#e0e3e6",
+              "on-secondary": "#ffffff",
+              "primary-fixed-dim": "#b3c5ff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-fixed selection:text-on-primary-fixed">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md border-b border-slate-200/15 shadow-sm shadow-blue-900/5">
+<div class="flex justify-between items-center px-4 h-16 w-full max-w-md mx-auto">
+<button class="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-plus-jakarta-sans font-bold text-lg tracking-tight text-blue-700">The Curator</h1>
+<div class="flex gap-1">
+<button class="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined" data-icon="share">share</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center text-slate-500 hover:bg-slate-100 transition-colors active:scale-95 duration-200 rounded-full">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</button>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto pt-16 pb-32">
+<!-- Hero Image Carousel -->
+<section class="relative aspect-square bg-surface-container-lowest overflow-hidden">
+<div class="flex overflow-x-auto snap-x snap-mandatory hide-scrollbar h-full">
+<div class="flex-none w-full h-full snap-center">
+<img alt="Product Image 1" class="w-full h-full object-cover" data-alt="Premium headphones on a minimalist background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX3WCjOSaxfxiOsAmfNfXdaSWLyUw0OE5thTanPCeG2s4IOmwqt9G3n8CXFWMgJcVVG-NchtUccwK-Bh53Rze2pM3-8rwDk4-ZLO_f1jfxKV2TPGrGUqYASMD3HWLnZP73dZtvlQMBVh3e1mz-h6ZoYp2hI9vlfvsAA2x-qjTaKOYxTxluz5ioSATQFWIL5wjz4R2dwZBt0eFXFu6L6SIQ_ElewTuHYkakCJQPFKlIIFUIibkVK9Wk95C9LD-hlIE1uLWitYz2GmKn"/>
+</div>
+<div class="flex-none w-full h-full snap-center">
+<img alt="Product Image 2" class="w-full h-full object-cover" data-alt="Minimalist white modern watch detail" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDt_EaC5QjqfrBT2_bsPolDoiMuxtH7cMXV8UA2WxPmfN3zRJA-48R7GG-ra9_IOwylmQqAD0uVDy7qBdD1udIj-fheXKawnowMnqo3IYoRFY6FdFTcI5KsFkp43QGleFZpQl3O5311ZgglYWuWKL6jkhWhyQ_jkmUC62V01nPdn2S5DigUP_qtxvmZ130IvggFZF4Nry3GVA4WKEBgMTqJhyIa9b-AHx5Fo1QQTlSHE1hveTIafF6-YJdk4ngopP4yFTbe0WLXZHT7"/>
+</div>
+</div>
+<!-- Indicators -->
+<div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
+<div class="w-1.5 h-1.5 rounded-full bg-primary"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+<div class="w-1.5 h-1.5 rounded-full bg-white/40"></div>
+</div>
+</section>
+<!-- Product Summary -->
+<section class="p-5 bg-surface-container-lowest">
+<div class="flex items-center gap-2 mb-2">
+<span class="bg-secondary px-2 py-0.5 rounded-full text-[10px] font-bold text-white uppercase tracking-wider">Rocket</span>
+<span class="bg-[#2DB400] px-2 py-0.5 rounded text-[10px] font-bold text-white uppercase">Pay</span>
+</div>
+<h2 class="text-xl font-bold leading-tight mb-3 text-on-surface">
+                Premium Noise Cancelling Headphones - Lunar Gray (2024 Edition)
+            </h2>
+<div class="flex items-baseline gap-2 mb-1">
+<span class="text-primary text-2xl font-black tracking-tighter">45%</span>
+<span class="text-2xl font-black text-on-surface tracking-tighter">249,000₩</span>
+</div>
+<div class="text-outline text-sm line-through mb-4">452,700₩</div>
+<!-- Ratings -->
+<div class="flex items-center gap-1.5 py-3 border-t border-slate-100">
+<div class="flex text-[#FFB800]">
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[18px]" style="font-variation-settings: 'FILL' 0.5;">star_half</span>
+</div>
+<span class="text-primary font-bold text-sm">4.8</span>
+<span class="text-outline text-sm">(12,402 reviews)</span>
+<span class="material-symbols-outlined text-outline ml-auto text-sm" data-icon="chevron_right">chevron_right</span>
+</div>
+</section>
+<!-- Delivery Island -->
+<section class="mx-4 mt-4 p-4 rounded-xl bg-surface-container-low shadow-sm">
+<div class="flex items-start gap-3">
+<div class="mt-1">
+<span class="material-symbols-outlined text-secondary" data-icon="local_shipping">local_shipping</span>
+</div>
+<div>
+<p class="font-bold text-on-surface text-sm">Tomorrow Arrival Guaranteed</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Order within 4h 22m to receive by <span class="text-secondary font-bold">Tuesday, May 14</span></p>
+<div class="mt-3 flex items-center gap-2">
+<span class="px-2 py-1 bg-white text-[10px] font-bold text-secondary border border-secondary/20 rounded">Rocket Fresh</span>
+<span class="text-xs text-on-surface-variant">Free shipping for members</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Collapsible Content Sections -->
+<div class="mt-8 space-y-px">
+<!-- Product Description -->
+<div class="bg-surface-container-lowest p-5 flex justify-between items-center group cursor-pointer active:bg-slate-50">
+<span class="font-bold text-on-surface">Product Description</span>
+<span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="expand_more">expand_more</span>
+</div>
+<!-- Bento-style Review Preview (Custom Section) -->
+<div class="bg-surface-container-lowest p-5">
+<div class="flex justify-between items-center mb-4">
+<span class="font-bold text-on-surface">Reviews (12,402)</span>
+<span class="text-primary text-sm font-bold">View All</span>
+</div>
+<!-- Bento Grid for Review Media -->
+<div class="grid grid-cols-4 gap-1 h-24 rounded-lg overflow-hidden mb-4">
+<img class="w-full h-full object-cover" data-alt="Review image of headphones in use" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCD8BAWyvsrM4WCdlQipYcLHWlo4YYQIsMXSOEh1nhl3kW5LmT2_U_4v1U_itAI12-nm2JzciB8GogFgJC2sSs1y6oYuBE0dg_oKBhCGVsbaI9j_VNdybGBCZqbPfbfBnyz5z5zp4rxiZG6jwrbgJE_2On9868OjbVEL_HV0lrb5upPk-4RgEg7BJHveGRSQV5yod2KRQcFXgCEK0GzBg5lDXGmhi3WCbysf-qkFO7YEEfinLz2jn48aN6UR-TUvYDOSIUADclTLG-C"/>
+<img class="w-full h-full object-cover" data-alt="Close up of headphone controls" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAe6HPqFfTCWpL91sEeScr8ykp2G3QzNYwFIkL8SDOsmlQaMfzmCXVW5V3vmrx4R9rhiPSYtrzJRIURRF6jIkJ9sWQGx6T23Q2vJHG1xk5sczGi5bPOnI3iw3EByoz55tn6qNejk1TNCQczwEL6kXb209V80Sf35O-Ru553UG_jzl5tgXysI5rOAD3jBX5HaSQHtZqrrcXEuMlFix4SEp2gnisGhIXoATVQtpRxB1Q2A1Y8-J_1DGPNPvQuohbSiKtmfrP2W5H42tgt"/>
+<img class="w-full h-full object-cover" data-alt="Headphones box packaging" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqS218oINuW6EDWs8SvJZEVPsgS646gV9IrEFd42rhNgiGv2qoiMpudNi1XbdaXJSrw3lg_TOa20DNHHXdHPaer26f6Hg-0iuoqlId0U_DTcIW9eV0jC_5JO-osztdrsasX0HtMnR7ISRM92O-UhaY3ym0TK2HQC6uv-0-yZ9dY0UEaCx3P4JNDcFphultZqbE7ElOYLt6gS5aKlJBZKbNnviWnhDJtXjneHOV2pd2HICLzLNWUlcyTga0aUO4Gid1mBbUL18fy_kX"/>
+<div class="bg-surface-container-highest flex items-center justify-center relative">
+<img class="w-full h-full object-cover opacity-30" data-alt="More user review photos" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAn4aLqFO1VdrVACHHaVZStctrDbxCJPLJPvMOJvHAxfiq0HN-DQoe2kIJyh5oi9yldRcy3f1-HpFpN9cQXyo58XEHK9ShQGrEBsBa7DpbCNujUeV2b6zQ2z08grQ01d95nme8NmLr3c-PYSXWHkaQbeulbjBKPb_JsBa7HVSpVl0YXPentPcWpJGCDC_8G-iYI9wwm_sujgSC5XgQhvYu7V_WH7aokGorKH0TgNkoFY2YoGP6M2QY-SAszBkY3VjC01wFbesaGxePl"/>
+<span class="absolute text-on-surface-variant font-bold text-xs">+1.2k</span>
+</div>
+</div>
+<div class="p-3 bg-surface rounded-lg">
+<p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
+                        The noise cancelling is actually better than my previous Sony's. The Lunar Gray color is so sophisticated...
+                    </p>
+<p class="mt-2 text-[10px] text-outline">User: kim_curator** | 2 days ago</p>
+</div>
+</div>
+<!-- Q&A Section -->
+<div class="bg-surface-container-lowest p-5 flex justify-between items-center group cursor-pointer active:bg-slate-50">
+<div class="flex items-center gap-2">
+<span class="font-bold text-on-surface">Q&amp;A</span>
+<span class="text-[10px] bg-surface-container-high px-1.5 py-0.5 rounded text-outline font-bold">14</span>
+</div>
+<span class="material-symbols-outlined text-outline" data-icon="expand_more">expand_more</span>
+</div>
+</div>
+<!-- Sticky Buy Bar -->
+<footer class="fixed bottom-0 left-0 right-0 z-[60] max-w-md mx-auto">
+<div class="bg-white/95 backdrop-blur-xl p-4 flex gap-3 shadow-[0_-8px_24px_rgba(0,80,203,0.12)] border-t border-slate-100/50">
+<button class="flex-none w-14 h-14 flex items-center justify-center border border-outline-variant/30 rounded-xl text-outline active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="favorite">favorite</span>
+</button>
+<button class="flex-1 bg-surface-container-high text-on-surface font-bold rounded-xl active:scale-[0.98] transition-all duration-150">
+                    Add to Cart
+                </button>
+<button class="flex-1 bg-gradient-to-br from-primary to-primary-container text-white font-bold rounded-xl shadow-lg shadow-primary/20 active:scale-[0.98] transition-all duration-150 relative overflow-hidden">
+<div class="absolute inset-0 bg-white/10 opacity-0 active:opacity-100 transition-opacity"></div>
+                    Buy Now
+                </button>
+</div>
+<!-- Extra padding for home indicator on mobile -->
+<div class="h-6 bg-white/95"></div>
+</footer>
+</main>
+<!-- BottomNavBar (Suppressed for focused detail view per instructions) -->
+<!-- The BottomNavBar is excluded because the page intent is task-focused/transactional and features a custom Buy Bar -->
+</body></html>

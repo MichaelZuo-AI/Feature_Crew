@@ -1,0 +1,20 @@
+{
+  "featureName": "neo-seoul-ecommerce",
+  "input": {
+    "figmaLink": null,
+    "onePager": "Neo Seoul E-Commerce app — 'The Curator'. Premium mobile-first e-commerce with 7 screens."
+  },
+  "worktree": null,
+  "phase": "PRODUCTION",
+  "phaseHistory": [
+    { "phase": "INIT", "timestamp": "2026-03-22" },
+    { "phase": "CLARIFYING", "timestamp": "2026-03-22" },
+    { "phase": "CHECKPOINT_1", "timestamp": "2026-03-22" },
+    { "phase": "IMPLEMENTING", "timestamp": "2026-03-22" },
+    { "phase": "CHECKPOINT_2", "timestamp": "2026-03-22" },
+    { "phase": "QA", "timestamp": "2026-03-22" },
+    { "phase": "PRODUCTION", "timestamp": "2026-03-22" }
+  ],
+  "evalRounds": 3,
+  "qaRounds": 2
+}

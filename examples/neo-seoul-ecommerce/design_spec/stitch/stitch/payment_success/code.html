@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Payment Success - Neo Seoul</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "inverse-on-surface": "#eff1f4",
+              "surface": "#f7f9fc",
+              "primary-fixed": "#dae1ff",
+              "on-tertiary-fixed": "#390c00",
+              "surface-container": "#eceef1",
+              "background": "#f7f9fc",
+              "outline": "#727687",
+              "on-tertiary-container": "#fff6f4",
+              "surface-container-lowest": "#ffffff",
+              "surface-dim": "#d8dadd",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#b3c5ff",
+              "primary-container": "#0066ff",
+              "on-error-container": "#93000a",
+              "tertiary-fixed-dim": "#ffb59d",
+              "outline-variant": "#c2c6d8",
+              "on-tertiary-fixed-variant": "#832600",
+              "on-secondary-container": "#613100",
+              "on-secondary-fixed": "#2f1500",
+              "secondary-container": "#ff8a00",
+              "secondary": "#914c00",
+              "on-tertiary": "#ffffff",
+              "on-error": "#ffffff",
+              "secondary-fixed": "#ffdcc4",
+              "on-surface-variant": "#424656",
+              "primary": "#0050cb",
+              "surface-variant": "#e0e3e6",
+              "on-background": "#191c1e",
+              "tertiary": "#a33200",
+              "on-secondary-fixed-variant": "#6f3900",
+              "secondary-fixed-dim": "#ffb77f",
+              "surface-tint": "#0054d6",
+              "surface-bright": "#f7f9fc",
+              "on-primary-container": "#f8f7ff",
+              "inverse-surface": "#2d3133",
+              "on-primary-fixed": "#001849",
+              "surface-container-low": "#f2f4f7",
+              "primary-fixed-dim": "#b3c5ff",
+              "on-primary-fixed-variant": "#003fa4",
+              "tertiary-container": "#cc4204",
+              "on-secondary": "#ffffff",
+              "surface-container-highest": "#e0e3e6",
+              "on-surface": "#191c1e",
+              "surface-container-high": "#e6e8eb",
+              "on-primary": "#ffffff",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#ffdbd0"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .success-gradient {
+            background: linear-gradient(135deg, #0050cb 0%, #0066ff 100%);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-background min-h-screen pb-24">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 w-full z-50 bg-white/85 dark:bg-slate-900/85 backdrop-blur-md shadow-[0_8px_24px_rgba(0,80,203,0.08)]">
+<div class="flex items-center justify-between px-4 h-14 w-full">
+<div class="flex items-center gap-3">
+<button class="active:scale-95 duration-200 hover:bg-slate-100 p-2 rounded-full">
+<span class="material-symbols-outlined text-[#424656]" data-icon="close">close</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-[#191c1e]">Payment Success</h1>
+</div>
+<div class="text-[#0050cb] font-bold text-sm">Neo Seoul</div>
+</div>
+<div class="bg-[#f2f4f7] dark:bg-slate-800 h-[1px] w-full"></div>
+</header>
+<main class="pt-20 px-4 max-w-lg mx-auto space-y-6">
+<!-- Success Hero Section -->
+<section class="flex flex-col items-center justify-center pt-8 pb-4 text-center">
+<div class="w-24 h-24 rounded-full bg-primary-container/10 flex items-center justify-center mb-6 relative">
+<div class="absolute inset-0 rounded-full border-4 border-primary/20 animate-ping opacity-20"></div>
+<div class="success-gradient w-16 h-16 rounded-full flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-white text-4xl" data-icon="check" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+</div>
+<h2 class="text-2xl font-extrabold tracking-tight text-on-background mb-2">Payment Successful</h2>
+<p class="text-on-surface-variant font-medium">Your order has been confirmed.</p>
+</section>
+<!-- Delivery Badge / Rocket Style -->
+<div class="bg-surface-container-lowest p-5 rounded-xl border-l-4 border-secondary shadow-sm flex items-center gap-4">
+<div class="bg-secondary p-2 rounded-lg">
+<span class="material-symbols-outlined text-white" data-icon="rocket_launch" style="font-variation-settings: 'FILL' 1;">rocket_launch</span>
+</div>
+<div>
+<span class="text-secondary font-bold text-xs px-2 py-0.5 rounded-full bg-secondary-fixed mb-1 inline-block">Rocket Delivery</span>
+<p class="text-on-surface font-bold">Arriving tomorrow, May 15th</p>
+<p class="text-xs text-on-surface-variant mt-0.5">Estimated delivery by 7:00 AM</p>
+</div>
+</div>
+<!-- Bento Layout Order Details -->
+<div class="grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col justify-between h-28">
+<span class="text-xs font-bold text-on-surface-variant opacity-60">ORDER NUMBER</span>
+<p class="text-sm font-bold text-on-surface tracking-tight">#2026-0514-8892</p>
+</div>
+<div class="bg-surface-container-low p-4 rounded-xl flex flex-col justify-between h-28">
+<span class="text-xs font-bold text-on-surface-variant opacity-60">TOTAL PAID</span>
+<p class="text-lg font-extrabold text-primary">₩142,500</p>
+</div>
+<div class="col-span-2 bg-surface-container-low p-4 rounded-xl flex items-center justify-between">
+<div>
+<span class="text-xs font-bold text-on-surface-variant opacity-60 block mb-1">PAYMENT METHOD</span>
+<p class="text-sm font-bold text-on-surface flex items-center gap-2">
+<span class="w-6 h-6 bg-primary-container rounded-md flex items-center justify-center text-[10px] text-white font-black">C</span>
+                        Coupang Pay
+                    </p>
+</div>
+<span class="material-symbols-outlined text-outline-variant" data-icon="chevron_right">chevron_right</span>
+</div>
+</div>
+<!-- Item Breakdown -->
+<section class="bg-surface-container-lowest p-4 rounded-xl shadow-sm space-y-4">
+<h3 class="text-sm font-bold text-on-surface flex items-center gap-2">
+                Purchased Item
+                <span class="text-[10px] text-outline px-1.5 py-0.5 rounded border border-outline-variant font-medium">1 Item</span>
+</h3>
+<div class="flex gap-4">
+<div class="w-20 h-20 rounded-lg overflow-hidden bg-surface-container shrink-0">
+<img alt="Product Thumbnail" class="w-full h-full object-cover" data-alt="Modern red sneaker on a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuApiDyzs3PI8KwA0UnzPwnwYmRVV0LpAOt2CIkHcdrvjHad5V_E98Tr8uhmaLglhKqF_G59kBeUeWos2DfAjJYB4wwtJ39d6CmeNer6MW9rXHakOIv1t2oVPbzvfiT37ZfyHEwtlRA0PKxz8mid4-av9hECrIRO5GXYBwkI4eMl-kxggX7UuM4C5okvMsxfx7ch3UlVNMwVOk2p3XTWm7J8D-u_Y8-IFEbaxMpgRAaA05Wmdp_N8CvBZbKTFyf04Jo1-ZOT0ugEVij-"/>
+</div>
+<div class="flex flex-col justify-center">
+<p class="font-bold text-on-surface text-sm line-clamp-2 leading-snug">Neo Seoul x Air Tech Max G2 - Edition Red '26</p>
+<p class="text-xs text-on-surface-variant mt-1">Size: 270mm / Color: Seoul Red</p>
+<div class="mt-2 flex items-center gap-2">
+<span class="text-primary font-bold text-sm">₩142,500</span>
+<span class="text-xs text-outline line-through">₩189,000</span>
+</div>
+</div>
+</div>
+</section>
+<!-- What's Next Section -->
+<section class="bg-surface-container-low p-5 rounded-xl space-y-3">
+<h3 class="text-sm font-bold text-on-surface">What's next?</h3>
+<div class="space-y-3">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="mail">mail</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">We've sent a confirmation email and digital receipt to <span class="text-on-surface font-semibold">user@neoseoul.com</span>.</p>
+</div>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl" data-icon="notifications_active">notifications_active</span>
+<p class="text-xs text-on-surface-variant leading-relaxed">You will receive push notifications for every step of your delivery journey.</p>
+</div>
+</div>
+</section>
+<!-- CTAs -->
+<div class="flex flex-col gap-3 pt-4">
+<button class="success-gradient w-full py-4 rounded-xl text-white font-bold text-md shadow-[0_8px_24px_rgba(0,80,203,0.15)] active:scale-[0.98] transition-all">
+                Track My Order
+            </button>
+<button class="w-full py-4 rounded-xl text-primary font-bold text-md bg-surface-container-high active:scale-[0.98] transition-all">
+                Continue Shopping
+            </button>
+</div>
+</main>
+<!-- BottomNavBar Shell (Suppressed as per rules: Transactional Success screen) -->
+<!-- But if I were to render it, I'd use the logic from the JSON. For this page, we prioritize the focused journey. -->
+<div class="h-10"></div>
+</body></html>
