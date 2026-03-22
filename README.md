@@ -36,7 +36,7 @@ Then open Claude Code in your project and run `/feature-crew`.
 | Example | Description | Stack |
 |---------|-------------|-------|
 | [`smart-search-bar`](examples/smart-search-bar) | AI-powered search with NLU, filter chips, and instant preview | Next.js 14, Zustand, Tailwind |
-| [`dummy-ecommerce-webapp`](examples/dummy-ecommerce-webapp) | Full e-commerce app — discovery → cart → checkout → order tracking ([live demo](https://shop.michaelzuo.vip)) | Next.js 14, React Context, Tailwind |
+| [`dummy-ecommerce-webapp`](examples/dummy-ecommerce-webapp) | Full e-commerce app — discovery, categories, cart, checkout, reviews, membership ([live demo](https://shop.michaelzuo.vip)) | Next.js 14, React Context, Tailwind |
 
 ### Try an example
 
