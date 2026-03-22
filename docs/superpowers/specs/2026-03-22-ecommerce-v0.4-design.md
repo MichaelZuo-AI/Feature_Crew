@@ -75,7 +75,7 @@ interface RecentView {
 
 - AC-3.1: Top bar displays "Order #CPN-{id}" with back arrow.
 - AC-3.2: Status hero section on surface_container_low island: large status text (e.g., "Shipping"), estimated delivery date, order date.
-- AC-3.3: Vertical timeline stepper with 4 steps: "Order Placed" → "Preparing" → "Shipped" → "Delivered".
+- AC-3.3: Vertical timeline stepper with 4 steps: "Pending" → "Preparing" → "Shipping" → "Delivered" (matches existing `Order.status` enum).
   - Completed steps: primary blue filled dot (12px) + solid blue connector line + timestamp label.
   - Active step: pulsing primary blue dot + bold label + description text.
   - Pending steps: outline gray dot + dashed gray connector line.
@@ -90,7 +90,7 @@ interface OrderDetail extends Order {
   trackingNumber: string;
   carrier: string;
   statusHistory: {
-    status: 'placed' | 'preparing' | 'shipped' | 'delivered';
+    status: 'pending' | 'preparing' | 'shipping' | 'delivered';  // matches existing Order.status enum
     timestamp: string;
     description?: string;
   }[];
@@ -110,7 +110,7 @@ interface OrderDetail extends Order {
 - AC-4.3: Product list below hero — full-width cards (not grid). Each card: product image left (120px square), right side shows product name, flash price in title-lg primary blue, original price strikethrough.
 - AC-4.4: Each card has a stock progress bar: amber gradient fill showing claimed percentage (e.g., "73% claimed") with label.
 - AC-4.5: Items with >90% claimed show pulsing red "Almost Gone!" badge.
-- AC-4.6: Each card has "BUY NOW" amber CTA button. Tapping adds to cart and navigates to `/cart`.
+- AC-4.6: Each card has "BUY NOW" amber CTA button. Tapping adds 1 unit to cart (or increments quantity if already in cart) and navigates to `/cart`. The `claimedPercentage` is static mock data and does not change on interaction.
 - AC-4.7: Sticky bottom ticker bar: "🔥 {N} items claimed in the last hour" with scrolling animation.
 - AC-4.8: Bottom nav visible.
 
@@ -144,7 +144,7 @@ interface FlashSale {
 - AC-5.1: Top bar displays "Compare Products" with back arrow.
 - AC-5.2: Sticky product header row (fixed on scroll): 2-3 product columns. Each shows product image (80px), name (2-line clamp), price. "×" button to remove. Last empty slot shows "+" add button.
 - AC-5.3: Comparison table below with vertically scrollable rows. Row category headers on surface_container_low: "General", "Specifications", "Reviews", "Delivery".
-- AC-5.4: Comparison rows: Rating (star display), Price, Brand, Weight, Delivery Speed, Return Policy. Alternating row backgrounds: white / surface_container_low.
+- AC-5.4: Comparison rows: Rating (star display), Price, Brand, Rocket Delivery (yes/no), Discount %, Review Count. Alternating row backgrounds: white / surface_container_low. All comparison attributes are derived from existing `Product` fields — no new fields needed.
 - AC-5.5: Best value in each row gets a primary blue background pill highlight (auto-detected: lowest price wins, highest rating wins, fastest delivery wins).
 - AC-5.6: Sticky bottom bar with "Add to Cart" gradient CTA for each product column.
 - AC-5.7: "+" slot opens a bottom sheet with product search/selection from existing products.
@@ -157,10 +157,12 @@ interface FlashSale {
 // Products sourced from existing products.ts data
 interface ComparisonSpec {
   label: string;
-  key: string;
-  category: 'general' | 'specifications' | 'reviews' | 'delivery';
+  key: keyof Product;       // uses existing Product fields only
+  category: 'general' | 'reviews' | 'delivery';
   bestIs: 'highest' | 'lowest' | 'none';  // for winner detection
 }
+// Example rows: price (lowest wins), rating (highest), discount (highest),
+// review_count (highest), rocket_delivery (boolean display)
 ```
 
 ---
@@ -249,11 +251,12 @@ interface Notification {
   - Pending: gray outlined circle + gray dashed connector line.
 - AC-8.3: **Step 1 — Select Items:** Ordered items displayed as selectable cards with checkboxes. Each shows product image, name, quantity, price. At least 1 item must be selected. "Next" gradient CTA at bottom (disabled if none selected).
 - AC-8.4: **Step 2 — Reason:** Radio button group with options: "Changed my mind", "Defective/Damaged", "Wrong item received", "Doesn't match description", "Other".
-  - If "Defective/Damaged" selected: photo upload area appears with 3 upload slots (labeled "Main", "+", "+") using surface_container_low backgrounds.
+  - If "Defective/Damaged" selected: photo upload area appears with 3 upload slots (labeled "Main", "+", "+") using surface_container_low backgrounds. Tapping a slot shows a placeholder interaction (no actual upload) — displays a stock placeholder image.
   - Textarea for additional details (optional), character counter "0 / 500".
   - "Back" tertiary + "Next" gradient CTA.
 - AC-8.5: **Step 3 — Review:** Summary on surface_container_low island showing: selected items list, return reason, photo count if any, calculated refund amount, refund method ("Original payment method"). "Back" tertiary + "Submit Return" gradient CTA.
 - AC-8.6: On submit: show success state with checkmark animation + "Return request submitted" + "Return to My Page" button. Navigate to `/my-page` on tap.
+- AC-8.7: Returns are only available for orders with status `delivered`. If the order status is not `delivered`, redirect to `/order/[id]` with a toast message "Returns are only available for delivered orders".
 
 **Data model:**
 ```typescript
@@ -301,9 +304,11 @@ interface Brand {
   foundedYear: number;
   avgRating: number;
   productCount: number;
-  productIds: string[];   // references to products.ts
+  // productIds auto-derived: filter products.ts where product.brand matches brand.name
 }
 // Stored in brands.ts data file
+// Create Brand entries for 3-4 curated brands that appear most in products.ts
+// (e.g., the brands with the most products). Not every brand needs a store page.
 ```
 
 ---
@@ -333,17 +338,18 @@ interface Brand {
 
 **Data model:**
 ```typescript
-interface Address {
+interface SavedAddress {
   id: string;
-  name: string;
+  name: string;          // recipient name
   phone: string;
-  addressLine1: string;
-  addressLine2?: string;
-  postalCode: string;
+  line1: string;         // matches existing Address field names
+  line2?: string;
+  postal_code: string;
   city: string;
   isDefault: boolean;
 }
-// Stored in UserContext as addresses: Address[]
+// Stored in UserContext as savedAddresses: SavedAddress[]
+// Note: uses field names consistent with existing Address type (line1/line2/postal_code)
 ```
 
 ---
@@ -353,9 +359,13 @@ interface Address {
 The following navigation links need to be added to existing pages:
 
 - **My Page (`/my-page`):** Add menu links to "Wishlist", "Recently Viewed", "Coupons", "Notifications", "Address Book".
-- **Product Detail (`/product/[id]`):** Add heart icon to save/unsave from wishlist. Track in recently viewed on page load.
+- **Product Detail (`/product/[id]`):** Add heart icon to save/unsave from wishlist. Add "Compare" icon button. Track in recently viewed on page load. Brand name links to `/brand/[brandId]`.
 - **Order cards on My Page:** Tapping an order navigates to `/order/[id]`.
 - **Cart:** Add link to `/coupons` in checkout flow.
+- **Home (`/`):** "FLASH SALE" banner in Gold Box section links to `/flash-sale`. Flash sale promo card added if not present.
+- **Top App Bar (`TopAppBar.tsx`):** Add notification bell icon with unread count badge (primary blue dot with count), linking to `/notifications`.
+- **Category Page (`/category`):** "Popular Brands" section brand cards link to `/brand/[brandId]`.
+- **Search Results (`/search`):** Add "Compare" checkbox on product cards — selecting 2-3 items shows a floating "Compare (N)" CTA that navigates to `/compare?ids=p001,p002`.
 
 ---
 
