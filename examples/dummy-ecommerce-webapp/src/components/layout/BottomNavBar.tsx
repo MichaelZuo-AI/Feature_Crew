@@ -12,7 +12,7 @@ const tabs = [
   { label: 'My Page', icon: 'person', route: '/my-page' },
 ];
 
-const HIDDEN_ROUTES = ['/write-review', '/membership'];
+const HIDDEN_ROUTES = ['/write-review', '/membership', '/returns'];
 
 export default function BottomNavBar() {
   const pathname = usePathname();
