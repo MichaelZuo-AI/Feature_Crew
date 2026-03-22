@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import TopAppBar from '@/components/layout/TopAppBar';
 import CategoryTabs from '@/components/home/CategoryTabs';
 import HeroBanner from '@/components/home/HeroBanner';
@@ -21,7 +22,9 @@ export default function Home() {
       {/* Home tab shows everything */}
       {(activeTab === 0 || activeTab === 1) && (
         <div className="px-4 mt-4">
-          <HeroBanner />
+          <Link href="/flash-sale">
+            <HeroBanner />
+          </Link>
         </div>
       )}
 

@@ -103,14 +103,15 @@ export default function CategoryPage() {
             <h3 className="text-sm font-bold text-on-surface mb-3">Popular Brands</h3>
             <div className="grid grid-cols-2 gap-2.5">
               {popularBrands.slice(0, 4).map((brand) => (
-                <div
+                <Link
                   key={brand.id}
+                  href={`/brand/${brand.id}`}
                   className="rounded-xl bg-surface-container-low p-4 flex items-center justify-center h-16"
                 >
                   <span className={`text-sm font-bold text-on-surface/30 ${brand.style}`}>
                     {brand.name}
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>

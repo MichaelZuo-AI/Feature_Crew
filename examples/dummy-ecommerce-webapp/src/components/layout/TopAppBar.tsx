@@ -3,12 +3,14 @@
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { useCart } from '@/context/CartContext';
+import { useUser } from '@/context/UserContext';
 
 interface TopAppBarProps {
   title?: string;
   showBack?: boolean;
   showSearch?: boolean;
   showCart?: boolean;
+  showNotifications?: boolean;
 }
 
 export default function TopAppBar({
@@ -16,9 +18,12 @@ export default function TopAppBar({
   showBack = false,
   showSearch = false,
   showCart = false,
+  showNotifications = false,
 }: TopAppBarProps) {
   const router = useRouter();
   const { totalItems } = useCart();
+  const { notifications } = useUser();
+  const unreadCount = notifications.filter((n) => !n.readAt).length;
 
   return (
     <header className="glass shadow-ambient-up fixed top-0 left-0 right-0 z-50 mx-auto max-w-md h-16">
@@ -58,6 +63,22 @@ export default function TopAppBar({
           >
             <span className="material-symbols-outlined text-lg">search</span>
             <span className="text-on-surface-variant/60">Search products...</span>
+          </Link>
+        )}
+
+        {showNotifications && (
+          <Link
+            href="/notifications"
+            className="relative flex items-center justify-center w-10 h-10 rounded-full active:bg-black/5 transition-colors"
+          >
+            <span className="material-symbols-outlined text-on-surface">
+              notifications
+            </span>
+            {unreadCount > 0 && (
+              <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-primary text-white text-[9px] font-bold rounded-full flex items-center justify-center leading-none">
+                {unreadCount > 99 ? '99+' : unreadCount}
+              </span>
+            )}
           </Link>
         )}
 

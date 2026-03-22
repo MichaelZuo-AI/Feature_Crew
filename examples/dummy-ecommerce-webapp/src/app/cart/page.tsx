@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
 import { useUser } from '@/context/UserContext';
@@ -206,6 +207,18 @@ export default function CartPage() {
                 {discount > 0 ? `-${formatPrice(discount)}` : formatPrice(0)}
               </span>
             </div>
+            <Link
+              href="/coupons"
+              className="flex items-center justify-between py-2 -mx-1 px-1 rounded-lg active:bg-black/5 transition-colors"
+            >
+              <div className="flex items-center gap-2 text-sm text-on-surface-variant">
+                <span className="material-symbols-outlined text-lg">confirmation_number</span>
+                Apply Coupon
+              </div>
+              <span className="material-symbols-outlined text-on-surface-variant/50 text-lg">
+                chevron_right
+              </span>
+            </Link>
             <div className="my-3" />
             <div className="flex justify-between items-center">
               <span className="text-sm font-bold text-on-surface">Total</span>
