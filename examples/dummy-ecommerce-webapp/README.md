@@ -2,7 +2,11 @@
 
 A mobile-first e-commerce demo app with a full shopping flow from product discovery to checkout. Built end-to-end with [Feature Crew](../../README.md).
 
-## Try It
+## Live Demo
+
+[shop.michaelzuo.vip](https://shop.michaelzuo.vip)
+
+## Run Locally
 
 ```bash
 npm install
