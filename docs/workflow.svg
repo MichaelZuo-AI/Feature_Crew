@@ -19,7 +19,7 @@
   <!-- ==================== INPUT ==================== -->
   <rect x="265" y="75" width="250" height="50" rx="8" ry="8" fill="#F8D7D0" stroke="#C75B3A" stroke-width="1.5"/>
   <text x="390" y="97" text-anchor="middle" font-family="system-ui, sans-serif" font-size="14" font-weight="600" fill="#1A1A1A">Feature Requirement</text>
-  <text x="390" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8C8777">+ optional one-pager, Figma, design specs</text>
+  <text x="390" y="115" text-anchor="middle" font-family="system-ui, sans-serif" font-size="10" fill="#8C8777">+ optional Figma, wireframes, design specs</text>
 
   <!-- Arrow down -->
   <line x1="390" y1="125" x2="390" y2="150" stroke="#999" stroke-width="1.5" stroke-dasharray="6,4" marker-end="url(#arr)"/>

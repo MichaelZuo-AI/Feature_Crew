@@ -2,7 +2,7 @@
 
 A crew of AI agents that take your feature from spec to production — clarifying requirements, writing code, evaluating quality, and fixing bugs at every step.
 
-![Feature Crew Workflow](docs/workflow.svg?v=3)
+![Feature Crew Workflow](docs/workflow.svg?v=4)
 
 ## Quick Start
 

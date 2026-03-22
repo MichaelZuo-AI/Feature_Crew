@@ -1,19 +1,19 @@
 ---
 name: feature-crew-clarify
-description: Use when starting a new feature that has a one-pager or Figma spec and needs requirements clarification before implementation
+description: Use when starting a new feature that has a requirement description and needs requirements clarification before implementation
 ---
 
 # Feature Crew — Phase 1: Clarify
 
-Transform a one-pager + Figma into a structured, implementation-ready spec through a question loop with the user.
+Transform a feature requirement into a structured, implementation-ready spec through a question loop with the user.
 
 ## Process
 
 ### Step 1: Receive Input
 
 The user provides:
-- **One-Pager** — pasted feature description
-- **Figma screenshots** — pasted images (optional for non-UI features)
+- **Feature description** — what to build, pasted or described verbally
+- **Design assets** — Figma screenshots, design specs, wireframes (optional, helps reduce ambiguity)
 - **Feature name** — short identifier (used for state directory)
 
 ### Step 2: Initialize State
@@ -29,7 +29,7 @@ docs/superpowers/feature-crew/{feature-name}/state.json
   "featureName": "{feature-name}",
   "input": {
     "figmaLink": "{if provided}",
-    "onePager": "{summary — full text in spec}"
+    "featureDescription": "{summary — full text in spec}"
   },
   "worktree": null,
   "phase": "CLARIFYING",
@@ -56,7 +56,7 @@ This prevents asking questions the codebase already answers.
 Dispatch a Clarifier sub-agent using the template at:
 `skills/feature-crew/clarifier-prompt.md`
 
-The Clarifier analyzes the one-pager + Figma, identifies ambiguities, and generates questions ONE AT A TIME.
+The Clarifier analyzes the feature description + any design assets, identifies ambiguities, and generates questions ONE AT A TIME.
 
 **For each question, before showing it to the human:**
 
@@ -65,7 +65,7 @@ The Clarifier analyzes the one-pager + Figma, identifies ambiguities, and genera
 
    Provide:
    - The question from the Clarifier
-   - One-pager text
+   - Feature description text
    - Figma screenshots (if provided)
    - Codebase context (from Step 3 exploration)
    - Additional context (if user provided product guidelines, past specs, etc.)

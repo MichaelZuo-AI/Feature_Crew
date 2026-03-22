@@ -1,6 +1,6 @@
 ---
 name: feature-crew
-description: Use when starting a new feature from a one-pager or Figma spec that should go through structured phases of clarification, implementation with evaluation, and QA before shipping
+description: Use when starting a new feature from a requirement description that should go through structured phases of clarification, implementation with evaluation, and QA before shipping
 ---
 
 # Feature Crew
@@ -11,7 +11,7 @@ Multi-phase feature development with independent evaluator agents at every phase
 
 | Phase | Skill | What Happens |
 |-------|-------|--------------|
-| Phase 1 | `feature-crew-clarify` | One-pager + Figma → structured spec via question loop |
+| Phase 1 | `feature-crew-clarify` | Feature requirement → structured spec via question loop |
 | Checkpoint 1 | Human | Approve spec before implementation |
 | Phase 2 | `feature-crew-implement` | Plan → code → evaluator scoring gate (≥90%) |
 | Checkpoint 2 | Human | Code review before QA |
@@ -23,8 +23,8 @@ Multi-phase feature development with independent evaluator agents at every phase
 
 The user provides:
 1. **Feature name** — short identifier (e.g., "user-profile-page")
-2. **One-Pager** — feature description, pasted into chat
-3. **Figma screenshots** — pasted images (optional for non-UI features)
+2. **Feature description** — what to build, pasted into chat or described verbally
+3. **Design assets** — Figma screenshots, design specs, wireframes (optional, helps reduce ambiguity)
 
 ### Kickoff
 
