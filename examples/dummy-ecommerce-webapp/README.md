@@ -1,6 +1,6 @@
 # Dummy E-Commerce Webapp
 
-A mobile-first e-commerce app inspired by Coupang, with a full shopping flow from product discovery to checkout. Built end-to-end with [Feature Crew](../../README.md) from a Stitch design spec.
+A mobile-first e-commerce demo app with a full shopping flow from product discovery to checkout. Built end-to-end with [Feature Crew](../../README.md).
 
 ## Try It
 
@@ -19,7 +19,7 @@ No environment variables needed — uses mock data only.
 - **Product search** — full-text search with price range, brand, and popularity filters
 - **Product detail** — images, KRW pricing, delivery guarantees, reviews, Q&A
 - **Shopping cart** — add/remove, quantity adjustment, item selection for checkout
-- **Checkout flow** — shipping address, coupons/points, payment methods (CoupangPay, NaverPay, KakaoPay, Credit/Debit)
+- **Checkout flow** — shipping address, coupons/points, multiple payment methods
 - **Order confirmation** — order number, ETA, tracking CTA
 - **My Page** — profile, Rocket Member status, loyalty points, full order history with status tracking
 - **Bottom navigation** — persistent 5-tab navbar (Home, Category, Search, Cart, My Page)
@@ -60,4 +60,4 @@ Mobile-first with 448px max-width. Editorial aesthetic — no 1px borders, tonal
 
 ## How It Was Built
 
-This example went through the full Feature Crew pipeline starting from a Stitch design spec. The `docs/superpowers/feature-crew/` directory contains the spec, implementation plan, evaluation rounds, and QA reports.
+This example went through the full Feature Crew pipeline. The `docs/superpowers/feature-crew/` directory contains the spec, implementation plan, evaluation rounds, and QA reports.
