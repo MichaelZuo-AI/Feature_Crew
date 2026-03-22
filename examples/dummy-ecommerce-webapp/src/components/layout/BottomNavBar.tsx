@@ -6,15 +6,19 @@ import { useCart } from '@/context/CartContext';
 
 const tabs = [
   { label: 'Home', icon: 'home', route: '/' },
-  { label: 'Category', icon: 'grid_view', route: '' },
+  { label: 'Category', icon: 'grid_view', route: '/category' },
   { label: 'Search', icon: 'search', route: '/search' },
   { label: 'Cart', icon: 'shopping_bag', route: '/cart' },
   { label: 'My Page', icon: 'person', route: '/my-page' },
 ];
 
+const HIDDEN_ROUTES = ['/write-review', '/membership'];
+
 export default function BottomNavBar() {
   const pathname = usePathname();
   const { totalItems } = useCart();
+
+  if (HIDDEN_ROUTES.some((r) => pathname.startsWith(r))) return null;
 
   return (
     <nav className="glass fixed bottom-0 left-0 right-0 z-50 mx-auto max-w-md h-20 shadow-ambient-up">

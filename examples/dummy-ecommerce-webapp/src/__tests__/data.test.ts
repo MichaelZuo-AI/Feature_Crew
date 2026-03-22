@@ -92,7 +92,7 @@ describe('Mock user data', () => {
     expect(mockUser.name).toBeTruthy();
     expect(mockUser.email).toContain('@');
     expect(mockUser.phone).toBeTruthy();
-    expect(mockUser.is_rocket_member).toBe(true);
+    expect(typeof mockUser.is_rocket_member).toBe('boolean');
   });
 
   it('should have valid address', () => {

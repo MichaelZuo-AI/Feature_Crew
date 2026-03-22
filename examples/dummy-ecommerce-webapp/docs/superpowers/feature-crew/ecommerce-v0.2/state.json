@@ -1,0 +1,17 @@
+{
+  "featureName": "ecommerce-v0.2",
+  "phase": "CHECKPOINT_2",
+  "createdAt": "2026-03-22",
+  "designSpec": "/Users/michaelzuo/Engineering/AIDreamWorks/AIProductivity/FeatureDevDemo/demo_from_stitch/design_spec/stitch_v0.3",
+  "projectRoot": "/Users/michaelzuo/Engineering/AIDreamWorks/AIProductivity/Deepdive/examples/dummy-ecommerce-webapp",
+  "newScreens": ["category_navigation", "my_reviews_pending", "my_reviews_submitted", "write_a_review", "rocket_wow_membership", "shopping_cart_rocket_wow_member", "checkout_rocket_wow_member"],
+  "phaseHistory": [
+    { "phase": "INIT", "timestamp": "2026-03-22T00:00:00Z" },
+    { "phase": "CLARIFYING", "timestamp": "2026-03-22T00:01:00Z" },
+    { "phase": "CHECKPOINT_1", "timestamp": "2026-03-22T00:10:00Z" },
+    { "phase": "IMPLEMENTING", "timestamp": "2026-03-22T00:15:00Z" },
+    { "phase": "CHECKPOINT_2", "timestamp": "2026-03-22T00:30:00Z" }
+  ],
+  "evalRounds": 2,
+  "qaRounds": 0
+}

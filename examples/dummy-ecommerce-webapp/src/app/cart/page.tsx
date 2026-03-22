@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useCart } from '@/context/CartContext';
+import { useUser } from '@/context/UserContext';
 import { formatPrice } from '@/lib/format';
 
 export default function CartPage() {
@@ -13,13 +14,13 @@ export default function CartPage() {
     subtotal,
     deliveryFee,
     discount,
-    total,
     toggleSelected,
     toggleSelectAll,
     removeSelected,
     removeFromCart,
     updateQuantity,
   } = useCart();
+  const { user } = useUser();
 
   const allSelected = items.length > 0 && items.every((item) => item.selected);
   const selectedCount = selectedItems.length;
@@ -33,6 +34,8 @@ export default function CartPage() {
     .reduce((sum, item) => sum + item.product.price * item.quantity, 0);
   const amountToFreeDelivery = Math.max(0, freeDeliveryThreshold - rocketSubtotal);
   const showPromoBanner = rocketSubtotal > 0 && amountToFreeDelivery > 0;
+  const effectiveDeliveryFee = user.is_rocket_member ? 0 : deliveryFee;
+  const effectiveTotal = subtotal + effectiveDeliveryFee - discount;
 
   return (
     <div className="pb-40 pt-16">
@@ -81,6 +84,25 @@ export default function CartPage() {
           Delete Selected
         </button>
       </div>
+
+      {/* WOW Membership Banner */}
+      {user.is_rocket_member && (
+        <div className="mx-4 mb-4 bg-primary/5 border border-primary/10 rounded-xl p-4 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+              <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>star</span>
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="bg-primary text-white text-[10px] font-black px-1.5 py-0.5 rounded italic">WOW</span>
+                <p className="text-xs font-bold text-on-surface">Rocket Wow Membership Applied</p>
+              </div>
+              <p className="text-[11px] text-primary font-medium mt-0.5">Enjoy unlimited free shipping on all orders!</p>
+            </div>
+          </div>
+          <span className="material-symbols-outlined text-primary/40">verified</span>
+        </div>
+      )}
 
       {/* Empty State */}
       {items.length === 0 && (
@@ -161,10 +183,22 @@ export default function CartPage() {
               <span className="text-on-surface">{formatPrice(subtotal)}</span>
             </div>
             <div className="flex justify-between text-sm">
-              <span className="text-on-surface-variant">Delivery Fee</span>
-              <span className={deliveryFee === 0 ? 'text-primary font-medium' : 'text-on-surface'}>
-                {deliveryFee === 0 ? 'FREE' : formatPrice(deliveryFee)}
+              <span className="text-on-surface-variant flex items-center gap-1.5">
+                Delivery Fee
+                {user.is_rocket_member && deliveryFee > 0 && (
+                  <span className="bg-primary text-white text-[10px] font-black px-1.5 py-0.5 rounded italic">WOW</span>
+                )}
               </span>
+              {user.is_rocket_member && deliveryFee > 0 ? (
+                <span className="flex items-center gap-1.5">
+                  <span className="text-on-surface-variant line-through text-xs">{formatPrice(deliveryFee)}</span>
+                  <span className="text-primary font-medium">FREE</span>
+                </span>
+              ) : (
+                <span className={deliveryFee === 0 ? 'text-primary font-medium' : 'text-on-surface'}>
+                  {deliveryFee === 0 ? 'FREE' : formatPrice(deliveryFee)}
+                </span>
+              )}
             </div>
             <div className="flex justify-between text-sm">
               <span className="text-on-surface-variant">Discounts</span>
@@ -175,7 +209,7 @@ export default function CartPage() {
             <div className="my-3" />
             <div className="flex justify-between items-center">
               <span className="text-sm font-bold text-on-surface">Total</span>
-              <span className="text-xl font-black text-primary">{formatPrice(total)}</span>
+              <span className="text-xl font-black text-primary">{formatPrice(effectiveTotal)}</span>
             </div>
           </div>
         </div>
@@ -190,7 +224,7 @@ export default function CartPage() {
               onClick={() => router.push('/checkout')}
               className="w-full py-4 gradient-primary text-white rounded-xl text-base font-bold shadow-ambient"
             >
-              Proceed to Checkout &rarr; {formatPrice(total)}
+              Proceed to Checkout &rarr; {formatPrice(effectiveTotal)}
             </button>
           </div>
         </div>

@@ -73,3 +73,32 @@ export interface Banner {
   image: string;
   cta_label: string;
 }
+
+export interface SubmittedReview {
+  id: string;
+  productId: string;
+  rating: number;
+  text: string;
+  photos: string[];
+  date: string;
+  helpfulCount: number;
+}
+
+export interface PendingReview {
+  productId: string;
+  purchaseDate: string;
+  pointsEarnable: number;
+}
+
+export interface Category {
+  id: string;
+  name: string;
+  icon: string;
+  subcategories: Subcategory[];
+}
+
+export interface Subcategory {
+  id: string;
+  name: string;
+  icon: string;
+}

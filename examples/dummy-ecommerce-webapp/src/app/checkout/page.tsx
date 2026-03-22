@@ -56,7 +56,8 @@ function CheckoutPage() {
 
   const appliedCash = cashApplied ? Math.min(user.coupang_cash, checkoutSubtotal) : 0;
   const checkoutDiscount = buyNowProduct ? appliedCash : discount + appliedCash;
-  const checkoutTotal = Math.max(0, checkoutSubtotal + checkoutDeliveryFee - checkoutDiscount);
+  const effectiveDeliveryFee = user.is_rocket_member ? 0 : checkoutDeliveryFee;
+  const checkoutTotal = Math.max(0, checkoutSubtotal + effectiveDeliveryFee - checkoutDiscount);
 
   const hasRocketItems = checkoutItems.some((item) => item.product.rocket_delivery);
 
@@ -105,8 +106,11 @@ function CheckoutPage() {
           >
             <span className="material-symbols-outlined text-on-surface">arrow_back</span>
           </button>
-          <h1 className="flex-1 text-center text-base font-bold text-on-surface truncate">
+          <h1 className="flex-1 text-center text-base font-bold text-on-surface truncate flex items-center justify-center gap-2">
             Checkout
+            {user.is_rocket_member && (
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-[10px] text-white font-black px-1.5 py-0.5 rounded italic">WOW</span>
+            )}
           </h1>
           <div className="w-10" />
         </div>
@@ -132,6 +136,9 @@ function CheckoutPage() {
             <span className="text-[10px] font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
               Default
             </span>
+            {user.is_rocket_member && (
+              <span className="text-[9px] font-bold text-white bg-gradient-to-r from-amber-400 to-orange-500 px-1.5 py-0.5 rounded-full">Wow Member</span>
+            )}
           </div>
           <p className="text-sm text-on-surface-variant">{user.address.line1}</p>
           <p className="text-sm text-on-surface-variant">{user.address.line2}</p>
@@ -238,14 +245,25 @@ function CheckoutPage() {
           <div className="flex justify-between text-sm">
             <span className="text-on-surface-variant">Shipping</span>
             <div className="flex items-center gap-2">
-              {hasRocketItems && checkoutDeliveryFee === 0 && (
-                <span className="text-[10px] font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                  ROCKET DELIVERY FREE
-                </span>
+              {user.is_rocket_member && checkoutDeliveryFee > 0 ? (
+                <>
+                  <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-[10px] text-white font-black px-1.5 py-0.5 rounded italic">WOW</span>
+                  <span className="text-primary text-xs font-semibold">FREE ROCKET DELIVERY</span>
+                  <span className="text-on-surface-variant line-through text-xs">{formatPrice(checkoutDeliveryFee)}</span>
+                  <span className="text-primary font-medium">₩0</span>
+                </>
+              ) : (
+                <>
+                  {hasRocketItems && checkoutDeliveryFee === 0 && (
+                    <span className="text-[10px] font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
+                      ROCKET DELIVERY FREE
+                    </span>
+                  )}
+                  <span className={checkoutDeliveryFee === 0 || user.is_rocket_member ? 'text-primary font-medium' : 'text-on-surface'}>
+                    {checkoutDeliveryFee === 0 || user.is_rocket_member ? 'FREE' : formatPrice(checkoutDeliveryFee)}
+                  </span>
+                </>
               )}
-              <span className={checkoutDeliveryFee === 0 ? 'text-primary font-medium' : 'text-on-surface'}>
-                {checkoutDeliveryFee === 0 ? 'FREE' : formatPrice(checkoutDeliveryFee)}
-              </span>
             </div>
           </div>
           <div className="flex justify-between text-sm">

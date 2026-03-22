@@ -34,7 +34,7 @@ export const mockUser: User = {
       payment_method: "KakaoPay"
     }
   ],
-  is_rocket_member: true
+  is_rocket_member: false
 };
 
 export const banners: Banner[] = [

@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useUser } from '@/context/UserContext';
 import { formatPrice } from '@/lib/format';
 
@@ -11,8 +12,9 @@ const STATUS_INDEX: Record<string, number> = {
   delivered: 3,
 };
 
-const MENU_ITEMS = [
-  { icon: 'rate_review', label: 'My Reviews' },
+const MENU_ITEMS: { icon: string; label: string; route?: string }[] = [
+  { icon: 'rate_review', label: 'My Reviews', route: '/reviews' },
+  { icon: 'rocket_launch', label: 'Rocket Wow Membership', route: '/membership' },
   { icon: 'support_agent', label: 'Customer Service' },
   { icon: 'settings', label: 'Settings' },
   { icon: 'celebration', label: 'Events' },
@@ -244,27 +246,40 @@ export default function MyPage() {
 
       {/* Menu List */}
       <div className="px-4 mt-6 mb-24">
-        {MENU_ITEMS.map((item, i) => (
-          <button
-            key={item.label}
-            type="button"
-            className={`w-full flex items-center justify-between py-4 px-4 rounded-lg mt-1 first:mt-0 transition-colors active:bg-black/5 ${
-              i % 2 === 0
-                ? 'bg-surface-container-lowest'
-                : 'bg-surface'
-            }`}
-          >
-            <div className="flex items-center gap-3">
-              <span className="material-symbols-outlined text-on-surface-variant text-xl">
-                {item.icon}
+        {MENU_ITEMS.map((item, i) => {
+          const className = `w-full flex items-center justify-between py-4 px-4 rounded-lg mt-1 first:mt-0 transition-colors active:bg-black/5 ${
+            i % 2 === 0
+              ? 'bg-surface-container-lowest'
+              : 'bg-surface'
+          }`;
+          const content = (
+            <>
+              <div className="flex items-center gap-3">
+                <span className="material-symbols-outlined text-on-surface-variant text-xl">
+                  {item.icon}
+                </span>
+                <span className="text-sm text-on-surface">{item.label}</span>
+              </div>
+              <span className="material-symbols-outlined text-on-surface-variant/50 text-lg">
+                chevron_right
               </span>
-              <span className="text-sm text-on-surface">{item.label}</span>
-            </div>
-            <span className="material-symbols-outlined text-on-surface-variant/50 text-lg">
-              chevron_right
-            </span>
-          </button>
-        ))}
+            </>
+          );
+
+          if (item.route) {
+            return (
+              <Link key={item.label} href={item.route} className={className}>
+                {content}
+              </Link>
+            );
+          }
+
+          return (
+            <button key={item.label} type="button" className={className}>
+              {content}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

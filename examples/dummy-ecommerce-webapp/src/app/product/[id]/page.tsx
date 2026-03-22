@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { products } from '@/data/products';
@@ -161,7 +162,7 @@ export default function ProductDetailPage() {
           <h2 className="text-sm font-bold text-on-surface">
             Reviews ({product.review_count.toLocaleString()})
           </h2>
-          <button className="text-xs text-primary font-medium">View All</button>
+          <Link href={`/write-review/${product.id}`} className="text-xs text-primary font-medium">Write a Review</Link>
         </div>
         <div className="flex flex-col gap-3">
           {displayedReviews.map((review) => (
