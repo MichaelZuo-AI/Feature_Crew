@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest';
 import { products } from '../data/products';
-import { mockUser, banners, goldbox, rocketProducts, weeklyEdit, initialCartItems } from '../data/mock-data';
+import { mockUser, banners, goldbox, expressProducts, weeklyEdit, initialCartItems } from '../data/mock-data';
 import { formatPrice } from '../lib/format';
 
 describe('Products data integrity', () => {
@@ -22,7 +22,7 @@ describe('Products data integrity', () => {
     expect(product.rating).toBeGreaterThanOrEqual(0);
     expect(product.rating).toBeLessThanOrEqual(5);
     expect(product.review_count).toBeGreaterThan(0);
-    expect(typeof product.rocket_delivery).toBe('boolean');
+    expect(typeof product.express_delivery).toBe('boolean');
     expect(typeof product.discount_pct).toBe('number');
     expect(product.discount_pct).toBeGreaterThanOrEqual(0);
     expect(product.discount_pct).toBeLessThan(100);
@@ -92,7 +92,7 @@ describe('Mock user data', () => {
     expect(mockUser.name).toBeTruthy();
     expect(mockUser.email).toContain('@');
     expect(mockUser.phone).toBeTruthy();
-    expect(typeof mockUser.is_rocket_member).toBe('boolean');
+    expect(typeof mockUser.is_premium_member).toBe('boolean');
   });
 
   it('should have valid address', () => {
@@ -123,8 +123,8 @@ describe('Mock user data', () => {
     });
   });
 
-  it('should have coupang_cash for checkout flow', () => {
-    expect(mockUser.coupang_cash).toBeGreaterThan(0);
+  it('should have store_credit for checkout flow', () => {
+    expect(mockUser.store_credit).toBeGreaterThan(0);
   });
 });
 
@@ -143,10 +143,10 @@ describe('Mock data collections', () => {
     expect(goldbox.ends_at).toBeTruthy();
   });
 
-  it('rocketProducts should only contain rocket_delivery items', () => {
-    expect(rocketProducts.length).toBeGreaterThan(0);
-    rocketProducts.forEach((p) => {
-      expect(p.rocket_delivery).toBe(true);
+  it('expressProducts should only contain express_delivery items', () => {
+    expect(expressProducts.length).toBeGreaterThan(0);
+    expressProducts.forEach((p) => {
+      expect(p.express_delivery).toBe(true);
     });
   });
 

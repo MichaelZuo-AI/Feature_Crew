@@ -26,16 +26,16 @@ export default function CartPage() {
   const allSelected = items.length > 0 && items.every((item) => item.selected);
   const selectedCount = selectedItems.length;
 
-  const rocketItems = items.filter((item) => item.product.rocket_delivery);
-  const standardItems = items.filter((item) => !item.product.rocket_delivery);
+  const expressItems = items.filter((item) => item.product.express_delivery);
+  const standardItems = items.filter((item) => !item.product.express_delivery);
 
   const freeDeliveryThreshold = 19800;
-  const rocketSubtotal = selectedItems
-    .filter((item) => item.product.rocket_delivery)
+  const expressSubtotal = selectedItems
+    .filter((item) => item.product.express_delivery)
     .reduce((sum, item) => sum + item.product.price * item.quantity, 0);
-  const amountToFreeDelivery = Math.max(0, freeDeliveryThreshold - rocketSubtotal);
-  const showPromoBanner = rocketSubtotal > 0 && amountToFreeDelivery > 0;
-  const effectiveDeliveryFee = user.is_rocket_member ? 0 : deliveryFee;
+  const amountToFreeDelivery = Math.max(0, freeDeliveryThreshold - expressSubtotal);
+  const showPromoBanner = expressSubtotal > 0 && amountToFreeDelivery > 0;
+  const effectiveDeliveryFee = user.is_premium_member ? 0 : deliveryFee;
   const effectiveTotal = subtotal + effectiveDeliveryFee - discount;
 
   return (
@@ -87,7 +87,7 @@ export default function CartPage() {
       </div>
 
       {/* WOW Membership Banner */}
-      {user.is_rocket_member && (
+      {user.is_premium_member && (
         <div className="mx-4 mb-4 bg-primary/5 border border-primary/10 rounded-xl p-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
@@ -95,8 +95,8 @@ export default function CartPage() {
             </div>
             <div>
               <div className="flex items-center gap-1.5">
-                <span className="bg-primary text-white text-[10px] font-black px-1.5 py-0.5 rounded italic">WOW</span>
-                <p className="text-xs font-bold text-on-surface">Rocket Wow Membership Applied</p>
+                <span className="bg-primary text-white text-[10px] font-black px-1.5 py-0.5 rounded italic">PLUS</span>
+                <p className="text-xs font-bold text-on-surface">Premium Plus Membership Applied</p>
               </div>
               <p className="text-[11px] text-primary font-medium mt-0.5">Enjoy unlimited free shipping on all orders!</p>
             </div>
@@ -122,15 +122,15 @@ export default function CartPage() {
         </div>
       )}
 
-      {/* Rocket Delivery Group */}
-      {rocketItems.length > 0 && (
+      {/* Express Delivery Group */}
+      {expressItems.length > 0 && (
         <div className="mx-4 mb-4">
           <div className="bg-surface-container-low rounded-t-lg px-4 py-2 flex items-center gap-2">
-            <span className="material-symbols-outlined text-primary text-lg">rocket_launch</span>
-            <span className="text-sm font-semibold text-on-surface">Rocket Delivery</span>
+            <span className="material-symbols-outlined text-primary text-lg">local_shipping</span>
+            <span className="text-sm font-semibold text-on-surface">Express Delivery</span>
           </div>
           <div className="space-y-0">
-            {rocketItems.map((item) => (
+            {expressItems.map((item) => (
               <CartItemCard
                 key={item.product.id}
                 item={item}
@@ -169,7 +169,7 @@ export default function CartPage() {
         <div className="mx-4 mb-4 bg-primary/5 rounded-lg px-4 py-3 flex items-center gap-2">
           <span className="material-symbols-outlined text-primary text-lg">local_offer</span>
           <span className="text-sm text-primary font-medium">
-            Add {formatPrice(amountToFreeDelivery)} more for free Rocket Delivery
+            Add {formatPrice(amountToFreeDelivery)} more for free Express Delivery
           </span>
         </div>
       )}
@@ -186,18 +186,18 @@ export default function CartPage() {
             <div className="flex justify-between text-sm">
               <span className="text-on-surface-variant flex items-center gap-1.5">
                 Delivery Fee
-                {user.is_rocket_member && deliveryFee > 0 && (
-                  <span className="bg-primary text-white text-[10px] font-black px-1.5 py-0.5 rounded italic">WOW</span>
+                {user.is_premium_member && deliveryFee > 0 && (
+                  <span className="bg-primary text-white text-[10px] font-black px-1.5 py-0.5 rounded italic">PLUS</span>
                 )}
               </span>
-              {user.is_rocket_member && deliveryFee > 0 ? (
+              {user.is_premium_member && deliveryFee > 0 ? (
                 <span className="flex items-center gap-1.5">
                   <span className="text-on-surface-variant line-through text-xs">{formatPrice(deliveryFee)}</span>
                   <span className="text-primary font-medium">FREE</span>
                 </span>
               ) : (
-                <span className={deliveryFee === 0 ? 'text-primary font-medium' : 'text-on-surface'}>
-                  {deliveryFee === 0 ? 'FREE' : formatPrice(deliveryFee)}
+                <span className={deliveryFee === 0 || user.is_premium_member ? 'text-primary font-medium' : 'text-on-surface'}>
+                  {deliveryFee === 0 || user.is_premium_member ? 'FREE' : formatPrice(deliveryFee)}
                 </span>
               )}
             </div>

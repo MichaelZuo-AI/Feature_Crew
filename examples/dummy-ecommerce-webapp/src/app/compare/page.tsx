@@ -15,7 +15,7 @@ const specs: ComparisonSpec[] = [
   { label: 'Rating', key: 'rating', category: 'general', bestIs: 'highest' },
   { label: 'Price', key: 'price', category: 'general', bestIs: 'lowest' },
   { label: 'Brand', key: 'brand', category: 'general', bestIs: 'none' },
-  { label: 'Rocket Delivery', key: 'rocket_delivery', category: 'delivery', bestIs: 'highest' },
+  { label: 'Express Delivery', key: 'express_delivery', category: 'delivery', bestIs: 'highest' },
   { label: 'Discount', key: 'discount_pct', category: 'specifications', bestIs: 'highest' },
   { label: 'Reviews', key: 'review_count', category: 'reviews', bestIs: 'highest' },
 ];
@@ -58,7 +58,7 @@ function formatSpecValue(product: Product, spec: ComparisonSpec): string {
   const val = product[spec.key];
   if (spec.key === 'rating') return `★ ${(val as number).toFixed(1)}`;
   if (spec.key === 'price') return formatPrice(val as number);
-  if (spec.key === 'rocket_delivery') return (val as boolean) ? 'Yes ✓' : 'No';
+  if (spec.key === 'express_delivery') return (val as boolean) ? 'Yes ✓' : 'No';
   if (spec.key === 'discount_pct') return `${val}% off`;
   if (spec.key === 'review_count') return `${(val as number).toLocaleString()} reviews`;
   return String(val);
@@ -263,7 +263,7 @@ function CompareContent() {
                         {compareProducts.map((product, colIdx) => {
                           const isWinner = winnerIdx === colIdx;
                           const val = formatSpecValue(product, spec);
-                          const isRocket = spec.key === 'rocket_delivery';
+                          const isRocket = spec.key === 'express_delivery';
                           const rocketVal = product[spec.key] as boolean;
 
                           return (

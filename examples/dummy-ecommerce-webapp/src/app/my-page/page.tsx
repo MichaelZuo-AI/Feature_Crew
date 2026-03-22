@@ -18,7 +18,7 @@ const MENU_ITEMS: { icon: string; label: string; route?: string }[] = [
   { icon: 'history', label: 'Recently Viewed', route: '/recently-viewed' },
   { icon: 'confirmation_number', label: 'Coupons', route: '/coupons' },
   { icon: 'notifications', label: 'Notifications', route: '/notifications' },
-  { icon: 'rocket_launch', label: 'Rocket Wow Membership', route: '/membership' },
+  { icon: 'local_shipping', label: 'Premium Plus Membership', route: '/membership' },
   { icon: 'support_agent', label: 'Customer Service' },
   { icon: 'settings', label: 'Settings' },
   { icon: 'celebration', label: 'Events' },
@@ -96,10 +96,10 @@ export default function MyPage() {
           <div className="min-w-0">
             <div className="flex items-center gap-2 flex-wrap">
               <span className="text-lg font-bold text-on-surface">{user.name}</span>
-              {user.is_rocket_member && (
+              {user.is_premium_member && (
                 <span className="inline-flex items-center gap-1 bg-primary/10 text-primary text-xs font-bold px-2 py-0.5 rounded-full">
-                  <span className="material-symbols-outlined text-xs">rocket_launch</span>
-                  Rocket Member
+                  <span className="material-symbols-outlined text-xs">local_shipping</span>
+                  Plus Member
                 </span>
               )}
             </div>

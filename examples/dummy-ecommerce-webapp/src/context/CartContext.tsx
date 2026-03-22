@@ -96,10 +96,10 @@ export function CartProvider({ children }: { children: ReactNode }) {
   );
 
   const deliveryFee = useMemo(() => {
-    const hasNonRocketSelected = selectedItems.some(
-      (item) => !item.product.rocket_delivery
+    const hasNonExpressSelected = selectedItems.some(
+      (item) => !item.product.express_delivery
     );
-    return hasNonRocketSelected ? 3000 : 0;
+    return hasNonExpressSelected ? 3000 : 0;
   }, [selectedItems]);
 
   const discount = 0;

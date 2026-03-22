@@ -14,7 +14,7 @@ export const mockUser: User = {
     city: "Seoul",
     postal_code: "04157"
   },
-  coupang_cash: 15000,
+  store_credit: 15000,
   stats: { coupons: 12, points: 4250, gift_cards: 0 },
   orders: [
     {
@@ -23,7 +23,7 @@ export const mockUser: User = {
       status: "shipping",
       items: [{ product: products[0], quantity: 1 }],
       total: 149000,
-      payment_method: "CoupangPay"
+      payment_method: "ShopPay"
     },
     {
       id: "20260320-1928374",
@@ -34,7 +34,7 @@ export const mockUser: User = {
       payment_method: "KakaoPay"
     }
   ],
-  is_rocket_member: false
+  is_premium_member: false
 };
 
 export const banners: Banner[] = [
@@ -52,7 +52,7 @@ export const goldbox = {
   products: products.slice(0, 4)
 };
 
-export const rocketProducts = products.filter(p => p.rocket_delivery).slice(0, 6);
+export const expressProducts = products.filter(p => p.express_delivery).slice(0, 6);
 
 export const weeklyEdit = [
   { id: "we001", label: "NEW SEASON", title: "The Minimalist Collective: Timepieces", subtitle: "Discover timeless aesthetics from world-renowned craftspeople.", image: "https://picsum.photos/seed/editorial1/600/400" },

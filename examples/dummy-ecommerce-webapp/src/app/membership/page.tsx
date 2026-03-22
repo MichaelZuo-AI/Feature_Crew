@@ -4,16 +4,16 @@ import { useUser } from '@/context/UserContext';
 import { useRouter } from 'next/navigation';
 
 const BENEFITS = [
-  { icon: 'rocket_launch', title: 'Rocket Delivery', desc: 'Order tonight, arrives tomorrow', color: 'text-primary' },
+  { icon: 'local_shipping', title: 'Express Delivery', desc: 'Order tonight, arrives tomorrow', color: 'text-primary' },
   { icon: 'assignment_return', title: '30-Day Returns', desc: 'Hassle-free returns on all items', color: 'text-primary' },
-  { icon: 'eco', title: 'Rocket Fresh', desc: 'Fresh groceries at your door', color: 'text-green-600' },
-  { icon: 'movie', title: 'Wow Video', desc: 'Stream movies & shows free', color: 'text-purple-600' },
+  { icon: 'eco', title: 'Fresh Market', desc: 'Fresh groceries at your door', color: 'text-green-600' },
+  { icon: 'movie', title: 'Plus Video', desc: 'Stream movies & shows free', color: 'text-purple-600' },
 ];
 
 const COMPARISON = [
-  { feature: 'Shipping Fee', regular: '₩3,000', wow: 'Free' },
-  { feature: 'Delivery Speed', regular: '2-3 Days', wow: '1 Day' },
-  { feature: 'Streaming', regular: '-', wow: 'Included' },
+  { feature: 'Shipping Fee', regular: '₩3,000', plus: 'Free' },
+  { feature: 'Delivery Speed', regular: '2-3 Days', plus: '1 Day' },
+  { feature: 'Streaming', regular: '-', plus: 'Included' },
 ];
 
 export default function MembershipPage() {
@@ -41,7 +41,7 @@ export default function MembershipPage() {
         {/* Hero Section */}
         <section className="bg-surface-container-low px-6 pt-10 pb-16 relative overflow-hidden">
           <span className="inline-block bg-secondary text-white text-[10px] font-bold rounded-full px-3 py-1 uppercase mb-4">
-            Rocket Wow Exclusive
+            Premium Plus Exclusive
           </span>
 
           <h2 className="text-4xl font-extrabold text-on-surface leading-tight mb-4">
@@ -51,7 +51,7 @@ export default function MembershipPage() {
           </h2>
 
           <p className="text-on-surface-variant text-sm leading-relaxed mb-8">
-            Unlimited Free Rocket Delivery & Exclusive Member Prices on millions of items.
+            Unlimited Free Express Delivery & Exclusive Member Prices on millions of items.
           </p>
 
           {/* Savings Card */}
@@ -96,12 +96,12 @@ export default function MembershipPage() {
 
         {/* Comparison Table */}
         <section className="px-6 py-10 bg-surface-container-low rounded-t-3xl">
-          <h3 className="text-lg font-extrabold text-on-surface text-center mb-6">Regular vs. Wow</h3>
+          <h3 className="text-lg font-extrabold text-on-surface text-center mb-6">Regular vs. Plus</h3>
           <div className="bg-white rounded-xl overflow-hidden">
             <div className="grid grid-cols-3 text-xs font-bold text-on-surface-variant px-4 py-3 border-b border-outline-variant/20">
               <span />
               <span className="text-center">Regular</span>
-              <span className="text-center text-primary">Wow</span>
+              <span className="text-center text-primary">Plus</span>
             </div>
             {COMPARISON.map((row, i) => (
               <div
@@ -110,7 +110,7 @@ export default function MembershipPage() {
               >
                 <span className="text-on-surface font-medium">{row.feature}</span>
                 <span className="text-center text-outline">{row.regular}</span>
-                <span className="text-center text-primary font-bold">{row.wow}</span>
+                <span className="text-center text-primary font-bold">{row.plus}</span>
               </div>
             ))}
           </div>
@@ -155,7 +155,7 @@ export default function MembershipPage() {
       {/* Fixed Bottom CTA */}
       <div className="fixed bottom-0 left-0 right-0 bg-white/90 backdrop-blur-md border-t border-outline-variant/20 px-6 py-4">
         <div className="max-w-md mx-auto">
-          {!user.is_rocket_member ? (
+          {!user.is_premium_member ? (
             <button
               onClick={handleActivate}
               className="w-full bg-gradient-to-r from-primary to-[#0050cb] text-white font-bold text-base py-4 rounded-2xl flex items-center justify-center gap-2 shadow-lg active:scale-[0.98] transition-transform"
@@ -168,7 +168,7 @@ export default function MembershipPage() {
               disabled
               className="w-full bg-surface-container-high text-on-surface-variant font-bold text-base py-4 rounded-2xl"
             >
-              You&apos;re a Wow Member ✓
+              You&apos;re a Plus Member ✓
             </button>
           )}
           <p className="text-center text-xs text-on-surface-variant mt-2">

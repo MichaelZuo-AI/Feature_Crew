@@ -6,11 +6,11 @@ import TopAppBar from '@/components/layout/TopAppBar';
 import CategoryTabs from '@/components/home/CategoryTabs';
 import HeroBanner from '@/components/home/HeroBanner';
 import GoldBoxSection from '@/components/home/GoldBoxSection';
-import RocketDeliverySection from '@/components/home/RocketDeliverySection';
+import ExpressDeliverySection from '@/components/home/ExpressDeliverySection';
 import WeeklyEdit from '@/components/home/WeeklyEdit';
 import FAB from '@/components/layout/FAB';
 
-// Tab indices: 0=Home(all), 1=Rocket Fresh, 2=Best, 3=Gold Box, 4=Rocket Delivery
+// Tab indices: 0=Home(all), 1=Fresh Market, 2=Best, 3=Gold Box, 4=Express Delivery
 export default function Home() {
   const [activeTab, setActiveTab] = useState(0);
 
@@ -36,7 +36,7 @@ export default function Home() {
 
       {(activeTab === 0 || activeTab === 4) && (
         <div className="mt-8">
-          <RocketDeliverySection />
+          <ExpressDeliverySection />
         </div>
       )}
 

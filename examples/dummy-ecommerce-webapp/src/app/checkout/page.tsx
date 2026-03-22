@@ -8,7 +8,7 @@ import { useToastContext } from '@/context/ToastContext';
 import { formatPrice } from '@/lib/format';
 import { products } from '@/data/products';
 
-const PAYMENT_METHODS = ['CoupangPay', 'NaverPay', 'KakaoPay', 'Credit/Debit'] as const;
+const PAYMENT_METHODS = ['ShopPay', 'NaverPay', 'KakaoPay', 'Credit/Debit'] as const;
 
 export default function CheckoutPageWrapper() {
   return (
@@ -25,7 +25,7 @@ function CheckoutPage() {
   const { user, applyCash } = useUser();
   const { showToast } = useToastContext();
 
-  const [selectedMethod, setSelectedMethod] = useState<string>('CoupangPay');
+  const [selectedMethod, setSelectedMethod] = useState<string>('ShopPay');
   const [cashApplied, setCashApplied] = useState(false);
 
   // Check for buy_now mode
@@ -49,17 +49,17 @@ function CheckoutPage() {
 
   const checkoutDeliveryFee = useMemo(() => {
     if (buyNowProduct) {
-      return buyNowProduct.rocket_delivery ? 0 : 3000;
+      return buyNowProduct.express_delivery ? 0 : 3000;
     }
     return deliveryFee;
   }, [buyNowProduct, deliveryFee]);
 
-  const appliedCash = cashApplied ? Math.min(user.coupang_cash, checkoutSubtotal) : 0;
+  const appliedCash = cashApplied ? Math.min(user.store_credit, checkoutSubtotal) : 0;
   const checkoutDiscount = buyNowProduct ? appliedCash : discount + appliedCash;
-  const effectiveDeliveryFee = user.is_rocket_member ? 0 : checkoutDeliveryFee;
+  const effectiveDeliveryFee = user.is_premium_member ? 0 : checkoutDeliveryFee;
   const checkoutTotal = Math.max(0, checkoutSubtotal + effectiveDeliveryFee - checkoutDiscount);
 
-  const hasRocketItems = checkoutItems.some((item) => item.product.rocket_delivery);
+  const hasExpressItems = checkoutItems.some((item) => item.product.express_delivery);
 
   const handleApplyCash = () => {
     if (cashApplied) {
@@ -108,8 +108,8 @@ function CheckoutPage() {
           </button>
           <h1 className="flex-1 text-center text-base font-bold text-on-surface truncate flex items-center justify-center gap-2">
             Checkout
-            {user.is_rocket_member && (
-              <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-[10px] text-white font-black px-1.5 py-0.5 rounded italic">WOW</span>
+            {user.is_premium_member && (
+              <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-[10px] text-white font-black px-1.5 py-0.5 rounded italic">PLUS</span>
             )}
           </h1>
           <div className="w-10" />
@@ -136,8 +136,8 @@ function CheckoutPage() {
             <span className="text-[10px] font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
               Default
             </span>
-            {user.is_rocket_member && (
-              <span className="text-[9px] font-bold text-white bg-gradient-to-r from-amber-400 to-orange-500 px-1.5 py-0.5 rounded-full">Wow Member</span>
+            {user.is_premium_member && (
+              <span className="text-[9px] font-bold text-white bg-gradient-to-r from-amber-400 to-orange-500 px-1.5 py-0.5 rounded-full">Plus Member</span>
             )}
           </div>
           <p className="text-sm text-on-surface-variant">{user.address.line1}</p>
@@ -186,11 +186,11 @@ function CheckoutPage() {
             <span className="material-symbols-outlined text-secondary-container text-lg">
               account_balance_wallet
             </span>
-            <span className="text-sm text-on-surface">Coupang Cash</span>
+            <span className="text-sm text-on-surface">Store Credit</span>
           </div>
           <div className="flex items-center gap-3">
             <span className="text-sm text-on-surface-variant">
-              {formatPrice(user.coupang_cash)}
+              {formatPrice(user.store_credit)}
             </span>
             <button
               type="button"
@@ -245,22 +245,22 @@ function CheckoutPage() {
           <div className="flex justify-between text-sm">
             <span className="text-on-surface-variant">Shipping</span>
             <div className="flex items-center gap-2">
-              {user.is_rocket_member && checkoutDeliveryFee > 0 ? (
+              {user.is_premium_member && checkoutDeliveryFee > 0 ? (
                 <>
-                  <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-[10px] text-white font-black px-1.5 py-0.5 rounded italic">WOW</span>
-                  <span className="text-primary text-xs font-semibold">FREE ROCKET DELIVERY</span>
+                  <span className="bg-gradient-to-r from-amber-400 to-orange-500 text-[10px] text-white font-black px-1.5 py-0.5 rounded italic">PLUS</span>
+                  <span className="text-primary text-xs font-semibold">FREE EXPRESS DELIVERY</span>
                   <span className="text-on-surface-variant line-through text-xs">{formatPrice(checkoutDeliveryFee)}</span>
                   <span className="text-primary font-medium">₩0</span>
                 </>
               ) : (
                 <>
-                  {hasRocketItems && checkoutDeliveryFee === 0 && (
+                  {hasExpressItems && checkoutDeliveryFee === 0 && (
                     <span className="text-[10px] font-semibold text-primary bg-primary/10 px-2 py-0.5 rounded-full">
-                      ROCKET DELIVERY FREE
+                      EXPRESS DELIVERY FREE
                     </span>
                   )}
-                  <span className={checkoutDeliveryFee === 0 || user.is_rocket_member ? 'text-primary font-medium' : 'text-on-surface'}>
-                    {checkoutDeliveryFee === 0 || user.is_rocket_member ? 'FREE' : formatPrice(checkoutDeliveryFee)}
+                  <span className={checkoutDeliveryFee === 0 || user.is_premium_member ? 'text-primary font-medium' : 'text-on-surface'}>
+                    {checkoutDeliveryFee === 0 || user.is_premium_member ? 'FREE' : formatPrice(checkoutDeliveryFee)}
                   </span>
                 </>
               )}

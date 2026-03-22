@@ -14,7 +14,7 @@ function SearchContent() {
   const query = searchParams.get('q') || '';
 
   const [searchInput, setSearchInput] = useState(query);
-  const [rocketOnly, setRocketOnly] = useState(false);
+  const [expressOnly, setExpressOnly] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>('popular');
   const [visibleCount, setVisibleCount] = useState(8);
   const [compareIds, setCompareIds] = useState<string[]>([]);
@@ -39,8 +39,8 @@ function SearchContent() {
       );
     }
 
-    if (rocketOnly) {
-      result = result.filter((p) => p.rocket_delivery);
+    if (expressOnly) {
+      result = result.filter((p) => p.express_delivery);
     }
 
     switch (sortBy) {
@@ -57,7 +57,7 @@ function SearchContent() {
     }
 
     return result;
-  }, [query, rocketOnly, sortBy]);
+  }, [query, expressOnly, sortBy]);
 
   const visibleProducts = filtered.slice(0, visibleCount);
   const hasMore = visibleCount < filtered.length;
@@ -125,15 +125,15 @@ function SearchContent() {
       {/* Filter Row */}
       <div className="px-4 pt-3 pb-2 flex items-center gap-2 overflow-x-auto no-scrollbar">
         <button
-          onClick={() => setRocketOnly(!rocketOnly)}
+          onClick={() => setExpressOnly(!expressOnly)}
           className={`flex items-center gap-1 px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-            rocketOnly
+            expressOnly
               ? 'bg-primary text-white'
               : 'bg-surface-container-high text-on-surface-variant'
           }`}
         >
-          <span className="material-symbols-outlined text-sm">rocket_launch</span>
-          Rocket Delivery
+          <span className="material-symbols-outlined text-sm">local_shipping</span>
+          Express Delivery
         </button>
 
         <div className="w-3" />

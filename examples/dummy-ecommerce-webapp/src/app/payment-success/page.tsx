@@ -89,7 +89,7 @@ function PaymentSuccessPage() {
       {/* Delivery Info Pill */}
       <div className="flex justify-center mt-6">
         <div className="bg-surface-container-low rounded-full px-4 py-2 flex items-center gap-2">
-          <span className="material-symbols-outlined text-primary text-lg">rocket_launch</span>
+          <span className="material-symbols-outlined text-primary text-lg">local_shipping</span>
           <span className="text-sm text-on-surface font-medium">
             Arriving tomorrow, {tomorrowDate}
           </span>

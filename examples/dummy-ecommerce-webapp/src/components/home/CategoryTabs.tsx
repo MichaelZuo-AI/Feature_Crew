@@ -2,10 +2,10 @@
 
 const tabs = [
   { label: 'Home', isGoldBox: false },
-  { label: 'Rocket Fresh', isGoldBox: false },
+  { label: 'Fresh Market', isGoldBox: false },
   { label: 'Best', isGoldBox: false },
   { label: 'Gold Box', isGoldBox: true },
-  { label: 'Rocket Delivery', isGoldBox: false },
+  { label: 'Express Delivery', isGoldBox: false },
 ];
 
 interface CategoryTabsProps {

@@ -51,7 +51,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   const applyCash = useCallback((amount: number) => {
     setUser((prev) => ({
       ...prev,
-      coupang_cash: Math.max(0, prev.coupang_cash - amount),
+      store_credit: Math.max(0, prev.store_credit - amount),
     }));
   }, []);
 
@@ -72,7 +72,7 @@ export function UserProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const activateMembership = useCallback(() => {
-    setUser((prev) => ({ ...prev, is_rocket_member: true }));
+    setUser((prev) => ({ ...prev, is_premium_member: true }));
   }, []);
 
   const addToWishlist = useCallback((productId: string, savedPrice: number) => {

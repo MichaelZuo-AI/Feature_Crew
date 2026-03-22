@@ -155,7 +155,7 @@ export default function CategoryPage() {
                           {formatPrice(product.original_price)}
                         </span>
                       )}
-                      {product.rocket_delivery && (
+                      {product.express_delivery && (
                         <span className="text-[10px] bg-[#0050cb]/10 text-[#0050cb] px-1.5 py-0.5 rounded-full font-medium">
                           Rocket
                         </span>

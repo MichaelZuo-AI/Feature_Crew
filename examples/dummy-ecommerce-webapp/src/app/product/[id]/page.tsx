@@ -166,11 +166,11 @@ export default function ProductDetailPage() {
         </div>
       </div>
 
-      {/* Rocket Delivery */}
-      {product.rocket_delivery && (
+      {/* Express Delivery */}
+      {product.express_delivery && (
         <div className="bg-surface-container-low rounded-lg p-3 mx-4 mt-3 flex items-center gap-2">
           <span className="material-symbols-outlined text-primary text-lg">
-            rocket_launch
+            local_shipping
           </span>
           <span className="text-sm font-medium text-on-surface">
             Tomorrow Arrival Guaranteed

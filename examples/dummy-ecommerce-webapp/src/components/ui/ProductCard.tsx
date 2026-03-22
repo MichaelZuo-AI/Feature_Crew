@@ -62,12 +62,12 @@ export default function ProductCard({ product, compact = false }: ProductCardPro
           {formatPrice(product.price)}
         </p>
 
-        {product.rocket_delivery && (
+        {product.express_delivery && (
           <div className="mt-1">
             <Badge variant="rocket">
               <span className="inline-flex items-center gap-0.5">
-                <span className="material-symbols-outlined text-[10px]">rocket_launch</span>
-                Rocket
+                <span className="material-symbols-outlined text-[10px]">local_shipping</span>
+                Express
               </span>
             </Badge>
           </div>

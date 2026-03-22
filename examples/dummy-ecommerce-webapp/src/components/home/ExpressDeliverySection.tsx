@@ -1,20 +1,20 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { rocketProducts } from '@/data/mock-data';
+import { expressProducts } from '@/data/mock-data';
 import { formatPrice } from '@/lib/format';
 
-export default function RocketDeliverySection() {
+export default function ExpressDeliverySection() {
   return (
     <section>
       <div className="flex items-center gap-2 px-4 mb-4">
-        <h2 className="text-lg font-bold text-on-surface">Rocket Delivery</h2>
+        <h2 className="text-lg font-bold text-on-surface">Express Delivery</h2>
         <span className="px-2.5 py-0.5 rounded-full bg-primary/10 text-primary text-[11px] font-semibold">
           Arrives Tomorrow
         </span>
       </div>
 
       <div className="flex gap-4 overflow-x-auto no-scrollbar px-4">
-        {rocketProducts.map((product) => (
+        {expressProducts.map((product) => (
           <Link
             key={product.id}
             href={`/product/${product.id}`}
@@ -32,7 +32,7 @@ export default function RocketDeliverySection() {
                 className="material-symbols-outlined absolute bottom-1 right-1 text-primary text-sm"
                 style={{ fontVariationSettings: "'FILL' 1" }}
               >
-                rocket_launch
+                local_shipping
               </span>
             </div>
 

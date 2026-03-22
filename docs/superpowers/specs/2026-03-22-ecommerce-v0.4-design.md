@@ -144,7 +144,7 @@ interface FlashSale {
 - AC-5.1: Top bar displays "Compare Products" with back arrow.
 - AC-5.2: Sticky product header row (fixed on scroll): 2-3 product columns. Each shows product image (80px), name (2-line clamp), price. "×" button to remove. Last empty slot shows "+" add button.
 - AC-5.3: Comparison table below with vertically scrollable rows. Row category headers on surface_container_low: "General", "Specifications", "Reviews", "Delivery".
-- AC-5.4: Comparison rows: Rating (star display), Price, Brand, Rocket Delivery (yes/no), Discount %, Review Count. Alternating row backgrounds: white / surface_container_low. All comparison attributes are derived from existing `Product` fields — no new fields needed.
+- AC-5.4: Comparison rows: Rating (star display), Price, Brand, Express Delivery (yes/no), Discount %, Review Count. Alternating row backgrounds: white / surface_container_low. All comparison attributes are derived from existing `Product` fields — no new fields needed.
 - AC-5.5: Best value in each row gets a primary blue background pill highlight (auto-detected: lowest price wins, highest rating wins, fastest delivery wins).
 - AC-5.6: Sticky bottom bar with "Add to Cart" gradient CTA for each product column.
 - AC-5.7: "+" slot opens a bottom sheet with product search/selection from existing products.
@@ -162,7 +162,7 @@ interface ComparisonSpec {
   bestIs: 'highest' | 'lowest' | 'none';  // for winner detection
 }
 // Example rows: price (lowest wins), rating (highest), discount (highest),
-// review_count (highest), rocket_delivery (boolean display)
+// review_count (highest), express_delivery (boolean display)
 ```
 
 ---

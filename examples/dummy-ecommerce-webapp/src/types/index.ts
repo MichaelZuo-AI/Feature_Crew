@@ -6,7 +6,7 @@ export interface Product {
   price: number;
   original_price: number;
   discount_pct: number;
-  rocket_delivery: boolean;
+  express_delivery: boolean;
   rating: number;
   review_count: number;
   popularity_score: number;
@@ -51,10 +51,10 @@ export interface User {
   email: string;
   phone: string;
   address: Address;
-  coupang_cash: number;
+  store_credit: number;
   stats: { coupons: number; points: number; gift_cards: number };
   orders: Order[];
-  is_rocket_member: boolean;
+  is_premium_member: boolean;
 }
 
 export interface Address {
