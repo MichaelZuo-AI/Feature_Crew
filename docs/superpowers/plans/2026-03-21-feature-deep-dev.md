@@ -949,4 +949,4 @@ git push origin main
 
 - [ ] **Step 5: Test skill discovery**
 
-Start a new Claude Code conversation in the Deepdive project and verify that `/feature-crew` appears in the skill list. Test invocation with a simple feature to verify the orchestrator loads correctly.
+Start a new Claude Code conversation in the FeatureCrew project and verify that `/feature-crew` appears in the skill list. Test invocation with a simple feature to verify the orchestrator loads correctly.
