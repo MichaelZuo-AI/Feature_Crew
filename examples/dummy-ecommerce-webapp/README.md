@@ -24,6 +24,10 @@ No environment variables needed — uses mock data only.
 - **My Page** — profile, Rocket Member status, loyalty points, full order history with status tracking
 - **Bottom navigation** — persistent 5-tab navbar (Home, Category, Search, Cart, My Page)
 - **Buy Now** — skip cart for single-item purchases
+- **Category navigation** — split-pane browser with 8 categories, subcategories, popular brands, and trending products
+- **Reviews system** — pending/submitted tabs, write reviews with star ratings and photo upload, edit/delete
+- **Rocket Wow membership** — benefits landing page, pricing plans, free trial CTA
+- **Membership-aware cart & checkout** — WOW badges, free shipping, delivery grouping when member
 
 ## Tech Stack
 
@@ -34,24 +38,30 @@ Next.js 14 · React 18 · TypeScript · Tailwind CSS · Vitest
 ```
 src/
 ├── app/
-│   ├── page.tsx                 # Home/discovery feed
-│   ├── product/[id]/page.tsx    # Product detail
-│   ├── search/page.tsx          # Search results
-│   ├── cart/page.tsx            # Shopping cart
-│   ├── checkout/page.tsx        # Checkout flow
-│   ├── payment-success/page.tsx # Order confirmation
-│   └── my-page/page.tsx         # User profile & orders
+│   ├── page.tsx                      # Home/discovery feed
+│   ├── product/[id]/page.tsx         # Product detail
+│   ├── search/page.tsx               # Search results
+│   ├── cart/page.tsx                 # Shopping cart
+│   ├── checkout/page.tsx             # Checkout flow
+│   ├── payment-success/page.tsx      # Order confirmation
+│   ├── my-page/page.tsx              # User profile & orders
+│   ├── category/page.tsx             # Category navigation
+│   ├── reviews/page.tsx              # My Reviews (pending/submitted)
+│   ├── write-review/[productId]/     # Write/edit a review
+│   └── membership/page.tsx           # Rocket Wow membership
 ├── components/
-│   ├── layout/                  # TopAppBar, BottomNavBar, FAB
-│   ├── home/                    # CategoryTabs, HeroBanner, GoldBoxSection, etc.
-│   └── ui/                      # ProductCard, Badge, Skeleton
-├── context/                     # CartContext, UserContext, ToastContext
+│   ├── layout/                       # TopAppBar, BottomNavBar, FAB
+│   ├── home/                         # CategoryTabs, HeroBanner, GoldBoxSection, etc.
+│   └── ui/                           # ProductCard, Badge, Skeleton
+├── context/                          # CartContext, UserContext, ToastContext
 ├── data/
-│   ├── products.ts              # ~25 mock products with reviews & Q&A
-│   └── mock-data.ts             # Initial cart, user data
-├── hooks/                       # useCountdown, useToast
-├── lib/format.ts                # KRW price formatting utilities
-└── types/index.ts               # Product, CartItem, Order, User types
+│   ├── products.ts                   # ~25 mock products with reviews & Q&A
+│   ├── mock-data.ts                  # Initial cart, user data
+│   ├── categories.ts                 # 8 categories with subcategories & brands
+│   └── reviews.ts                    # Mock submitted & pending reviews
+├── hooks/                            # useCountdown, useToast
+├── lib/format.ts                     # KRW price formatting utilities
+└── types/index.ts                    # Product, CartItem, Order, User types
 ```
 
 ## Design
