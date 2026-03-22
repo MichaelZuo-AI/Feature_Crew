@@ -102,3 +102,8 @@ export interface Subcategory {
   name: string;
   icon: string;
 }
+
+export type {
+  WishlistItem, RecentView, OrderDetail, FlashSaleItem, FlashSale,
+  ComparisonSpec, Coupon, Notification, SavedAddress, Brand, ReturnRequest
+} from './v04';

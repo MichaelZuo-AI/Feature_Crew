@@ -1,23 +1,46 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useParams, useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { products } from '@/data/products';
+import { mockBrands } from '@/data/brands-data';
 import { formatPrice } from '@/lib/format';
 import { useCart } from '@/context/CartContext';
 import { useToastContext } from '@/context/ToastContext';
+import { useUser } from '@/context/UserContext';
 
 export default function ProductDetailPage() {
   const params = useParams();
   const router = useRouter();
   const { addToCart } = useCart();
   const { showToast } = useToastContext();
+  const { wishlist, addToWishlist, removeFromWishlist, addRecentView } = useUser();
 
   const product = products.find((p) => p.id === params.id);
 
   const [descExpanded, setDescExpanded] = useState(false);
+
+  const isWishlisted = product ? wishlist.some((w) => w.productId === product.id) : false;
+  const brandRecord = product ? mockBrands.find((b) => b.name === product.brand) : undefined;
+
+  useEffect(() => {
+    if (product) {
+      addRecentView(product.id);
+    }
+  }, [product?.id]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const handleToggleWishlist = () => {
+    if (!product) return;
+    if (isWishlisted) {
+      removeFromWishlist(product.id);
+      showToast('Removed from wishlist');
+    } else {
+      addToWishlist(product.id, product.price);
+      showToast('Added to wishlist');
+    }
+  };
 
   if (!product) {
     return (
@@ -88,6 +111,17 @@ export default function ProductDetailPage() {
         >
           <span className="material-symbols-outlined text-on-surface">arrow_back</span>
         </button>
+        <button
+          onClick={handleToggleWishlist}
+          className="absolute top-4 right-4 z-10 w-9 h-9 rounded-full glass flex items-center justify-center shadow-ambient"
+        >
+          <span
+            className="material-symbols-outlined text-rose-500"
+            style={isWishlisted ? { fontVariationSettings: "'FILL' 1" } : undefined}
+          >
+            favorite
+          </span>
+        </button>
         {product.discount_pct > 0 && (
           <div className="absolute bottom-3 left-3 bg-primary text-white text-xs font-bold px-2.5 py-1 rounded-md">
             {product.discount_pct}% OFF
@@ -97,7 +131,13 @@ export default function ProductDetailPage() {
 
       {/* Product Info */}
       <div className="px-4 pt-4">
-        <p className="text-xs text-on-surface-variant">{product.brand}</p>
+        {brandRecord ? (
+          <Link href={`/brand/${brandRecord.id}`} className="text-xs text-primary font-medium">
+            {product.brand}
+          </Link>
+        ) : (
+          <p className="text-xs text-on-surface-variant">{product.brand}</p>
+        )}
         <h1 className="text-lg font-semibold text-on-surface mt-0.5">{product.name}</h1>
 
         <div className="flex items-baseline gap-2 mt-2">
@@ -211,6 +251,15 @@ export default function ProductDetailPage() {
 
       {/* Bottom Sticky Bar */}
       <div className="glass shadow-ambient-up fixed bottom-[84px] left-0 right-0 z-40 max-w-md mx-auto px-4 py-3 flex items-center gap-3">
+        <Link
+          href={`/compare?ids=${product.id}`}
+          className="flex items-center justify-center w-10 h-10 ghost-border rounded-lg shrink-0"
+          title="Compare"
+        >
+          <span className="material-symbols-outlined text-on-surface-variant text-lg">
+            compare
+          </span>
+        </Link>
         <button
           onClick={handleAddToCart}
           className="ghost-border text-primary font-semibold text-sm rounded-lg px-5 py-3 flex-1"

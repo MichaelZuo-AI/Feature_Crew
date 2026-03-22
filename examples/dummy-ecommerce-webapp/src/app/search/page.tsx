@@ -2,6 +2,7 @@
 
 import { useState, useMemo, useEffect, useRef, useCallback, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
+import Link from 'next/link';
 import ProductCard from '@/components/ui/ProductCard';
 import { products } from '@/data/products';
 
@@ -16,6 +17,15 @@ function SearchContent() {
   const [rocketOnly, setRocketOnly] = useState(false);
   const [sortBy, setSortBy] = useState<SortOption>('popular');
   const [visibleCount, setVisibleCount] = useState(8);
+  const [compareIds, setCompareIds] = useState<string[]>([]);
+
+  const toggleCompare = (id: string) => {
+    setCompareIds((prev) => {
+      if (prev.includes(id)) return prev.filter((x) => x !== id);
+      if (prev.length >= 3) return prev;
+      return [...prev, id];
+    });
+  };
 
   const filtered = useMemo(() => {
     let result = products;
@@ -153,9 +163,28 @@ function SearchContent() {
       {/* Product Grid */}
       {filtered.length > 0 ? (
         <div className="grid grid-cols-2 gap-3 px-4">
-          {visibleProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+          {visibleProducts.map((product) => {
+            const isChecked = compareIds.includes(product.id);
+            return (
+              <div key={product.id} className="relative">
+                <ProductCard product={product} />
+                <button
+                  type="button"
+                  onClick={() => toggleCompare(product.id)}
+                  className={`absolute top-2 left-2 z-10 w-6 h-6 rounded flex items-center justify-center border-2 transition-colors ${
+                    isChecked
+                      ? 'bg-primary border-primary'
+                      : 'bg-white/80 border-surface-container-high'
+                  }`}
+                  title="Compare"
+                >
+                  {isChecked && (
+                    <span className="material-symbols-outlined text-white text-sm">check</span>
+                  )}
+                </button>
+              </div>
+            );
+          })}
         </div>
       ) : (
         <div className="flex flex-col items-center justify-center py-20 px-4">
@@ -165,6 +194,19 @@ function SearchContent() {
           <p className="text-sm text-on-surface-variant text-center">
             No products found{query ? ` for "${query}"` : ''}
           </p>
+        </div>
+      )}
+
+      {/* Compare floating CTA */}
+      {compareIds.length >= 2 && (
+        <div className="fixed bottom-24 left-0 right-0 z-50 mx-auto max-w-md px-4">
+          <Link
+            href={`/compare?ids=${compareIds.join(',')}`}
+            className="flex items-center justify-center gap-2 w-full py-3 gradient-primary text-white rounded-xl font-bold shadow-ambient"
+          >
+            <span className="material-symbols-outlined text-lg">compare</span>
+            Compare ({compareIds.length})
+          </Link>
         </div>
       )}
 

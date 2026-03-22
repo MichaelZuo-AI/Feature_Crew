@@ -14,11 +14,15 @@ const STATUS_INDEX: Record<string, number> = {
 
 const MENU_ITEMS: { icon: string; label: string; route?: string }[] = [
   { icon: 'rate_review', label: 'My Reviews', route: '/reviews' },
+  { icon: 'favorite', label: 'Wishlist', route: '/wishlist' },
+  { icon: 'history', label: 'Recently Viewed', route: '/recently-viewed' },
+  { icon: 'confirmation_number', label: 'Coupons', route: '/coupons' },
+  { icon: 'notifications', label: 'Notifications', route: '/notifications' },
   { icon: 'rocket_launch', label: 'Rocket Wow Membership', route: '/membership' },
   { icon: 'support_agent', label: 'Customer Service' },
   { icon: 'settings', label: 'Settings' },
   { icon: 'celebration', label: 'Events' },
-  { icon: 'location_on', label: 'Address Management' },
+  { icon: 'location_on', label: 'Address Management', route: '/addresses' },
   { icon: 'credit_card', label: 'Payment Methods' },
   { icon: 'privacy_tip', label: 'Privacy Policy' },
 ];
@@ -56,7 +60,8 @@ function statusLabel(status: string): string {
 }
 
 export default function MyPage() {
-  const { user } = useUser();
+  const { user, notifications } = useUser();
+  const unreadCount = notifications.filter((n) => !n.readAt).length;
   const latestOrder = user.orders[0];
   const currentStage = latestOrder ? STATUS_INDEX[latestOrder.status] ?? 0 : 0;
 
@@ -66,14 +71,19 @@ export default function MyPage() {
       <header className="glass shadow-ambient-up fixed top-0 left-0 right-0 z-50 mx-auto max-w-md h-16">
         <div className="flex items-center justify-between h-full px-4">
           <h1 className="text-lg font-bold text-on-surface">The Curator</h1>
-          <button
-            type="button"
-            className="flex items-center justify-center w-10 h-10 -mr-2 rounded-full active:bg-black/5 transition-colors"
+          <Link
+            href="/notifications"
+            className="relative flex items-center justify-center w-10 h-10 -mr-2 rounded-full active:bg-black/5 transition-colors"
           >
             <span className="material-symbols-outlined text-on-surface">
               notifications
             </span>
-          </button>
+            {unreadCount > 0 && (
+              <span className="absolute top-0.5 right-0.5 w-4 h-4 bg-primary text-white text-[9px] font-bold rounded-full flex items-center justify-center leading-none">
+                {unreadCount > 99 ? '99+' : unreadCount}
+              </span>
+            )}
+          </Link>
         </div>
       </header>
 
@@ -184,9 +194,10 @@ export default function MyPage() {
         <h2 className="text-lg font-bold text-on-surface mb-3">Recent Orders</h2>
 
         {user.orders.map((order) => (
-          <div
+          <Link
             key={order.id}
-            className="bg-surface-container-lowest rounded-xl p-4 shadow-ambient mt-3 first:mt-0"
+            href={`/order/${order.id}`}
+            className="block bg-surface-container-lowest rounded-xl p-4 shadow-ambient mt-3 first:mt-0"
           >
             {order.items.map((item, idx) => (
               <div key={idx} className="flex gap-3">
@@ -240,7 +251,7 @@ export default function MyPage() {
                 </button>
               )}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
 
