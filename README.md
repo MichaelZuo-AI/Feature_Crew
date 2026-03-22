@@ -2,7 +2,7 @@
 
 A crew of AI agents that take your feature from spec to production — clarifying requirements, writing code, evaluating quality, and fixing bugs at every step.
 
-![Feature Crew Workflow](docs/workflow.svg?v=2)
+![Feature Crew Workflow](docs/workflow.svg?v=3)
 
 ## Quick Start
 
@@ -19,7 +19,7 @@ Then open Claude Code in your project and run `/feature-crew`.
 | Skill | What it does |
 |-------|-------------|
 | `/feature-crew` | Orchestrator — full lifecycle with human checkpoints |
-| `/feature-crew-clarify` | Phase 1 — one-pager + Figma → structured spec |
+| `/feature-crew-clarify` | Phase 1 — feature requirement → structured spec |
 | `/feature-crew-implement` | Phase 2 — code with ≥90% evaluator scoring gate |
 | `/feature-crew-qa` | Phase 3 — holistic QA → bug fix loop |
 | `/feature-crew-evaluate` | Standalone adaptive evaluator |
