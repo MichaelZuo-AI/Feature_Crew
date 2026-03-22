@@ -47,6 +47,7 @@
 | `src/app/page.tsx` | Link flash sale banner to `/flash-sale` |
 | `src/app/search/page.tsx` | Add compare checkbox + floating CTA |
 | `src/app/category/page.tsx` | Link brand cards to `/brand/[brandId]` |
+| `src/app/cart/page.tsx` | Add "Apply Coupon" link to `/coupons` |
 
 ---
 
@@ -66,7 +67,8 @@
 
 Create `src/types/v04.ts`:
 ```typescript
-import { Product, Order } from './index';
+// Note: type-only circular import with index.ts is safe in TypeScript's isolatedModules mode
+import type { Product, Order } from './index';
 
 export interface WishlistItem {
   productId: string;
@@ -108,7 +110,7 @@ export interface FlashSale {
 export interface ComparisonSpec {
   label: string;
   key: keyof Product;
-  category: 'general' | 'reviews' | 'delivery';
+  category: 'general' | 'specifications' | 'reviews' | 'delivery';
   bestIs: 'highest' | 'lowest' | 'none';
 }
 
@@ -183,6 +185,8 @@ export type {
 
 Create 6 data files with mock data. Each file exports arrays of the corresponding types, using product IDs from existing `products.ts` (p001-p020). Brands data should reference the 4 most common brands in products.ts. Flash sale endTime set to 8 hours from now. Coupons include 3 available, 2 used, 1 expired. Notifications include 5 mixed-type entries. Addresses include 2 entries (one default). Wishlist includes 6 items with varied savedAt dates and some with price drops.
 
+Also create `src/data/recently-viewed-data.ts` with 8 mock entries (assorted products, timestamps spread across today/yesterday/this week) so the Recently Viewed page can be tested before the product detail integration in Task 13.
+
 - [ ] **Step 4: Verify types compile**
 
 Run: `cd examples/dummy-ecommerce-webapp && npx tsc --noEmit`
@@ -250,6 +254,8 @@ Create page with:
 - Filter chips: All, In Stock, On Sale, Price Drop (horizontal scroll, single-select)
 - 2-column product grid using products lookup from `useUser().wishlist`
 - Each card: image, filled heart, brand, name, price with strikethrough, price drop badge
+- Tapping filled heart removes item via `removeFromWishlist` with CSS shrink animation (scale 1→0 over 200ms)
+- Out-of-stock items: 40% white overlay on image with centered "Out of Stock" label
 - Edit mode: checkboxes, sticky bottom bar with Delete Selected + Add to Cart
 - Empty state
 - BottomNavBar
@@ -315,7 +321,7 @@ Create page with:
 - Ordered items list
 - "Track Package" gradient CTA + "Request Return" tertiary (links to `/returns/[orderId]`)
 
-Key patterns: Look up order from `useUser().user.orders.find(o => o.id === id)`. Mock `trackingNumber` and `carrier` inline (or extend order data). Timeline stepper is the star component — use CSS animations for pulse.
+Key patterns: Look up order from `useUser().user.orders.find(o => o.id === id)`. Create a `getOrderDetail(order: Order): OrderDetail` helper function inline that wraps the `Order` with mocked `trackingNumber` (e.g., `"CJ${order.id}"`), `carrier` (`"CJ Logistics"`), and `statusHistory` (generated from `order.status` — all steps up to current status get timestamps). Timeline stepper is the star component — use CSS animations for pulse.
 
 - [ ] **Step 2: Verify renders**
 
@@ -551,6 +557,7 @@ git commit -m "feat(v0.4): add address book page with CRUD and default selection
 - Modify: `src/app/page.tsx`
 - Modify: `src/app/search/page.tsx`
 - Modify: `src/app/category/page.tsx`
+- Modify: `src/app/cart/page.tsx`
 
 - [ ] **Step 1: Add notification bell to TopAppBar**
 
@@ -558,7 +565,9 @@ Add `showNotifications` prop to TopAppBar. When true, render bell icon with unre
 
 - [ ] **Step 2: Update My Page**
 
-Add menu links section below existing content: "Wishlist", "Recently Viewed", "Coupons", "Notifications", "Address Book" — each as a tappable row with icon, label, and chevron_right. Make order cards tappable → navigate to `/order/[id]`.
+**Important:** My Page uses its own inline `<header>`, not the shared TopAppBar component. Update the existing notifications bell button in My Page's inline header to be a `<Link href="/notifications">` and add unread count badge directly.
+
+For the menu section: the existing `MENU_ITEMS` array already has an "Address Management" entry (without a route). Update it to add `route: '/addresses'`. Add new entries for "Wishlist" (`/wishlist`), "Recently Viewed" (`/recently-viewed`), "Coupons" (`/coupons`), "Notifications" (`/notifications`). Make order cards tappable → navigate to `/order/[id]`.
 
 - [ ] **Step 3: Update Product Detail**
 
@@ -576,6 +585,10 @@ Add compare checkbox on product cards. When 2-3 selected, show floating "Compare
 
 Link Popular Brands cards to `/brand/[brandId]`.
 
+- [ ] **Step 6b: Update Cart page**
+
+Add "Apply Coupon" row in the order summary section of `src/app/cart/page.tsx`, linking to `/coupons`. Show as a tappable row with coupon icon + "Apply Coupon" text + chevron_right.
+
 - [ ] **Step 7: Verify all navigation flows**
 
 Test: My Page → Wishlist, My Page → order detail, Product → brand store, Home → flash sale, Search → compare.
@@ -583,8 +596,8 @@ Test: My Page → Wishlist, My Page → order detail, Product → brand store, H
 - [ ] **Step 8: Commit**
 
 ```bash
-git add src/components/layout/TopAppBar.tsx src/app/my-page/ src/app/product/ src/app/page.tsx src/app/search/ src/app/category/
-git commit -m "feat(v0.4): wire navigation — wishlist, notifications, compare, brand store, flash sale entry points"
+git add src/components/layout/TopAppBar.tsx src/app/my-page/ src/app/product/ src/app/page.tsx src/app/search/ src/app/category/ src/app/cart/
+git commit -m "feat(v0.4): wire navigation — wishlist, notifications, compare, brand store, flash sale, coupon entry points"
 ```
 
 ---
