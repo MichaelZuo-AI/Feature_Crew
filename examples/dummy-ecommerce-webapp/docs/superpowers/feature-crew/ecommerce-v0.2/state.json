@@ -1,6 +1,6 @@
 {
   "featureName": "ecommerce-v0.2",
-  "phase": "CHECKPOINT_2",
+  "phase": "PRODUCTION",
   "createdAt": "2026-03-22",
   "designSpec": "/Users/michaelzuo/Engineering/AIDreamWorks/AIProductivity/FeatureDevDemo/demo_from_stitch/design_spec/stitch_v0.3",
   "projectRoot": "/Users/michaelzuo/Engineering/AIDreamWorks/AIProductivity/Deepdive/examples/dummy-ecommerce-webapp",
@@ -10,8 +10,10 @@
     { "phase": "CLARIFYING", "timestamp": "2026-03-22T00:01:00Z" },
     { "phase": "CHECKPOINT_1", "timestamp": "2026-03-22T00:10:00Z" },
     { "phase": "IMPLEMENTING", "timestamp": "2026-03-22T00:15:00Z" },
-    { "phase": "CHECKPOINT_2", "timestamp": "2026-03-22T00:30:00Z" }
+    { "phase": "CHECKPOINT_2", "timestamp": "2026-03-22T00:30:00Z" },
+    { "phase": "QA", "timestamp": "2026-03-22T00:35:00Z" },
+    { "phase": "PRODUCTION", "timestamp": "2026-03-22T00:40:00Z" }
   ],
   "evalRounds": 2,
-  "qaRounds": 0
+  "qaRounds": 1
 }
