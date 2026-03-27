@@ -138,6 +138,37 @@ Wait for user approval before proceeding.
 
 On approval, update state to `IMPLEMENTING` and invoke `feature-crew-implement`.
 
+## Backtrack Re-Entry
+
+When invoked from a `BACKTRACK_CLARIFY` state (triggered by the evaluator flagging the same AC in 2 consecutive rounds), this skill operates in **narrow scope mode**:
+
+### What's Different
+
+1. **No full codebase exploration** — context is already established
+2. **Narrow question scope** — only address the specific flagged ACs, not the entire feature
+3. **Evaluator reasoning provided** — the Clarifier receives the evaluator's explanation of why each AC is problematic
+
+### Backtrack Process
+
+1. Read `state.json` to find the `backtracks` entry with `resolution: null`
+2. Extract the flagged ACs and evaluator reasoning
+3. Dispatch Clarifier sub-agent with:
+   - The current spec
+   - Only the flagged ACs (not the full feature description)
+   - Evaluator reasoning for each flagged AC
+   - Instruction: "These acceptance criteria were flagged as ambiguous/untestable/contradictory by the evaluator in 2 consecutive rounds. Resolve them."
+4. For each clarification question, use PO Agent as normal (auto-answer or escalate)
+5. Update the spec in-place with revised ACs
+6. Update `backtracks` entry with resolution text
+7. Log backtrack to `metrics.json`
+8. Return to `IMPLEMENTING` phase (round counter is NOT reset)
+
+### Guardrails
+
+- Only touch the flagged ACs — do not re-open other parts of the spec
+- Max 1 backtrack per feature — if this is the second backtrack, the orchestrator would have routed to BLOCKED_IMPL instead
+- Do NOT present Checkpoint 1 again — the spec was already approved, this is a targeted fix
+
 ## Standalone Usage
 
 This skill can be invoked independently via `/feature-crew-clarify` for any project. It produces a spec without requiring the full pipeline.
