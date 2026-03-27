@@ -66,7 +66,7 @@ If invoked with `list`:
 
 If invoked with `analyze`:
 1. Scan all `docs/superpowers/feature-crew/*/metrics.json` files
-2. Dispatch analyzer sub-agent using `skills/feature-crew/analyzer-prompt.md`
+2. Dispatch analyzer sub-agent using `agents/analyzer.md`
 3. Display report in terminal and save to `docs/superpowers/feature-crew/analysis-{YYYY-MM-DD}.md`
 
 ## Pausing a Feature

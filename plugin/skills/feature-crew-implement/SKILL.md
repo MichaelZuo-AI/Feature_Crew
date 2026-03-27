@@ -92,7 +92,7 @@ After all parallel agents complete, evaluate each in an **isolated worktree**:
 
 1. For each exploration branch:
    a. Create a fresh evaluator worktree checking out that branch
-   b. Dispatch a fresh evaluator sub-agent (using `skills/feature-crew/evaluator-prompt.md`) into that worktree
+   b. Dispatch a fresh evaluator sub-agent (using `agents/evaluator.md`) into that worktree
    c. Pass: spec, code contents, round number, previous issues
    d. Read the evaluation report
    e. Clean up the evaluator worktree

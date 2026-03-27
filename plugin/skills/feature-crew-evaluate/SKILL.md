@@ -28,7 +28,7 @@ Provide:
    - Any weight overrides from evaluator criteria hints
 
 2. Dispatch a fresh evaluator sub-agent using:
-   `skills/feature-crew/evaluator-prompt.md`
+   `agents/evaluator.md`
 
    Pass the sub-agent:
    - Full spec text (do NOT make it read a file)

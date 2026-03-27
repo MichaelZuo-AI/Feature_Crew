@@ -54,14 +54,14 @@ This prevents asking questions the codebase already answers.
 ### Step 4: Clarification Loop with PO Agent
 
 Dispatch a Clarifier sub-agent using the template at:
-`skills/feature-crew/clarifier-prompt.md`
+`agents/clarifier.md`
 
 The Clarifier analyzes the feature description + any design assets, identifies ambiguities, and generates questions ONE AT A TIME.
 
 **For each question, before showing it to the human:**
 
 1. Dispatch a PO Agent sub-agent using the template at:
-   `skills/feature-crew/po-agent-prompt.md`
+   `agents/po-agent.md`
 
    Provide:
    - The question from the Clarifier

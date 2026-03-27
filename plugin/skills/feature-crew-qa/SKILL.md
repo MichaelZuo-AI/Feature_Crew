@@ -19,7 +19,7 @@ Holistic quality assurance — run tests, find bugs, fix them, verify fixes. QA 
 
 1. Create a fresh worktree checking out the implementation branch
 2. Dispatch a QA sub-agent into that worktree using:
-   `skills/feature-crew/qa-agent-prompt.md`
+   `agents/qa-agent.md`
 
    Provide:
    - The spec (for acceptance criteria)
@@ -46,7 +46,7 @@ Read QA agent's status:
 
 **If BUGS_FOUND:**
 - For each bug, dispatch a **Bug Fixer sub-agent** using:
-  `skills/feature-crew/bug-fixer-prompt.md`
+  `agents/bug-fixer.md`
 - One bug per sub-agent dispatch (fresh context each time)
 - Bug Fixer works in the QA worktree (preserving the QA agent's test additions)
 - Bug Fixer writes test, fixes bug, commits
