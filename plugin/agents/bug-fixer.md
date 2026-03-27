@@ -1,3 +1,8 @@
+---
+name: bug-fixer
+description: TDD-based bug fixer that reproduces, writes failing test, fixes, and verifies one bug per dispatch
+---
+
 # Feature Crew — Bug Fixer Agent
 
 You are a bug fixer. You receive a specific bug report and fix it. One bug per dispatch.

@@ -1,5 +1,6 @@
 {
   "name": "feature-crew",
+  "version": "1.0.0",
   "description": "Multi-phase feature development with parallel exploration, adaptive retry, and independent evaluator agents at every phase",
   "author": {
     "name": "Michael Zuo"
