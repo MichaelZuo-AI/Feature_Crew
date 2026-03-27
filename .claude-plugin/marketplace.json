@@ -1,0 +1,19 @@
+{
+  "$schema": "https://anthropic.com/claude-code/marketplace.schema.json",
+  "name": "feature-crew-marketplace",
+  "description": "Feature Crew — multi-phase feature development with parallel exploration and adaptive retry",
+  "owner": {
+    "name": "Michael Zuo"
+  },
+  "plugins": [
+    {
+      "name": "feature-crew",
+      "description": "Multi-phase feature development with parallel exploration, adaptive retry, and independent evaluator agents at every phase",
+      "category": "productivity",
+      "source": {
+        "source": "git-subdir",
+        "path": "plugin"
+      }
+    }
+  ]
+}

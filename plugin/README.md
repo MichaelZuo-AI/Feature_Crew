@@ -4,52 +4,37 @@ Multi-phase feature development with independent evaluator agents at every phase
 
 ## Installation
 
-### Option 1: Add as Marketplace (recommended for updates)
-
-Register the GitHub repo as a marketplace, then install the plugin:
+Two steps: register the GitHub repo as a plugin marketplace, then install Feature Crew from it.
 
 ```bash
-# Add the repo as a marketplace (one-time setup)
-claude plugins marketplace add https://github.com/MichaelZuo-AI/Feature_Crew --sparse plugin .claude-plugin
+# Step 1: Add the repo as a marketplace (one-time)
+claude plugins marketplace add https://github.com/MichaelZuo-AI/Feature_Crew
 
-# Install the plugin
+# Step 2: Install the plugin
 claude plugins install feature-crew
 ```
 
-To update later:
+That's it. Restart Claude Code and you're ready to go.
+
+### Updating
+
 ```bash
 claude plugins update feature-crew
 ```
 
-### Option 2: Direct from Local Path (for development)
+### Verify
 
-If you've cloned the repo, point Claude Code directly at the plugin directory:
+Run `/feature-crew list` in Claude Code. If you see a table (even if empty), it's working.
+
+### Alternative: Load from Local Path
+
+For development or testing without installing:
 
 ```bash
 claude --plugin-dir /path/to/Feature_Crew/plugin
 ```
 
-This loads the plugin for that session only. To make it permanent, add to your project's `.claude/settings.json`:
-
-```json
-{
-  "plugins": {
-    "feature-crew": {
-      "path": "/path/to/Feature_Crew/plugin"
-    }
-  }
-}
-```
-
-### Verify Installation
-
-After installing, restart Claude Code and run:
-
-```
-/feature-crew list
-```
-
-If you see a table (even if empty), the plugin is working. You should also see `feature-crew`, `feature-crew-clarify`, `feature-crew-implement`, `feature-crew-evaluate`, and `feature-crew-qa` in the available skills list.
+This loads the plugin for that session only.
 
 ## Quick Reference
 
