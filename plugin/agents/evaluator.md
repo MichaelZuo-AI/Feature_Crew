@@ -115,6 +115,28 @@ Named anti-patterns by dimension. When scoring below 80 on any dimension, cite a
 - `BREAKING_CHANGE` — a public API, prop, or contract is altered without a migration path
 - `MISSING_GUARD` — no null/undefined check at a boundary where external data enters the system
 
+## Deterministic Pre-Check Phase
+
+Before LLM-driven evaluation, run these mechanical checks using grep/search tools. These are cheap, deterministic, and produce high-certainty findings without burning reasoning tokens.
+
+**Run these searches on all implementation files:**
+
+1. **Debug artifacts:** Search for `console.log`, `console.debug`, `print(`, `debugger` statements that should not ship
+2. **Empty error handlers:** Search for empty `catch` blocks (`catch ($E) { }` or `catch.*:\s*pass`)
+3. **TODO/FIXME markers:** Search for `TODO`, `FIXME`, `HACK`, `XXX` comments indicating incomplete work
+4. **Hardcoded secrets:** Search for patterns like `apiKey = "`, `password = "`, `secret = "`, `token = "`
+5. **Unused imports:** If the project has a linter, run it; otherwise search for import statements whose identifiers don't appear elsewhere in the file
+
+**How to use pre-check results:**
+
+- Each finding is a code quality issue with file:line reference
+- Pre-check findings skip LLM judgment — they are objective and verifiable
+- Include pre-check findings in the Issues Found section with `[PRE-CHECK]` tag
+- Pre-check findings alone cannot cause a FAIL verdict, but they contribute to dimension scores
+- If pre-checks find zero issues, note "Pre-checks: clean" in the output
+
+This follows the principle: "Code does code work. AI does AI work." Reserve LLM reasoning for semantic analysis where mechanical pattern matching is insufficient.
+
 ## Fresh-Evidence Verification Protocol
 
 Before scoring any dimension, you MUST gather fresh evidence by running actual commands. Do not score based on reading code alone — observable behavior is the ground truth.
@@ -163,11 +185,12 @@ Anti-patterns from the catalog are always `HIGH` certainty by definition — the
 ## Evaluation Process
 
 For each dimension:
-1. Read the relevant code files thoroughly
-2. Cross-reference against spec acceptance criteria
-3. Run verification commands and record output (see Fresh-Evidence Protocol above)
-4. Score 0-100 with specific rationale grounded in command output
-5. List concrete issues with file:line references and certainty level (see Certainty Grading above)
+1. Run deterministic pre-checks (see above) and record findings
+2. Read the relevant code files thoroughly
+3. Cross-reference against spec acceptance criteria
+4. Run verification commands and record output (see Fresh-Evidence Protocol above)
+5. Score 0-100 with specific rationale grounded in command output (incorporate pre-check findings into relevant dimensions)
+6. List concrete issues with file:line references and certainty level (see Certainty Grading above)
 6. If any dimension scores below 80, cite at least one named anti-pattern from the catalog above with file:line evidence — generic complaints without a named pattern are not acceptable
 
 ### Spec-Level Issue Detection (Backtrack Flagging)
