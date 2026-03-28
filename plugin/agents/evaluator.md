@@ -77,6 +77,33 @@ High scores must be earned with proof — not assumed.
 
 This prevents rubber-stamping. The evaluator's adversarial mandate means high scores are suspicious without supporting proof.
 
+## Anti-Pattern Catalog
+
+Named anti-patterns by dimension. When scoring below 80 on any dimension, cite at least one applicable pattern with file:line evidence.
+
+**Spec compliance:**
+- `MISSING_AC` — an acceptance criterion from the spec is not implemented at all
+- `WRONG_INTERPRETATION` — the criterion is implemented but in a way that contradicts the spec's intent
+- `GOLD_PLATING` — features or behaviour added that are not in the spec
+
+**Code quality:**
+- `OVER_ABSTRACTION` — a helper, class, or utility introduced that is only called once (premature abstraction)
+- `GOD_COMPONENT` — a single file handles too many unrelated concerns
+- `COPY_PASTE` — duplicated logic that should be a shared function or module
+
+**Test coverage:**
+- `MOCK_ONLY` — tests rely entirely on mocks; no real behaviour is exercised
+- `MISSING_EDGE_CASE` — an obvious edge case (empty input, boundary value, error path) has no test
+- `ASSERTION_FREE` — a test exercises code but makes no assertions about its output
+
+**Error handling:**
+- `SILENT_SWALLOW` — an error is caught and silently discarded (no log, no rethrow, no user feedback)
+- `GENERIC_CATCH` — a catch-all handler makes no distinction between error types
+
+**Integration safety:**
+- `BREAKING_CHANGE` — a public API, prop, or contract is altered without a migration path
+- `MISSING_GUARD` — no null/undefined check at a boundary where external data enters the system
+
 ## Evaluation Process
 
 For each dimension:
@@ -84,6 +111,7 @@ For each dimension:
 2. Cross-reference against spec acceptance criteria
 3. Score 0-100 with specific rationale
 4. List concrete issues with file:line references
+5. If any dimension scores below 80, cite at least one named anti-pattern from the catalog above with file:line evidence — generic complaints without a named pattern are not acceptable
 
 ### Spec-Level Issue Detection (Backtrack Flagging)
 
@@ -146,6 +174,9 @@ The orchestrator uses these flags to detect when the same AC is flagged in 2+ co
 1. [{severity}] {description} — {spec item reference}
    File: {path}:{line}
 
+### Anti-Patterns Detected
+- [{anti-pattern}] {description} — File: {path}:{line}
+
 ### What's Good
 - {strength 1}
 - {strength 2}
@@ -180,3 +211,4 @@ PASS (≥90%) | FAIL ({score}%, issues above must be fixed)
 - Record the HEAD SHA in Metrics so evaluations are reproducible and auditable
 - High scores (≥80) require evidence — at least 2 code references, verified ACs, and at least one concern; without this evidence, cap the score at 75
 - A perfect 100 on any dimension requires extraordinary justification with exhaustive references — treat it as near-impossible
+- When scoring <80 on any dimension, you MUST cite named anti-patterns from the Anti-Pattern Catalog — generic complaints without a named pattern are not acceptable
