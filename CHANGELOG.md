@@ -4,6 +4,21 @@ Changes applied by [alwayshungry](https://github.com/MichaelZuo-AI/alwayshungry)
 
 ---
 
+### [alwayshungry] 2026-03-28 — Add fresh-evidence verification protocol to evaluator
+- Source: https://github.com/Yeachan-Heo/oh-my-claudecode
+- Evaluation: baseline 78 → 83
+- Files changed: plugin/agents/evaluator.md
+
+### [alwayshungry] 2026-03-28 — Add certainty grading to evaluator findings
+- Source: https://github.com/agent-sh/agentsys
+- Evaluation: baseline 78 → 80
+- Files changed: plugin/agents/evaluator.md
+
+### [alwayshungry] 2026-03-28 — Add deterministic pre-check phase to evaluator
+- Source: https://github.com/agent-sh/agentsys
+- Evaluation: baseline 78 → 81
+- Files changed: plugin/agents/evaluator.md
+
 ### [alwayshungry] 2026-03-28 — Add re-anchoring to evaluator
 - Source: https://github.com/gmickel/gmickel-claude-marketplace
 - Evaluation: baseline 74 → 78
