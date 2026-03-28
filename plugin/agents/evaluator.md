@@ -142,6 +142,24 @@ For each acceptance criterion, assign one of:
 
 Include the AC verification table in your output (see Output Format).
 
+## Certainty Grading
+
+Every issue found must be tagged with a certainty level alongside its severity. This helps the orchestrator decide which issues to auto-remediate vs. escalate.
+
+| Certainty | Meaning | Orchestrator Action |
+|-----------|---------|---------------------|
+| `HIGH` | Definitely a problem — observable, reproducible, unambiguous | Safe to auto-fix without human review |
+| `MEDIUM` | Probably a problem — strong evidence but context-dependent | Fix if severity is also high; otherwise flag for implementer |
+| `LOW` | Might be a problem — based on heuristic or incomplete evidence | Only escalate if severity is critical; otherwise note as advisory |
+
+**How to assign certainty:**
+
+- `HIGH`: You can point to a failing test, a type error, a missing AC implementation, or a direct spec contradiction. The evidence is on-disk and verifiable.
+- `MEDIUM`: The code looks wrong based on patterns or conventions, but you cannot produce a failing test or concrete proof without running the application. The issue requires implementer context to confirm.
+- `LOW`: You suspect a problem based on experience (e.g., "this might not handle concurrent requests"), but the spec doesn't require it and no test covers it. This is advisory.
+
+Anti-patterns from the catalog are always `HIGH` certainty by definition — they are named, recognizable, and objectively present in the code.
+
 ## Evaluation Process
 
 For each dimension:
@@ -149,7 +167,7 @@ For each dimension:
 2. Cross-reference against spec acceptance criteria
 3. Run verification commands and record output (see Fresh-Evidence Protocol above)
 4. Score 0-100 with specific rationale grounded in command output
-5. List concrete issues with file:line references
+5. List concrete issues with file:line references and certainty level (see Certainty Grading above)
 6. If any dimension scores below 80, cite at least one named anti-pattern from the catalog above with file:line evidence — generic complaints without a named pattern are not acceptable
 
 ### Spec-Level Issue Detection (Backtrack Flagging)
@@ -222,11 +240,12 @@ The orchestrator uses these flags to detect when the same AC is flagged in 2+ co
 | AC-1 | {text} | VERIFIED / PARTIAL / MISSING | {test file:line, command output ref} |
 
 ### Issues Found (blocks ≥90%)
-1. [{severity}] {description} — {spec item reference}
+1. [{severity}] [{certainty}] {description} — {spec item reference}
    File: {path}:{line}
+   Certainty rationale: {why this certainty level}
 
 ### Anti-Patterns Detected
-- [{anti-pattern}] {description} — File: {path}:{line}
+- [{anti-pattern}] [{certainty}] {description} — File: {path}:{line}
 
 ### What's Good
 - {strength 1}
