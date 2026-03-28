@@ -51,7 +51,14 @@ Before asking questions, explore the codebase to understand:
 
 This prevents asking questions the codebase already answers.
 
-### Step 4: Clarification Loop with PO Agent
+### Step 4: Branch by Discussion Mode
+
+Read `discussMode` from `state.json` (default: `"interactive"`).
+
+- **`interactive`** → proceed to Step 4a (Clarification Loop)
+- **`assumptions`** → proceed to Step 4b (Assumptions Draft)
+
+### Step 4a: Clarification Loop with PO Agent (Interactive Mode)
 
 Dispatch a Clarifier sub-agent using the template at:
 `agents/clarifier.md`
@@ -106,6 +113,57 @@ Save the spec to:
 ```
 docs/superpowers/feature-crew/{feature-name}/spec.md
 ```
+
+Then skip to Step 5.
+
+### Step 4b: Assumptions Draft (Assumptions Mode)
+
+Instead of asking questions one-by-one, the Clarifier drafts a complete spec based on codebase exploration:
+
+1. Dispatch a Clarifier sub-agent using `agents/clarifier.md` with `mode: assumptions`:
+   - Provide the feature description, design assets, and full codebase context from Step 3
+   - The Clarifier analyzes everything and produces a **complete draft spec** — filling in all ambiguities with its best-guess answers based on existing codebase patterns, conventions, and domain context
+
+2. Each assumption is marked inline in the spec:
+   ```markdown
+   - AC-3: Profile avatar uses the existing `ImageUpload` component with 2MB limit
+     > **Assumption:** Inferred from existing upload patterns in `src/components/ImageUpload.tsx`. Override if different behavior needed.
+   ```
+
+3. Present the draft spec to the user with:
+   > "I've drafted a complete spec based on codebase analysis. Each assumption is marked with reasoning. Please review and correct anything that's wrong — you only need to flag what needs changing."
+
+4. The user reviews and provides corrections. For each correction:
+   - Update the spec in-place
+   - Remove the assumption marker from corrected items
+   - Log to `poAgentLog` as:
+     ```json
+     {
+       "questionNumber": N,
+       "question": "{the assumed AC}",
+       "decision": "ASSUMPTION_OVERRIDDEN",
+       "originalAssumption": "{what was assumed}",
+       "humanCorrection": "{what the user said instead}"
+     }
+     ```
+
+5. For assumptions the user doesn't flag, mark them as accepted:
+   - Remove assumption markers from the spec
+   - Log to `poAgentLog` as:
+     ```json
+     {
+       "questionNumber": N,
+       "question": "{the assumed AC}",
+       "decision": "ASSUMPTION_ACCEPTED",
+       "assumption": "{what was assumed}",
+       "reasoning": "{why it was inferred}"
+     }
+     ```
+
+6. Save the finalized spec to:
+   ```
+   docs/superpowers/feature-crew/{feature-name}/spec.md
+   ```
 
 ### Step 5: Checkpoint 1
 

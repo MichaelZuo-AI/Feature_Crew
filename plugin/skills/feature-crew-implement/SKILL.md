@@ -42,10 +42,36 @@ Read `state.json` to determine the current round and strategy:
 1. Reset frontier to the pre-implementation state (frontier-0)
 2. Start completely fresh
 
-### Step 3: Generate Plan
+### Step 3: Generate Plan with Wave Structure
 
 **For `normal` and `architectural-pivot` strategies:**
 Invoke `superpowers:writing-plans` with the approved spec as input. For `architectural-pivot`, include all prior eval feedback and explicitly instruct a fundamentally different approach.
+
+**After the plan is generated, organize tasks into dependency waves:**
+
+1. Identify dependencies between tasks (task B needs task A's output)
+2. Group independent tasks into waves — tasks within a wave have no dependencies on each other
+3. Waves run sequentially; tasks within a wave run in parallel
+4. Prefer **vertical slices** (feature-complete paths) over **horizontal layers** (all models, then all APIs, then all UI) — vertical slices parallelize better
+
+Format the plan with wave annotations:
+
+```markdown
+## Wave 1 — Foundation (parallel)
+- [ ] Task 1: Set up data models and types
+- [ ] Task 2: Create API route stubs
+
+## Wave 2 — Core Logic (parallel, depends on Wave 1)
+- [ ] Task 3: Implement business logic for user stories 1-2
+- [ ] Task 4: Implement business logic for user stories 3-4
+
+## Wave 3 — Integration (parallel, depends on Wave 2)
+- [ ] Task 5: Wire up API endpoints to business logic
+- [ ] Task 6: Add integration tests
+
+## Wave 4 — Polish (sequential, depends on Wave 3)
+- [ ] Task 7: Error handling, edge cases, and cleanup
+```
 
 Save the plan to:
 ```
@@ -72,7 +98,10 @@ Spawn **2-3 parallel implementer agents**, each in its own worktree branching fr
    - Fresh context (no knowledge of other branches)
    - The remediation list from the previous round (if any) as guidance
 
-3. Each agent executes the plan independently using `superpowers:subagent-driven-development`
+3. Each agent executes the plan independently using `superpowers:subagent-driven-development`, following the wave structure:
+   - Execute waves sequentially (Wave 1 completes before Wave 2 starts)
+   - Within each wave, execute tasks in parallel via sub-agents
+   - Each task produces an atomic commit (see Atomic Commits below)
 
 4. Record branches in state:
    ```json
@@ -85,6 +114,35 @@ Spawn **2-3 parallel implementer agents**, each in its own worktree branching fr
 5. Track time: record start timestamp. If elapsed exceeds `timeBudgets.implement`, log warning to `metrics.json` and `budgetWarnings`. If exceeds 2x, escalate per orchestrator rules.
 
 **For `specialist` strategy:** Spawn only 1 agent (the specialist), not parallel branches.
+
+### Atomic Commits
+
+Each task in the plan gets its own git commit. This enables precise `git bisect`, independent revertability, and clear history for future AI sessions.
+
+**Commit message format:**
+```
+{type}({feature-name}): {task description}
+```
+
+Where `{type}` is:
+- `feat` — new functionality
+- `test` — adding or updating tests
+- `refactor` — restructuring without behavior change
+- `fix` — bug fixes during implementation
+- `docs` — documentation updates
+
+**Examples:**
+```
+feat(user-profile): add user avatar upload component
+test(user-profile): add integration tests for avatar upload API
+feat(user-profile): wire up profile edit form to API endpoint
+```
+
+**Rules:**
+- One commit per completed task — never batch multiple tasks into one commit
+- Commit immediately after each task passes its verification step
+- Commit message references the feature name for traceability
+- If a task fails verification, do not commit — fix first, then commit once
 
 ### Step 5: Evaluation Gate
 

@@ -11,11 +11,24 @@ Multi-phase feature development with independent evaluator agents at every phase
 
 | Phase | Skill | What Happens |
 |-------|-------|--------------|
-| Phase 1 | `feature-crew-clarify` | Feature requirement → structured spec via question loop |
+| Phase 1 | `feature-crew-clarify` | Feature requirement → structured spec (interactive or assumptions mode) |
 | Checkpoint 1 | Human (skipped in auto mode) | Approve spec before implementation |
-| Phase 2 | `feature-crew-implement` | Plan → parallel exploration → evaluator scoring gate (≥90%) |
+| Phase 2 | `feature-crew-implement` | Wave-structured plan → parallel exploration → evaluator scoring gate (≥90%) |
 | Checkpoint 2 | Human (skipped in auto mode if ≥95%) | Code review before QA |
 | Phase 3 | `feature-crew-qa` | Holistic QA → bug fix loop → ship |
+
+## Commands
+
+| Command | What It Does |
+|---------|--------------|
+| `/feature-crew {name}` | Start a new feature (interactive mode) |
+| `/feature-crew {name} --assumptions` | Start with assumptions-based clarification |
+| `/feature-crew auto {name}` | Start in autonomous mode |
+| `/feature-crew resume {name}` | Resume a specific feature |
+| `/feature-crew next` | Auto-advance the most recently active feature |
+| `/feature-crew list` | List all features and their status |
+| `/feature-crew analyze` | Cross-feature analytics report |
+| `/feature-crew pause {name}` | Pause a feature at next checkpoint |
 
 ## Starting a New Feature
 
@@ -25,12 +38,22 @@ The user provides:
 1. **Feature name** — short identifier (e.g., "user-profile-page")
 2. **Feature description** — what to build, pasted into chat or described verbally
 3. **Design assets** — Figma screenshots, design specs, wireframes (optional, helps reduce ambiguity)
+4. **Discussion mode** (optional) — `interactive` (default) or `assumptions`
 
 ### Kickoff
 
 1. Create state directory: `docs/superpowers/feature-crew/{feature-name}/`
 2. Initialize `state.json` with phase `INIT` (see State Schema below)
 3. Invoke `feature-crew-clarify` to start Phase 1
+
+### Discussion Mode
+
+Controls how the clarifier gathers requirements:
+
+- **`interactive`** (default) — Clarifier asks questions one at a time via PO Agent. Best for greenfield features or features with little existing codebase context.
+- **`assumptions`** — Clarifier explores the codebase first, drafts a complete spec with best-guess answers for all ambiguities, then presents the draft to the user for corrections only. Best for features in established codebases where conventions and patterns already exist.
+
+Set via `/feature-crew {feature-name} --assumptions` or by passing `discussMode` at kickoff.
 
 ### Autonomous Mode
 
@@ -69,6 +92,24 @@ If invoked with `analyze`:
 2. Dispatch analyzer sub-agent using `agents/analyzer.md`
 3. Display report in terminal and save to `docs/superpowers/feature-crew/analysis-{YYYY-MM-DD}.md`
 
+## Auto-Advancing: Next Step
+
+If invoked with `next` (or no arguments when a feature is active):
+1. Scan `docs/superpowers/feature-crew/*/state.json` for all features
+2. Find the most recently active feature — the one whose last `phaseHistory` entry has the latest timestamp
+3. Read its current phase and route to the next logical action:
+   - `CLARIFYING` → resume clarification loop
+   - `CHECKPOINT_1` → present spec for approval
+   - `IMPLEMENTING` → resume implementation
+   - `CHECKPOINT_2` → present eval report for code review
+   - `QA` → resume QA
+   - `BACKTRACK_CLARIFY` → resume narrow-scope clarification
+   - `BLOCKED_IMPL` / `BLOCKED_QA` → present blocker for human guidance
+   - `PRODUCTION` → report "Feature already shipped. Start a new feature or resume another."
+4. Display: `"Auto-advancing **{feature-name}** → {phase description}"`
+
+This lets the user type `/feature-crew next` without remembering the feature name or current phase.
+
 ## Pausing a Feature
 
 If invoked with `pause {feature-name}`:
@@ -95,6 +136,7 @@ docs/superpowers/feature-crew/{feature-name}/
 {
   "featureName": "{feature-name}",
   "mode": "normal",
+  "discussMode": "interactive",
   "input": {
     "figmaLink": "{if provided}",
     "featureDescription": "{summary}"
@@ -125,6 +167,7 @@ docs/superpowers/feature-crew/{feature-name}/
 
 **Field reference:**
 - `mode`: `"normal"` or `"auto"` — controls checkpoint behavior
+- `discussMode`: `"interactive"` or `"assumptions"` — controls clarification approach (see Discussion Mode)
 - `strategy`: current retry strategy — `"normal"`, `"architectural-pivot"`, `"specialist"`, `"minimal-viable"`
 - `frontier`: git tag name of the current best implementation state (e.g., `"feature-name/frontier-3"`)
 - `explorationBranches`: array of `{"worktree": "...", "branch": "...", "score": null, "status": "pending|evaluated|winner|discarded"}`

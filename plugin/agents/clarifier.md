@@ -81,9 +81,30 @@ After all questions are resolved, produce:
 - **Key quality signals:** {what "good" looks like for this specific feature}
 ```
 
+## Assumptions Mode
+
+When dispatched with `mode: assumptions`, skip the question loop entirely. Instead:
+
+1. **Analyze everything available** — feature description, design assets, codebase context
+2. **Resolve all ambiguities yourself** using codebase patterns as evidence:
+   - Existing component patterns → infer UI decisions
+   - Existing API conventions → infer data flow
+   - Existing error handling → infer error strategy
+   - Existing test patterns → infer test approach
+3. **Produce a complete spec** with every ambiguity resolved
+4. **Mark each assumption** inline with reasoning:
+   ```markdown
+   - AC-N: {the criterion}
+     > **Assumption:** {what you inferred and why — cite specific files/patterns}
+   ```
+5. Only leave a question unresolved if there is genuinely no codebase evidence to draw from AND it's a business/product decision (pricing, permissions, scope)
+
+The goal: minimize user effort. They review and correct rather than answer from scratch.
+
 ## Rules
 
-- ONE question per message — never batch questions
+- **Interactive mode:** ONE question per message — never batch questions
+- **Assumptions mode:** Produce complete spec with inline assumptions — no questions unless unavoidable
 - Prefer multiple choice — easier for the user to answer
 - Don't ask about things you can determine from the codebase — read first
 - Focus on decisions that affect implementation, not theoretical completeness
