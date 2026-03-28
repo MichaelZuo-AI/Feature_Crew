@@ -68,6 +68,31 @@ npm run dev    # → http://localhost:3000
 
 Each example includes the full Feature Crew artifact trail (`docs/superpowers/feature-crew/`) — specs, evaluation rounds, and QA reports — so you can see exactly how the pipeline built the code.
 
+## Changelog
+
+### v1.0.0 (2026-03-28)
+
+**Plugin packaging** — Feature Crew is now a Claude Code plugin. Install with `claude plugins marketplace add` + `claude plugins install` instead of copying skill files.
+
+**10 enhancements inspired by [karpathy/autoresearch](https://github.com/karpathy/autoresearch):**
+
+| # | Enhancement | What it does |
+|---|-------------|-------------|
+| 1 | Parallel exploration | 2-3 implementer agents compete in separate worktrees, best score wins |
+| 2 | Immutable eval harness | Evaluator runs in isolated read-only worktree — can't modify code or tests |
+| 3 | Implementation simplicity | New 7th scoring dimension penalizing unnecessary complexity |
+| 4 | Autonomous mode | `/feature-crew auto` skips checkpoints for low-risk features (≥95% to skip code review) |
+| 5 | Git-as-frontier | Branch tip = best-known state. Failed attempts revert, not accumulate |
+| 6 | Experiment logging | Per-feature `metrics.json` records every eval round, score, strategy, and duration |
+| 7 | Adaptive retry | 7-round strategy ladder replaces 3-strike rule (normal → architectural pivot → specialist → minimal viable → blocked) |
+| 8 | Phase backtracking | Evaluator can trigger return to clarification when same AC is flagged 2 rounds in a row |
+| 9 | Time budgets | Soft caps per phase with warning at 1x and escalation at 2x — never hard-kills |
+| 10 | Post-hoc analysis | `/feature-crew analyze` scans all features for patterns, trends, and recommendations |
+
+### v0.1.0 (2026-03-22)
+
+Initial release — 3-phase pipeline (clarify → implement → QA) with PO agent, adaptive evaluator (6 dimensions), and parallel feature support via git worktrees.
+
 ## License
 
 MIT
