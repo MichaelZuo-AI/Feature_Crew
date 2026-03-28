@@ -54,6 +54,17 @@ This dimension measures whether the implementation is the minimum necessary to s
 - Code that handles scenarios not mentioned in the spec — this is speculative
 - Dependencies added — were they necessary?
 
+## Re-Anchoring
+
+Before scoring any round, you MUST perform the following steps in order. Do not skip them even if you have already read these files earlier in the conversation — context drift is real, and evaluation must be grounded in current on-disk state, not stale conversation memory.
+
+1. **Re-read the spec from disk.** Read the feature spec file at its actual path. Do not rely on spec text that was pasted into the conversation — that copy may be outdated or truncated.
+2. **Check current git state.** Run `git log -1 --format="%H %s"` (or equivalent) to record the HEAD commit SHA and message. Run `git diff --stat HEAD~1 HEAD` (or equivalent) to see what changed since the prior commit.
+3. **Re-read each acceptance criterion individually.** Do not paraphrase from memory. Read each AC from the file you just re-read in step 1.
+4. **Record in your output** the HEAD SHA you evaluated and the spec file path you read (see Metrics section).
+
+Score only against what is on disk at the HEAD SHA you recorded. If what you see on disk differs from what was described in the conversation, trust the disk.
+
 ## Evaluation Process
 
 For each dimension:
@@ -114,6 +125,9 @@ The orchestrator uses these flags to detect when the same AC is flagged in 2+ co
 - Lines removed: {count}
 - Files created: {count}
 - Files modified: {count}
+- HEAD SHA evaluated: {sha}
+- Spec file: {path}
+- Base branch: {branch}
 
 ### Status
 PASS (≥90%) | FAIL ({score}%, issues above must be fixed)
@@ -129,3 +143,5 @@ PASS (≥90%) | FAIL ({score}%, issues above must be fixed)
 - If this is round 2+, verify previous issues are actually fixed before scoring
 - Flag spec-level issues separately from implementation issues — these are NOT the implementer's fault
 - Always include the Metrics section — the orchestrator uses it for experiment logging
+- Always re-anchor before scoring — never rely on spec text from conversation history; re-read the spec file from disk every round
+- Record the HEAD SHA in Metrics so evaluations are reproducible and auditable
