@@ -115,14 +115,42 @@ Named anti-patterns by dimension. When scoring below 80 on any dimension, cite a
 - `BREAKING_CHANGE` — a public API, prop, or contract is altered without a migration path
 - `MISSING_GUARD` — no null/undefined check at a boundary where external data enters the system
 
+## Fresh-Evidence Verification Protocol
+
+Before scoring any dimension, you MUST gather fresh evidence by running actual commands. Do not score based on reading code alone — observable behavior is the ground truth.
+
+**Required verification commands (run all before scoring):**
+
+1. **Test suite:** Run the project's test command (e.g., `npm test`, `pytest`). Record the full output including pass/fail counts.
+2. **Type check:** Run the project's type checker if applicable (e.g., `npx tsc --noEmit`, `mypy`). Record any errors.
+3. **Build:** Run the build command if applicable (e.g., `npm run build`). Record exit code.
+4. **Lint:** Run the project's linter if configured. Record any warnings or errors.
+
+**Evidence acceptance rules:**
+
+- Fresh command output from this evaluation session is the ONLY acceptable evidence
+- Claims of "tests pass" or "build succeeds" without actual command output are rejected — re-run the command
+- If a command fails to run (missing dependencies, wrong environment), record the failure and note it as a gap in the Metrics section
+- Words like "should," "probably," and "seems to" in scoring rationale are red flags — replace them with command output references
+
+**Per-AC verification status:**
+
+For each acceptance criterion, assign one of:
+- `VERIFIED` — test exists, passes, and covers the criterion (cite test file:line and command output)
+- `PARTIAL` — test exists but incomplete (explain what's missing)
+- `MISSING` — no test covers this criterion
+
+Include the AC verification table in your output (see Output Format).
+
 ## Evaluation Process
 
 For each dimension:
 1. Read the relevant code files thoroughly
 2. Cross-reference against spec acceptance criteria
-3. Score 0-100 with specific rationale
-4. List concrete issues with file:line references
-5. If any dimension scores below 80, cite at least one named anti-pattern from the catalog above with file:line evidence — generic complaints without a named pattern are not acceptable
+3. Run verification commands and record output (see Fresh-Evidence Protocol above)
+4. Score 0-100 with specific rationale grounded in command output
+5. List concrete issues with file:line references
+6. If any dimension scores below 80, cite at least one named anti-pattern from the catalog above with file:line evidence — generic complaints without a named pattern are not acceptable
 
 ### Spec-Level Issue Detection (Backtrack Flagging)
 
@@ -181,6 +209,18 @@ The orchestrator uses these flags to detect when the same AC is flagged in 2+ co
 
 {If none: "No spec-level issues detected."}
 
+### Verification Commands Run
+| Command | Exit Code | Summary |
+|---------|-----------|---------|
+| {test command} | {0/1} | {X passed, Y failed} |
+| {type check} | {0/1} | {N errors} |
+| {build} | {0/1} | {success/failure} |
+
+### Acceptance Criteria Verification
+| AC | Description | Status | Evidence |
+|----|-------------|--------|----------|
+| AC-1 | {text} | VERIFIED / PARTIAL / MISSING | {test file:line, command output ref} |
+
 ### Issues Found (blocks ≥90%)
 1. [{severity}] {description} — {spec item reference}
    File: {path}:{line}
@@ -224,3 +264,14 @@ PASS (≥90%) | FAIL ({score}%, issues above must be fixed)
 - High scores (≥80) require evidence — at least 2 code references, verified ACs, and at least one concern; without this evidence, cap the score at 75
 - A perfect 100 on any dimension requires extraordinary justification with exhaustive references — treat it as near-impossible
 - When scoring <80 on any dimension, you MUST cite named anti-patterns from the Anti-Pattern Catalog — generic complaints without a named pattern are not acceptable
+
+## Final Checklist
+
+Before submitting the evaluation report, verify:
+
+- [ ] Did I run verification commands myself (not trust claims)?
+- [ ] Is the evidence fresh (from this evaluation session, post-implementation)?
+- [ ] Does every acceptance criterion have a VERIFIED/PARTIAL/MISSING status with evidence?
+- [ ] Are all scores >= 80 supported by command output, not just code reading?
+- [ ] Did I record the HEAD SHA and all verification command outputs?
+- [ ] If any command failed to run, is it noted in the Metrics section?
