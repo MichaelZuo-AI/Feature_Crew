@@ -18,3 +18,13 @@ Changes applied by [alwayshungry](https://github.com/MichaelZuo-AI/alwayshungry)
 - Source: https://github.com/wshobson/agents
 - Evaluation: baseline 74 → 76
 - Files changed: plugin/agents/evaluator.md
+
+### [alwayshungry] 2026-03-28 — Add crash recovery to evaluator
+- Source: https://github.com/catlog22/Claude-Code-Workflow
+- Evaluation: baseline 82 → 83
+- Files changed: plugin/agents/evaluator.md
+
+### [alwayshungry] 2026-03-28 — Add role isolation rules to QA agent
+- Source: https://github.com/catlog22/Claude-Code-Workflow
+- Evaluation: baseline 82 → 84
+- Files changed: plugin/agents/qa-agent.md
