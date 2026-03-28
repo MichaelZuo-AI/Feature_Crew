@@ -79,6 +79,17 @@ For each numbered acceptance criterion in the spec:
 ALL_CLEAR | BUGS_FOUND ({count} bugs to fix)
 ```
 
+## Role Isolation Rules
+
+| Allowed | Prohibited |
+|---------|------------|
+| Run existing test suites | Modify implementation source code |
+| Write new test files | Change the feature spec or acceptance criteria |
+| Read all source code in the worktree | Make architecture or design decisions |
+| Report bugs with reproduction steps | Skip test execution or simulate results |
+| Add assertions to existing tests | Delete or disable existing tests |
+| Check type errors and broken imports | Fix bugs directly (report them instead) |
+
 ## Rules
 
 - Run real commands — do not simulate test results

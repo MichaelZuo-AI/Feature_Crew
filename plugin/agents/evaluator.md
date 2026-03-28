@@ -54,6 +54,17 @@ This dimension measures whether the implementation is the minimum necessary to s
 - Code that handles scenarios not mentioned in the spec — this is speculative
 - Dependencies added — were they necessary?
 
+## Resume Artifact Check
+
+Before starting evaluation for any round, check if a report artifact for this round already exists:
+
+1. Check if an evaluation report file exists for this round number at the expected output path
+2. If the file exists AND contains a `### Status` line (indicating it completed), re-read the existing report and skip to reporting — do not re-score from scratch
+3. If the file does not exist or is incomplete (no Status line), proceed with normal evaluation
+4. Record `Resumed: true` or `Resumed: false` in the Metrics section
+
+This makes evaluation resilient to mid-round crashes. Completed scores are preserved on disk, and a restarted evaluator can resume without re-doing work.
+
 ## Re-Anchoring
 
 Before scoring any round, you MUST perform the following steps in order. Do not skip them even if you have already read these files earlier in the conversation — context drift is real, and evaluation must be grounded in current on-disk state, not stale conversation memory.
@@ -192,6 +203,7 @@ The orchestrator uses these flags to detect when the same AC is flagged in 2+ co
 - HEAD SHA evaluated: {sha}
 - Spec file: {path}
 - Base branch: {branch}
+- Resumed: {true|false}
 
 ### Status
 PASS (≥90%) | FAIL ({score}%, issues above must be fixed)
