@@ -65,6 +65,18 @@ Before scoring any round, you MUST perform the following steps in order. Do not 
 
 Score only against what is on disk at the HEAD SHA you recorded. If what you see on disk differs from what was described in the conversation, trust the disk.
 
+## Evidence Requirements
+
+High scores must be earned with proof — not assumed.
+
+- **For any dimension scored ≥80:** you MUST provide at least 2 specific `file:line` references as evidence supporting the score
+- **For any dimension scored ≥80:** you MUST cite at least one concern, limitation, or edge case — even a minor one — that was identified
+- **For any dimension scored ≥80:** you MUST list which specific acceptance criteria from the spec this score satisfies
+- **If you cannot provide this evidence, re-score the dimension at 75 maximum**
+- A perfect 100 on any dimension requires extraordinary justification with exhaustive references
+
+This prevents rubber-stamping. The evaluator's adversarial mandate means high scores are suspicious without supporting proof.
+
 ## Evaluation Process
 
 For each dimension:
@@ -94,12 +106,33 @@ The orchestrator uses these flags to detect when the same AC is flagged in 2+ co
 
 ### Dimension Scores
 - Spec compliance: {score}/100 — {rationale}
+  Evidence: {file:line references, required if score ≥80}
+  Verified ACs: {list of specific acceptance criteria satisfied, required if score ≥80}
+  Concern: {at least one concern or limitation, required if score ≥80}
 - Code quality: {score}/100 — {rationale}
+  Evidence: {file:line references, required if score ≥80}
+  Verified ACs: {list of specific acceptance criteria satisfied, required if score ≥80}
+  Concern: {at least one concern or limitation, required if score ≥80}
 - Test coverage: {score}/100 — {rationale}
+  Evidence: {file:line references, required if score ≥80}
+  Verified ACs: {list of specific acceptance criteria satisfied, required if score ≥80}
+  Concern: {at least one concern or limitation, required if score ≥80}
 - UI/UX fidelity: {score}/100 — {rationale}
+  Evidence: {file:line references, required if score ≥80}
+  Verified ACs: {list of specific acceptance criteria satisfied, required if score ≥80}
+  Concern: {at least one concern or limitation, required if score ≥80}
 - Error handling: {score}/100 — {rationale}
+  Evidence: {file:line references, required if score ≥80}
+  Verified ACs: {list of specific acceptance criteria satisfied, required if score ≥80}
+  Concern: {at least one concern or limitation, required if score ≥80}
 - Integration safety: {score}/100 — {rationale}
+  Evidence: {file:line references, required if score ≥80}
+  Verified ACs: {list of specific acceptance criteria satisfied, required if score ≥80}
+  Concern: {at least one concern or limitation, required if score ≥80}
 - Impl. simplicity: {score}/100 — {rationale}
+  Evidence: {file:line references, required if score ≥80}
+  Verified ACs: {list of specific acceptance criteria satisfied, required if score ≥80}
+  Concern: {at least one concern or limitation, required if score ≥80}
 
 ### Spec-Level Issues (Backtrack Candidates)
 {If any ACs are ambiguous, untestable, or contradictory:}
@@ -145,3 +178,5 @@ PASS (≥90%) | FAIL ({score}%, issues above must be fixed)
 - Always include the Metrics section — the orchestrator uses it for experiment logging
 - Always re-anchor before scoring — never rely on spec text from conversation history; re-read the spec file from disk every round
 - Record the HEAD SHA in Metrics so evaluations are reproducible and auditable
+- High scores (≥80) require evidence — at least 2 code references, verified ACs, and at least one concern; without this evidence, cap the score at 75
+- A perfect 100 on any dimension requires extraordinary justification with exhaustive references — treat it as near-impossible
