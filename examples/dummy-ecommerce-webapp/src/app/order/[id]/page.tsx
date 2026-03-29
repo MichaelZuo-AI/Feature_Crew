@@ -309,6 +309,12 @@ export default function OrderDetailPage({ params }: { params: { id: string } }) 
             Request Return
           </Link>
         </div>
+
+        {(order.status === 'pending' || order.status === 'preparing') && (
+          <Link href={`/cancel-order/${order.id}`} className="block w-full text-center py-3 rounded-lg font-semibold text-error ghost-border">
+            Cancel Order
+          </Link>
+        )}
       </div>
 
       <BottomNavBar />
