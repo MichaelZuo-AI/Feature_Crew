@@ -23,8 +23,15 @@ const MENU_ITEMS: { icon: string; label: string; route?: string }[] = [
   { icon: 'settings', label: 'Settings' },
   { icon: 'celebration', label: 'Events' },
   { icon: 'location_on', label: 'Address Management', route: '/addresses' },
-  { icon: 'credit_card', label: 'Payment Methods' },
+  { icon: 'credit_card', label: 'Payment Methods', route: '/payment-methods' },
   { icon: 'privacy_tip', label: 'Privacy Policy' },
+  { icon: 'help', label: 'Help Center', route: '/help' },
+  { icon: 'card_giftcard', label: 'Gift Cards', route: '/gift-cards' },
+  { icon: 'loyalty', label: 'Points History', route: '/points-history' },
+  { icon: 'notifications_active', label: 'Price Alerts', route: '/price-alerts' },
+  { icon: 'shopping_bag', label: 'Bundle Deals', route: '/bundles' },
+  { icon: 'store', label: 'Store Directory', route: '/store/store-1' },
+  { icon: 'local_shipping', label: 'Schedule Delivery', route: '/delivery-schedule' },
 ];
 
 function getInitials(name: string): string {
