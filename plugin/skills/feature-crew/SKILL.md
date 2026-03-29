@@ -343,6 +343,37 @@ The branch tip always represents the best-known implementation (inspired by auto
 
 **Cleanup:** Frontier tags are deleted when the feature reaches PRODUCTION.
 
+## Post-Ship Knowledge Extraction
+
+When a feature reaches PRODUCTION, the orchestrator extracts lessons learned into a persistent knowledge base. This prevents the same mistakes from recurring across features.
+
+### Extraction Process
+
+1. Read all `eval-round-*.md` and `qa-report-*.md` files for the completed feature
+2. Read `metrics.json` for the full timeline
+3. Extract entries in these categories:
+   - **Recurring issues** — evaluator issues that appeared in 2+ rounds (these are systematic, not one-offs)
+   - **Effective strategies** — if strategy escalated beyond `normal`, record which strategy finally worked and why
+   - **Spec ambiguities** — any backtrack events, including the original ambiguity and how it was resolved
+   - **Anti-patterns detected** — named anti-patterns from evaluator reports, with project-specific context
+
+4. Write entries to `docs/superpowers/feature-crew/knowledge.jsonl` (one JSON object per line):
+
+```json
+{"feature": "{name}", "category": "recurring-issue", "description": "...", "resolution": "...", "files": ["..."], "date": "YYYY-MM-DD"}
+{"feature": "{name}", "category": "effective-strategy", "description": "...", "context": "...", "date": "YYYY-MM-DD"}
+```
+
+### Knowledge Priming
+
+Before starting Phase 2 (implementation), the orchestrator loads relevant entries from `knowledge.jsonl`:
+- Filter by files that overlap with the new feature's target paths
+- Filter by keywords from the new feature's spec
+- Include at most 10 entries to avoid context bloat
+- Pass as additional context to the implementer: "Lessons from past features: ..."
+
+If `knowledge.jsonl` doesn't exist yet (first feature), skip priming.
+
 ## Parallel Features
 
 Each feature gets its own:
