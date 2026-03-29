@@ -28,6 +28,7 @@ Multi-phase feature development with independent evaluator agents at every phase
 | `/feature-crew next` | Auto-advance the most recently active feature |
 | `/feature-crew list` | List all features and their status |
 | `/feature-crew analyze` | Cross-feature analytics report |
+| `/feature-crew diagnose {name}` | Root-cause analysis for stuck/blocked features |
 | `/feature-crew pause {name}` | Pause a feature at next checkpoint |
 
 ## Starting a New Feature
@@ -91,6 +92,50 @@ If invoked with `analyze`:
 1. Scan all `docs/superpowers/feature-crew/*/metrics.json` files
 2. Dispatch analyzer sub-agent using `agents/analyzer.md`
 3. Display report in terminal and save to `docs/superpowers/feature-crew/analysis-{YYYY-MM-DD}.md`
+
+## Diagnosing a Feature
+
+If invoked with `diagnose {feature-name}`:
+
+A forensic analysis of stuck or blocked features. Produces a root-cause report without modifying any state.
+
+1. Read `state.json` — current phase, strategy, round count, backtracks, budget warnings
+2. Read all `eval-round-*.md` reports — extract dimension scores across rounds
+3. Read all `qa-report-*.md` reports — extract recurring bugs
+4. Read `metrics.json` — timeline, duration trends, score progression
+5. Check git state — orphaned worktrees, missing frontier tags, uncommitted changes
+
+### Analysis
+
+Produce a diagnostic report:
+
+```
+## Diagnosis: {feature-name}
+
+**Phase:** {current phase}
+**Strategy:** {current strategy} (round {N} of 7)
+**Time in phase:** {elapsed} / {budget}
+
+### Score Trend
+| Round | Overall | Failing Dimensions |
+|-------|---------|-------------------|
+| 1 | 72 | Test coverage (45), Spec compliance (68) |
+| 2 | 75 | Test coverage (52), Spec compliance (70) |
+| ... | ... | ... |
+
+### Root Cause
+{One of:}
+- **Persistent dimension failure** — {dimension} has scored below 80 in {N} consecutive rounds. The issue is {description}.
+- **Spec ambiguity** — AC-{N} has been flagged as a spec-level issue in {N} rounds. Consider backtracking to clarification.
+- **Strategy exhaustion** — Feature has reached round {N} without passing. The strategy ladder has been escalated to {strategy}.
+- **Time budget exceeded** — Phase {phase} has been running for {elapsed}s vs budget of {budget}s.
+- **Git anomaly** — {description of orphaned worktree, missing tag, etc.}
+
+### Recommended Action
+{Specific next step based on root cause}
+```
+
+This command is informational only — it does not modify state or trigger phase transitions.
 
 ## Auto-Advancing: Next Step
 
