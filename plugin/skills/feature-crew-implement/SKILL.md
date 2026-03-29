@@ -78,6 +78,24 @@ Save the plan to:
 docs/superpowers/feature-crew/{feature-name}/plan.md
 ```
 
+### Step 3b: Plan Verification
+
+Before dispatching implementer agents, verify the plan covers the spec. This is a cheap check that catches misalignment before expensive implementation.
+
+1. Read each acceptance criterion (AC) from the spec
+2. For each AC, confirm at least one task in the plan addresses it
+3. Build a coverage table:
+
+| AC | Covered By | Status |
+|----|-----------|--------|
+| AC-1 | Task 3, Task 5 | Covered |
+| AC-2 | — | **GAP** |
+
+4. **If any AC has GAP status:** amend the plan to add tasks covering the missing ACs. Re-check after amendment.
+5. **If all ACs are covered:** proceed to Step 4.
+
+This step runs once per round (not per parallel branch). It adds minimal overhead but prevents the common failure mode where the plan omits an AC and every implementation attempt fails the same evaluator check.
+
 **For `specialist` strategy:**
 Skip plan generation. Instead, read the last eval report, identify the consistently failing dimension, and generate a targeted fix plan for that dimension only.
 
