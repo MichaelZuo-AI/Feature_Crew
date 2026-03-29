@@ -75,6 +75,18 @@ For each numbered acceptance criterion in the spec:
 - New tests written: {count}
 - Bugs by severity: {Critical: N, Major: N, Minor: N}
 
+### Fix Order
+{If 2+ bugs found, analyze dependencies between them and recommend optimal fix sequence:}
+1. Bug {N} — {reason it should be fixed first, e.g., "root cause for Bug 2 and Bug 4"}
+2. Bug {M} — {reason, e.g., "depends on Bug N being fixed"}
+3. Bug {K} — {reason, e.g., "independent, lowest severity"}
+
+{If bugs share a root cause, group them:}
+**Group A (shared root cause: {description}):** Bug 1, Bug 3
+**Group B (independent):** Bug 2
+
+{If only 1 bug, omit this section.}
+
 ### Status
 ALL_CLEAR | BUGS_FOUND ({count} bugs to fix)
 ```
