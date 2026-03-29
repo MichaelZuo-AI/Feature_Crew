@@ -64,3 +64,22 @@ export const initialCartItems = [
   { product: products[4], quantity: 1, selected: true },
   { product: products[5], quantity: 1, selected: true },
 ];
+
+export interface PaymentMethod {
+  id: string;
+  type: 'card' | 'wallet';
+  brand: string;
+  label: string;
+  lastFour?: string;
+  expiry?: string;
+  balance?: number;
+  isDefault: boolean;
+  icon: string;
+}
+
+export const paymentMethods: PaymentMethod[] = [
+  { id: 'pm-1', type: 'wallet', brand: 'CoupangPay', label: 'CoupangPay Wallet', balance: 50000, isDefault: false, icon: 'account_balance_wallet' },
+  { id: 'pm-2', type: 'card', brand: 'Visa', label: 'Visa', lastFour: '4242', expiry: '12/28', isDefault: true, icon: 'credit_card' },
+  { id: 'pm-3', type: 'card', brand: 'Mastercard', label: 'Mastercard', lastFour: '8888', expiry: '06/27', isDefault: false, icon: 'credit_card' },
+  { id: 'pm-4', type: 'wallet', brand: 'NaverPay', label: 'NaverPay Linked', isDefault: false, icon: 'payments' },
+];
